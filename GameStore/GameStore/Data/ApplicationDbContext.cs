@@ -1,22 +1,12 @@
-﻿using GamingWebAppDb.Models;
+﻿using GameStore.Data.Models;
+using GamingWebAppDb.Models;
 using Microsoft.EntityFrameworkCore;
-using GamingWebAppDb;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GamingWebAppDb
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
-        {
-
-        }
-
-
         public DbSet<User> Users { get; set; }
 
         public DbSet<Game> Games { get; set; }
@@ -27,6 +17,12 @@ namespace GamingWebAppDb
 
         public DbSet<UserWishList> UserWishListGames { get; set; }
 
+        public DbSet<Genre> Genres { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
+        {
+
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -57,6 +53,15 @@ namespace GamingWebAppDb
                  .WithOne(x => x.User)
                  .HasForeignKey<ShoppingCart>(x => x.ShoppingCartId);
 
+            modelBuilder.Entity<Game>()
+                .HasOne<Guide>(x => x.Guide)
+                .WithOne(x => x.Game)
+                .HasForeignKey<Guide>(x => x.GameId);
+
+            //modelBuilder.Entity<Game>()
+            // .HasOne<Guide>(x => x.Guide)
+            // .WithOne(x => x.Game)
+            // .HasForeignKey<Game>(x => x.);
         }
     }
 }          

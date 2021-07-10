@@ -1,3 +1,4 @@
+using GameStore.Infrastructure;
 using GamingWebAppDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,8 @@ namespace GameStore
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -51,18 +54,14 @@ namespace GameStore
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()
+
                 .UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
 
-            var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-            using (var serviceScope = serviceScopeFactory.CreateScope())
-            {
-                var dbContext = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
-                dbContext.Database.EnsureCreated();
-            }
+          
         }
     }
 }

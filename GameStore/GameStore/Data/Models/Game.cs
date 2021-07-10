@@ -16,30 +16,33 @@ namespace GamingWebAppDb.Models
         }
 
         [Key]
-        public int GameId { get; private set; }
+        public int Id { get; set; }
 
-        public int GuideId { get; set; }
 
         [Required]
         public Guide Guide { get; set; }
-        
+        public int GuideId { get; set; }
+
+
         [Required]
         [MaxLength(GameTitleMaxLength)]
-        public string Title { get; private set; }
-        
+        public string Title { get;  set; }
+
+        public int GenreId { get; set; }
+
         [Required]
-        public Genre Genre { get; private set; }
+        public Genre Genre { get;  set; }
 
         [Required]
         [MaxLength(GameDescriptionsMaxLenght)]
-        public string Description { get; private set; }
+        public string Description { get;  set; }
 
         [Required]
         [MaxLength(GameRequirementsMaxLenght)]
-        public string Requirements { get; private set; }
+        public string Requirements { get;  set; }
 
         [Required]
-        public decimal Price { get; private set;  }
+        public decimal Price { get;  set;  }
 
         [Required]
         [Url]
@@ -47,9 +50,9 @@ namespace GamingWebAppDb.Models
 
         [Required]
         [Url]
-        public string TrailerUrl { get; private set; }
+        public string TrailerUrl { get;  set; }
 
-        public IEnumerable<ShoppingCartGame> ShoppingCartGames { get; private set; }
+        public IEnumerable<ShoppingCartGame> ShoppingCartGames { get;  set; }
 
         public IEnumerable<UserWishList> WishListGames { get; set; }
 

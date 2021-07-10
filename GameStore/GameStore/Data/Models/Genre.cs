@@ -1,59 +1,21 @@
-﻿namespace GamingWebAppDb.Models
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace GamingWebAppDb.Models
 {
-    public enum Genre
+    public class Genre
     {
-		Shooter = 10,
-		Fighting = 20,
-		Stealth = 30,
-		Survival = 40,
-		Rhythm = 50,
-		BattleRoyale = 60,
-		ActionАdventure = 70,
-		SurvivalHorror = 80,
-		Metroidvania = 90,
-		Adventure = 100,
-		TextAdventures = 110,
-		GraphicAdventures = 120,
-		VisualNovels = 130,
-		InteractiveMovie = 140,
-		RealTime3DAdventures = 150,
-		RolePlaying = 160,
-		ActionRPG = 170,
-		MMORPG = 180,
-		Roguelikes = 190,
-		TacticalRPG = 200,
-		SandboxRPG = 210,
-		JRPG = 220,
-		MonsterTamer = 230,
-		Simulation = 240,
-		LifeSimulation = 250,
-		VehicleSimulation = 260,
-		Strategy = 270,
-		MOBA = 280,
-		RTS = 290,
-		RTT = 300,
-		TowerDefense = 310,
-		TBS = 320,
-		TBT = 330,
-		Wargame = 340,
-		GrandStrategyWargame = 350,
-		Sports = 350,
-		Racing = 360,
-		MMO = 370,
-		Board = 380,
-		Casual = 390,
-		Collectible = 400,
-		Horror = 410,
-		Idle = 420,
-		Logic = 430,
-		Party = 440,
-		Photography = 450,
-		Programming = 460,
-		Trivia = 470,
-		ArtGame = 480,
-		Sandbox = 490,
-		Creative = 500,
-		OpenWorld = 510,
-		Scientific = 520
-	}
+        public Genre()
+        {
+            Games = new List<Game>();
+        }
+
+        [Key]
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public IEnumerable<Game> Games { get; set; }
+
+    }
 }

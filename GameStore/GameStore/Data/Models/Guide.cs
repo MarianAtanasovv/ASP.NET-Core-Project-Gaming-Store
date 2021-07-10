@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GamingWebAppDb.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace GameStore.Data.Models
@@ -18,5 +20,9 @@ namespace GameStore.Data.Models
 
         [Required]
         public string FAQ { get; set; }
+
+        public Game Game { get; set; }
+
+        public int GameId { get; set; }
     }
 }
