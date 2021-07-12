@@ -10,11 +10,11 @@ namespace GamingWebAppDb.Models
     {
         public User()
         {
-            WishListGames = new List<UserWishList>();
-            Games = new List<Game>();
+            //WishListGames = new List<UserWishList>();
+            //Games = new List<Game>();
         }
         [Key]
-        public int UserId { get;  set; }
+        public int UserId { get; set; }
 
         [Required]
         [MaxLength(UsernameMaxLength)]
@@ -23,16 +23,16 @@ namespace GamingWebAppDb.Models
         [Required]
         [EmailAddress]
         [MaxLength(EmailMaxLength)]
-        public string Email { get;  set; }
+        public string Email { get; set; }
 
         [Required]
-        public string Password { get;  set; }
+        public string Password { get; set; }
 
-        public IEnumerable<Game> Games { get; private set; }
+        //public IEnumerable<Game> Games { get; private set; }
 
         public ShoppingCart ShoppingCart { get; private set; }
 
-        public IEnumerable<UserWishList> WishListGames { get; set; }
+        //public IEnumerable<UserWishList> WishListGames { get; set; }
 
 
     }

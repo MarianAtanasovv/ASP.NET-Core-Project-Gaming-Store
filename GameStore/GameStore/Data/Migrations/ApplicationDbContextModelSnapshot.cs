@@ -19,40 +19,6 @@ namespace GameStore.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GameStore.Data.Models.Guide", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("EasterEgg")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FAQ")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StartingTips")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Walkthrough")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId")
-                        .IsUnique();
-
-                    b.ToTable("Guide");
-                });
-
             modelBuilder.Entity("GamingWebAppDb.Models.Game", b =>
                 {
                     b.Property<int>("Id")
@@ -67,6 +33,10 @@ namespace GameStore.Data.Migrations
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Guide")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GuideId")
                         .HasColumnType("int");
@@ -92,22 +62,9 @@ namespace GameStore.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserWishListGameId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserWishListUserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("GenreId");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("UserWishListUserId", "UserWishListGameId");
 
                     b.ToTable("Games");
                 });
@@ -130,12 +87,17 @@ namespace GameStore.Data.Migrations
             modelBuilder.Entity("GamingWebAppDb.Models.ShoppingCart", b =>
                 {
                     b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("ShoppingCartId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("ShoppingCarts");
                 });
@@ -191,32 +153,6 @@ namespace GameStore.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("GamingWebAppDb.Models.UserWishList", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "GameId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("UserWishListGames");
-                });
-
-            modelBuilder.Entity("GameStore.Data.Models.Guide", b =>
-                {
-                    b.HasOne("GamingWebAppDb.Models.Game", "Game")
-                        .WithOne("Guide")
-                        .HasForeignKey("GameStore.Data.Models.Guide", "GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-                });
-
             modelBuilder.Entity("GamingWebAppDb.Models.Game", b =>
                 {
                     b.HasOne("GamingWebAppDb.Models.Genre", "Genre")
@@ -225,14 +161,6 @@ namespace GameStore.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GamingWebAppDb.Models.User", null)
-                        .WithMany("Games")
-                        .HasForeignKey("UserId");
-
-                    b.HasOne("GamingWebAppDb.Models.UserWishList", null)
-                        .WithMany("Games")
-                        .HasForeignKey("UserWishListUserId", "UserWishListGameId");
-
                     b.Navigation("Genre");
                 });
 
@@ -240,7 +168,7 @@ namespace GameStore.Data.Migrations
                 {
                     b.HasOne("GamingWebAppDb.Models.User", "User")
                         .WithOne("ShoppingCart")
-                        .HasForeignKey("GamingWebAppDb.Models.ShoppingCart", "ShoppingCartId")
+                        .HasForeignKey("GamingWebAppDb.Models.ShoppingCart", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -262,33 +190,9 @@ namespace GameStore.Data.Migrations
                     b.Navigation("ShoppingCart");
                 });
 
-            modelBuilder.Entity("GamingWebAppDb.Models.UserWishList", b =>
-                {
-                    b.HasOne("GamingWebAppDb.Models.User", "User")
-                        .WithMany("WishListGames")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GamingWebAppDb.Models.Game", "Game")
-                        .WithMany("WishListGames")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("GamingWebAppDb.Models.Game", b =>
                 {
-                    b.Navigation("Guide")
-                        .IsRequired();
-
                     b.Navigation("ShoppingCartGames");
-
-                    b.Navigation("WishListGames");
                 });
 
             modelBuilder.Entity("GamingWebAppDb.Models.Genre", b =>
@@ -303,16 +207,7 @@ namespace GameStore.Data.Migrations
 
             modelBuilder.Entity("GamingWebAppDb.Models.User", b =>
                 {
-                    b.Navigation("Games");
-
                     b.Navigation("ShoppingCart");
-
-                    b.Navigation("WishListGames");
-                });
-
-            modelBuilder.Entity("GamingWebAppDb.Models.UserWishList", b =>
-                {
-                    b.Navigation("Games");
                 });
 #pragma warning restore 612, 618
         }

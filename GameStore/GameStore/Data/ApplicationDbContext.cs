@@ -1,6 +1,6 @@
-﻿using GameStore.Data.Models;
-using GamingWebAppDb.Models;
+﻿using GamingWebAppDb.Models;
 using Microsoft.EntityFrameworkCore;
+using GameStore.Controllers;
 
 
 namespace GamingWebAppDb
@@ -15,7 +15,7 @@ namespace GamingWebAppDb
 
         public DbSet<ShoppingCartGame> ShoppingCartGames { get; set; }
 
-        public DbSet<UserWishList> UserWishListGames { get; set; }
+        //public DbSet<UserWishList> UserWishListGames { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
 
@@ -35,33 +35,31 @@ namespace GamingWebAppDb
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserWishList>()
-                .HasKey(bc => new { bc.UserId, bc.GameId });
+            //modelBuilder.Entity<UserWishList>()
+            //    .HasKey(bc => new { bc.UserId, bc.GameId });
 
-            modelBuilder.Entity<UserWishList>()
-                .HasOne(bc => bc.User)
-                .WithMany(b => b.WishListGames)
-                .HasForeignKey(bc => bc.GameId);
+            //modelBuilder.Entity<UserWishList>()
+            //    .HasOne(bc => bc.User)
+            //    .WithMany(b => b.WishListGames)
+            //    .HasForeignKey(bc => bc.GameId);
 
-            modelBuilder.Entity<UserWishList>()
-               .HasOne(bc => bc.Game)
-               .WithMany(b => b.WishListGames)
-               .HasForeignKey(bc => bc.UserId);
+            //modelBuilder.Entity<UserWishList>()
+            //   .HasOne(bc => bc.Game)
+            //   .WithMany(b => b.WishListGames)
+            //   .HasForeignKey(bc => bc.UserId);
 
-            modelBuilder.Entity<User>()
-                 .HasOne<ShoppingCart>(x => x.ShoppingCart)
-                 .WithOne(x => x.User)
-                 .HasForeignKey<ShoppingCart>(x => x.ShoppingCartId);
-
-            modelBuilder.Entity<Game>()
-                .HasOne<Guide>(x => x.Guide)
-                .WithOne(x => x.Game)
-                .HasForeignKey<Guide>(x => x.GameId);
+            //modelBuilder.Entity<User>()
+            //     .HasOne<ShoppingCart>(x => x.ShoppingCart)
+            //     .WithOne(x => x.User)
+            //     .HasForeignKey<ShoppingCart>(x => x.ShoppingCartId);
 
             //modelBuilder.Entity<Game>()
-            // .HasOne<Guide>(x => x.Guide)
-            // .WithOne(x => x.Game)
-            // .HasForeignKey<Game>(x => x.);
+            //    .HasOne<Guide>(x => x.Guide)
+            //    .WithOne(x => x.Game)
+            //    .HasForeignKey<Guide>(x => x.GameId);
+
+           
         }
+
     }
 }          

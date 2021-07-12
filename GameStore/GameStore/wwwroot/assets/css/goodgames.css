@@ -312,23 +312,27 @@ a:hover {
     height: 15px;
 }
 
-.nk-gap::after, .nk-gap::before,
-.nk-gap-1::after,
-.nk-gap-1::before,
-.nk-gap-2::after,
-.nk-gap-2::before,
-.nk-gap-3::after,
-.nk-gap-3::before,
-.nk-gap-4::after,
-.nk-gap-4::before,
-.nk-gap-5::after,
-.nk-gap-5::before,
-.nk-gap-6::after,
-.nk-gap-6::before {
-    content: "";
-    display: block;
-    clear: both;
-}
+    .nk-blog-post nk-blog-post-border-bottom{
+        margin-bottom: 10px;
+    }
+
+    .nk-gap::after, .nk-gap::before,
+    .nk-gap-1::after,
+    .nk-gap-1::before,
+    .nk-gap-2::after,
+    .nk-gap-2::before,
+    .nk-gap-3::after,
+    .nk-gap-3::before,
+    .nk-gap-4::after,
+    .nk-gap-4::before,
+    .nk-gap-5::after,
+    .nk-gap-5::before,
+    .nk-gap-6::after,
+    .nk-gap-6::before {
+        content: "";
+        display: block;
+        clear: both;
+    }
 
 .nk-gap-1 {
     height: 20px;

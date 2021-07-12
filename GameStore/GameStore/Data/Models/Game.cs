@@ -1,5 +1,4 @@
 ﻿using GameStore.Data;
-using GameStore.Data.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,7 +11,7 @@ namespace GamingWebAppDb.Models
         public Game()
         {
             ShoppingCartGames = new List<ShoppingCartGame>();
-
+            //WishListGames = new List<UserWishList>();
         }
 
         [Key]
@@ -20,7 +19,7 @@ namespace GamingWebAppDb.Models
 
 
         [Required]
-        public Guide Guide { get; set; }
+        public string Guide { get; set; }
         public int GuideId { get; set; }
 
 
@@ -52,9 +51,9 @@ namespace GamingWebAppDb.Models
         [Url]
         public string TrailerUrl { get;  set; }
 
-        public IEnumerable<ShoppingCartGame> ShoppingCartGames { get;  set; }
+        public IEnumerable<ShoppingCartGame> ShoppingCartGames { get; set; }
 
-        public IEnumerable<UserWishList> WishListGames { get; set; }
+        //public IEnumerable<UserWishList> WishListGames { get; set; }
 
     }
 }

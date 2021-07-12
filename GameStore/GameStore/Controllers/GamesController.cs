@@ -2,6 +2,8 @@
 using GamingWebAppDb;
 using GamingWebAppDb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GameStore.Controllers
@@ -48,6 +50,8 @@ namespace GameStore.Controllers
                 ImageUrl = gameModel.ImageUrl,
                 TrailerUrl = gameModel.TrailerUrl,
                 GenreId = gameModel.GenreId,
+                Guide = gameModel.Guide
+                
             };
 
             this.data.Games.Add(game);
@@ -56,7 +60,27 @@ namespace GameStore.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private System.Collections.Generic.IEnumerable<GameGenreViewModel> GetGenre()
+        [HttpGet]
+        public IActionResult All()
+        {
+            var games = this.data.Games
+                .Select(x => new AllGamesViewModel
+                {
+                    Title = x.Title,
+                    Description = x.Description,
+                    Requirements = x.Requirements,
+                    Guide = x.Guide,
+                    Price = x.Price,
+                    ImageUrl = x.ImageUrl,
+                    Genre = x.Genre.Name,
+                })
+             .ToList();
+
+          
+            return this.View(games);
+        }
+
+        private IEnumerable<GameGenreViewModel> GetGenre()
         {
             var genres = this.data.Genres.Select(x => new GameGenreViewModel
             {

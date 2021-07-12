@@ -16,7 +16,7 @@ namespace GamingWebAppDb.Models
         public int ShoppingCartId { get; set; }
 
         public User User { get; set; }
-        
+
         [ForeignKey(nameof(UserId))]
         public int UserId { get; set; }
 
