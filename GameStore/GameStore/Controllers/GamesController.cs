@@ -66,6 +66,7 @@ namespace GameStore.Controllers
             var games = this.data.Games
                 .Select(x => new AllGamesViewModel
                 {
+                    Id = x.Id,
                     Title = x.Title,
                     Description = x.Description,
                     Requirements = x.Requirements,
@@ -78,6 +79,30 @@ namespace GameStore.Controllers
 
           
             return this.View(games);
+        }
+
+        public IActionResult Details(int Id)
+        {
+           
+            var details = this.data.Games.Where(x => x.Id == Id)
+            .Select(x => new GameDetailsViewModel
+             {
+                 Id = x.Id,
+                 Requirements = x.Requirements,
+                 Description = x.Description,
+                 Guide = x.Guide,
+                 Title = x.Title,
+                 Price = x.Price,
+                 ImageUrl = x.ImageUrl,
+                 TrailerUrl = x.TrailerUrl,
+                 Genre = x.Genre.Name
+             })
+              .FirstOrDefault();
+
+            
+
+            return View(details);
+
         }
 
         private IEnumerable<GameGenreViewModel> GetGenre()
