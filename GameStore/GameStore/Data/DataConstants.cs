@@ -9,7 +9,7 @@ namespace GameStore.Data
     {
         public const int GameRequirementsMaxLenght = 500;
         public const int GameDescriptionsMaxLenght = 5000;
-        public const int GameTitleMaxLength = 100;
+        public const int GameTitleMaxLength = 25;
         public const int UsernameMaxLength = 40;
         public const int EmailMaxLength = 50;
         public const int GameTitleMinLength = 3;

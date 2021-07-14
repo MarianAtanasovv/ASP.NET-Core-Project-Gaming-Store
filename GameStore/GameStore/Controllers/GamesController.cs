@@ -61,9 +61,21 @@ namespace GameStore.Controllers
         }
 
         [HttpGet]
-        public IActionResult All()
+        public IActionResult All([FromQuery]AllGamesQueryModel query)
         {
-            var games = this.data.Games
+            var gamesQuery = this.data.Games.AsQueryable();
+
+            if (!string.IsNullOrEmpty(query.Title))
+            {
+                gamesQuery = gamesQuery.Where(x => x.Title == query.Title);
+            }
+
+            if (!string.IsNullOrEmpty(query.SearchTerm))
+            {
+                gamesQuery = gamesQuery.Where(x => x.Title.ToLower().Contains(query.SearchTerm.ToLower()));
+            }
+
+            var games = gamesQuery
                 .Select(x => new AllGamesViewModel
                 {
                     Id = x.Id,
@@ -78,7 +90,11 @@ namespace GameStore.Controllers
              .ToList();
 
           
-            return this.View(games);
+            return this.View(new AllGamesQueryModel 
+            { 
+                Games = games,
+                SearchTerm = query.SearchTerm
+            });
         }
 
         public IActionResult Details(int Id)

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model AllGamesQueryModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -56,7 +58,7 @@
     <!-- END: Styles -->
     <!-- jQuery -->
     <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-
+   
 </head>
 <body>
     <header class="nk-header nk-header-opaque">
@@ -76,11 +78,7 @@
                 <div class="nk-contacts-right">
                     <ul class="nk-contacts-icons">
 
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#modalSearch">
-                                <span class="fa fa-search"></span>
-                            </a>
-                        </li>
+                        
                         <li>
                             <a href="/User/Register">
                                 Register
@@ -145,20 +143,28 @@
         -->
         <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
             <div class="container">
+               
                 <div class="nk-nav-table">
 
                     <a href="index.html" class="nk-nav-logo">
                         <img src="assets/images/CroppedSamurai.png" alt="Gaming Hub" width="50" height="50">
                     </a>
+                 
 
                     <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
+
 
                         <li class=" nk-drop-item">
                             <a href="Platforms.html">
                                 Platforms
 
                             </a><ul class="dropdown">
+                                <li>
+                                    <a href="/Games/All">
+                                        All Games
 
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="PC.html">
                                         PC
@@ -431,24 +437,7 @@
 
         <!-- END: Page Background -->
         <!-- START: Search Modal -->
-        <div class="nk-modal modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span class="ion-android-close"></span>
-                        </button>
-
-                        <h4 class="mb-0">Search</h4>
-
-                        <div class="nk-gap-1"></div>
-                        <form action="#" class="nk-form nk-form-style-1">
-                            <input type="text" value="" name="search" class="form-control" placeholder="Type something and press Enter" autofocus>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    
         <!-- END: Search Modal -->
         <!-- START: Login Modal -->
         <div class="nk-modal modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
