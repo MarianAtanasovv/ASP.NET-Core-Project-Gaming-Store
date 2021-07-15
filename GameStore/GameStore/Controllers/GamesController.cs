@@ -1,4 +1,5 @@
-﻿using GameStore.Models.Games;
+﻿using GameStore.Data.Models;
+using GameStore.Models.Games;
 using GamingWebAppDb;
 using GamingWebAppDb.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -75,7 +76,18 @@ namespace GameStore.Controllers
                 gamesQuery = gamesQuery.Where(x => x.Title.ToLower().Contains(query.SearchTerm.ToLower()));
             }
 
+            gamesQuery = query.Sorting switch
+            {
+                GameSorting.Title => gamesQuery.OrderBy(t => t.Title),
+                GameSorting.Price => gamesQuery.OrderByDescending(p => p.Price),
+                _ => gamesQuery.OrderByDescending(x => x.Id)
+            };
+
+            var totalGames = gamesQuery.Count();
+
             var games = gamesQuery
+                .Skip((query.CurrentPage - 1) * AllGamesQueryModel.GamesPerPage)
+                .Take(AllGamesQueryModel.GamesPerPage)
                 .Select(x => new AllGamesViewModel
                 {
                     Id = x.Id,
@@ -89,12 +101,18 @@ namespace GameStore.Controllers
                 })
              .ToList();
 
-          
-            return this.View(new AllGamesQueryModel 
-            { 
-                Games = games,
-                SearchTerm = query.SearchTerm
-            });
+            var gameTitles = this.data
+                .Games
+                .Select(t => t.Title)
+                .Distinct()
+                .OrderBy(g => g)
+                .ToList();
+
+            query.TotalGames = totalGames;
+            query.Games = games;
+            query.Titles = gameTitles;
+
+            return this.View(query);
         }
 
         public IActionResult Details(int Id)
