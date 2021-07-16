@@ -19,6 +19,13 @@ namespace GameStore.Data
         public const int GameGuideMinLength = 100;
         public const int GameGuideMaxLength = 100000;
 
+        public const int ArticleTitleMinLength = 10;
+        public const int ArticleTitleMaxLength = 100000;
+        public const int ArticleMinLength = 100;
+        public const int ArticleMaxLength = 100000;
+
+
+
 
 
 

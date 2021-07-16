@@ -88,7 +88,7 @@ namespace GameStore.Controllers
             var games = gamesQuery
                 .Skip((query.CurrentPage - 1) * AllGamesQueryModel.GamesPerPage)
                 .Take(AllGamesQueryModel.GamesPerPage)
-                .Select(x => new AllGamesViewModel
+                .Select(x => new GameListingViewModel
                 {
                     Id = x.Id,
                     Title = x.Title,
