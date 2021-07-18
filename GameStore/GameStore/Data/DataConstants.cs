@@ -24,6 +24,14 @@ namespace GameStore.Data
         public const int ArticleMinLength = 100;
         public const int ArticleMaxLength = 100000;
 
+        public const int CommentUsernameMaxLength = 25;
+        public const int CommentUsernameMinLength = 3;
+
+        public const int CommentContentMinLength = 5;
+        public const int CommentContentMaxLength = 500;
+
+
+
 
 
 
