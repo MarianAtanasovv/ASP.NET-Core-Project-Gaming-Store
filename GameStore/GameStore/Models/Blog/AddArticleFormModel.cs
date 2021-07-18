@@ -25,15 +25,16 @@ namespace GameStore.Models.Blog
 
         [Required]
         [StringLength(ArticleMaxLength, MinimumLength = ArticleMinLength, ErrorMessage = "Article should be between {1} and {2} characters long.")]
-        public string Article { get; set; }
+        public string Content { get; set; }
 
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
-        public IEnumerable<Comment> Comments { get; set; }
+        //public IEnumerable<Comment> Comments { get; set; }
 
         [Required]
         [Display(Name = "Trailer Url")]
         [Url]
         public string TrailerUrl { get; set; }
+
     }
 }

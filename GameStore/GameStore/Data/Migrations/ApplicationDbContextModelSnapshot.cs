@@ -19,14 +19,14 @@ namespace GameStore.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GameStore.Data.Models.BlogArticle", b =>
+            modelBuilder.Entity("GameStore.Data.Models.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Article")
+                    b.Property<string>("Content")
                         .IsRequired()
                         .HasMaxLength(100000)
                         .HasColumnType("nvarchar(max)");
@@ -53,7 +53,7 @@ namespace GameStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("GameStore.Data.Models.Comment", b =>
@@ -63,10 +63,13 @@ namespace GameStore.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BlogId")
+                    b.Property<int>("ArticleId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedOn")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rating")
@@ -77,7 +80,7 @@ namespace GameStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BlogId");
+                    b.HasIndex("ArticleId");
 
                     b.ToTable("Comments");
                 });
@@ -218,13 +221,13 @@ namespace GameStore.Data.Migrations
 
             modelBuilder.Entity("GameStore.Data.Models.Comment", b =>
                 {
-                    b.HasOne("GameStore.Data.Models.BlogArticle", "Blog")
+                    b.HasOne("GameStore.Data.Models.Article", "Article")
                         .WithMany("Comments")
-                        .HasForeignKey("BlogId")
+                        .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Blog");
+                    b.Navigation("Article");
                 });
 
             modelBuilder.Entity("GamingWebAppDb.Models.Game", b =>
@@ -264,7 +267,7 @@ namespace GameStore.Data.Migrations
                     b.Navigation("ShoppingCart");
                 });
 
-            modelBuilder.Entity("GameStore.Data.Models.BlogArticle", b =>
+            modelBuilder.Entity("GameStore.Data.Models.Article", b =>
                 {
                     b.Navigation("Comments");
                 });

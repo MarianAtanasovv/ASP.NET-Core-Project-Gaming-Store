@@ -1,6 +1,5 @@
 ﻿using GamingWebAppDb.Models;
 using Microsoft.EntityFrameworkCore;
-using GameStore.Controllers;
 using GameStore.Data.Models;
 
 namespace GamingWebAppDb
@@ -17,7 +16,7 @@ namespace GamingWebAppDb
 
         //public DbSet<UserWishList> UserWishListGames { get; set; }
 
-        public DbSet<BlogArticle> Blogs { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
 
@@ -63,11 +62,19 @@ namespace GamingWebAppDb
             //    .WithOne(x => x.Game)
             //    .HasForeignKey<Guide>(x => x.GameId);
 
-            modelBuilder.Entity<BlogArticle>()
-                .HasMany<Comment>(x => x.Comments)
-                .WithOne(x => x.Blog)
-                .HasForeignKey(x => x.BlogId);
-           
+            //modelBuilder.Entity<Article>()
+            //    .HasOne<Comment>(x => x.Comment)
+            //    .WithOne(x => x.Article)
+            //    .HasForeignKey<Article>(x => x.CommentId);
+
+            modelBuilder.Entity<Article>()
+           .HasMany(c => c.Comments)
+           .WithOne(e => e.Article);
+
+            //modelBuilder.Entity<Comment>()
+            //    .HasOne(x => x.Article)
+            //    .WithMany(x => x.Comments);
+
         }
 
     }

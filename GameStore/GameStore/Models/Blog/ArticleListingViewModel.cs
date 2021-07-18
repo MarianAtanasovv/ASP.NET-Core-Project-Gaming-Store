@@ -14,7 +14,7 @@ namespace GameStore.Models.Blog
         public string ImageUrl { get; set; }
 
         public string ShortDescription { get; set; }
-        public string Article { get; set; }
+        public string Content { get; set; }
 
         public string CreatedOn { get; set; }
 
@@ -24,7 +24,7 @@ namespace GameStore.Models.Blog
 
         public string TrailerUrl { get; set; }
 
-        public IEnumerable<BlogArticle> Articles { get; set; }
+        public IEnumerable<Article> Articles { get; set; }
 
     }
 }

@@ -15,8 +15,9 @@ namespace GameStore.Data.Models
 
         public int Rating { get; set; }
 
-        public BlogArticle Blog { get; set; }
+        public Article Article { get; set; }
+        public int ArticleId { get; set; }
 
-        public int BlogId { get; set; }
+        public string CreatedOn { get; set; }
     }
 }
