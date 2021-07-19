@@ -138,6 +138,18 @@ namespace GameStore.Controllers
             return View(details);
         }
 
+        public IActionResult Delete(int gameId)
+        {
+            var game = this.data.Games.FirstOrDefault(x => x.Id == gameId);
+
+            // add some admin-creator like logic !
+
+            this.data.Games.Remove(game);
+            this.data.SaveChanges();
+
+            return Redirect("/Games/All");
+        }
+
         private IEnumerable<GameGenreViewModel> GetGenre()
         {
             var genres = this.data.Genres.Select(x => new GameGenreViewModel
