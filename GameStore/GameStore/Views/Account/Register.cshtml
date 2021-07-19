@@ -1,10 +1,10 @@
-﻿@model ArticleDetailsViewModel
+﻿@model RegisterUserFormModel
 
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Register";
 }
+
 
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
     <meta name="keywords" content="game, gaming, template, HTML template, responsive, Bootstrap, premium">
     <meta name="author" content="_nK">
 
-    <link rel="icon" type="image/png" href="~/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" href="~/assets/images/favicon.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -62,10 +62,14 @@
     <!-- jQuery -->
     <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
 
+
 </head>
+
 <body>
 
     <header class="nk-header nk-header-opaque">
+
+
         <div class="nk-contacts-top">
             <div class="container">
                 <div class="nk-contacts-left">
@@ -77,6 +81,8 @@
                         <li><a class="nk-social-google-plus" href="#"><span class="fab fa-google-plus"></span></a></li>
                         <li><a class="nk-social-twitter" href="#" target="_blank"><span class="fab fa-twitter"></span></a></li>
                         <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
+
+
                     </ul>
                 </div>
                 <div class="nk-contacts-right">
@@ -87,6 +93,7 @@
                                 <span class="fa fa-search"></span>
                             </a>
                         </li>
+
                         <li>
                             <a href="/User/Register">
                                 Register
@@ -96,8 +103,17 @@
                         <li>
                             <a href="/User/Login">
                                 Login
+
                             </a>
                         </li>
+                        @*
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#modalLogin">
+                                    <span class="fa fa-user"></span>
+                                </a>
+                            </li>*@
+
+
                         <li>
                             <span class="nk-cart-toggle">
                                 <span class="fa fa-shopping-cart"></span>
@@ -140,12 +156,21 @@
                 </div>
             </div>
         </div>
+        <!-- END: Top Contacts -->
+        <!--
+            START: Navbar
+
+            Additional Classes:
+                .nk-navbar-sticky
+                .nk-navbar-transparent
+                .nk-navbar-autohide
+        -->
         <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
             <div class="container">
                 <div class="nk-nav-table">
 
                     <a href="index.html" class="nk-nav-logo">
-                        <img src="~/assets/images/samurai.png" alt="Gaming Hub" width="100" height="100">
+                        <img src="assets/images/logo.png" alt="Gaming Hub" width="199">
                     </a>
 
                     <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
@@ -186,14 +211,53 @@
                             </ul>
                         </li>
 
-                        <li>
-                            <a href="/Article/All">Blog</a>
+                        <li class=" nk-drop-item">
+                            <a href="blog-list.html">
+                                Blog
+
+                            </a><ul class="dropdown">
+
+                                <li>
+                                    <a href="news.html">
+                                        News
+
+                                    </a>
+                                </li>
+                                <li class=" nk-drop-item">
+                                    <a href="blog-grid.html">
+                                        Blog With Sidebar
+
+                                    </a><ul class="dropdown">
+
+                                        <li>
+                                            <a href="blog-grid.html">
+                                                Blog Grid
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="blog-list.html">
+                                                Blog List
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="blog-fullwidth.html">
+                                        Blog Fullwidth
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="blog-article.html">
+                                        Blog Article
+
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="Games/Add">
-                                Add Games
-                            </a>
-                        </li>
+
 
                     </ul>
                     <ul class="nk-nav nk-nav-right nk-nav-icons">
@@ -214,6 +278,7 @@
             </div>
         </nav>
         <!-- END: Navbar -->
+
     </header>
 
 
@@ -231,7 +296,7 @@
         <div class="nano">
             <div class="nano-content">
                 <a href="index.html" class="nk-nav-logo">
-                    <img src="~/assets/images/samurai.png" alt="" width="120">
+                    <img src="assets/images/logo.png" alt="" width="120">
                 </a>
                 <div class="nk-navbar-mobile-content">
                     <ul class="nk-nav">
@@ -241,50 +306,29 @@
             </div>
         </div>
     </div>
-
-
-    <div class="container">
-        <div class="row vertical-gap">
-            <div class="col-lg-12">
-
-                <!-- START: Post -->
-                <div class="nk-blog-post">
-                    <a href="blog-article.html" class="nk-post-img">
-                        <img src="@Model.ImageUrl" alt="@Model.Title">
-                        <span class="nk-post-comments-count"></span>
-                    </a>
-                    <div class="nk-gap"></div>
-                    <div class="nk-post-by">
-                        <img src="@Model.ImageUrl" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="#">Witch Murder</a> @Model.CreatedOn
-                    </div>
-                    <div class="nk-gap"></div>
-                    <div class="nk-post-text">
-                        <p>@Model.Content</p>
-                    </div>
-                    <div class="nk-widget-content" style="padding-top: 20px">
-                        <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px"></h1>
-                        <div class="nk-plain-video" data-video="@Model.TrailerUrl"></div>
-                    </div>
-                </div>
-                <div>
-                    <row>
-                        <a href="/Article/Delete?ArticleId=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3">Delete this article!</a>
-
-                    </row>
-                </div>
-             
-               
-
-
+    <!-- END: Navbar Mobile -->
+    <h1 class="text-center mt-2">Welcome back Gamer!</h1>
+    <hr class="bg-primary w-75">
+    <form class="mx-auto w-50" method="post">
+        <div class="form-group">
+            <div class="text-dark d-flex justify-content-start">
+                <label for="username" class="h3 mb-2">Username</label>
             </div>
+            <input type="text" class="form-control" id="username" name="username" />
         </div>
-    </div>
+        <div class="form-group">
+            <div class="text-dark d-flex justify-content-start">
+                <label for="password" class="h3 mb-2">Password</label>
+            </div>
+            <input type="password" class="form-control" id="password" name="password" />
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-block btn-primary text-white mb-3">Login</button>
+        </div>
+    </form>
 
 
-    
-    <!-- END: Post
-
-
+    <!-- START: Footer -->
     <footer class="nk-footer">
 
         <div class="container">
@@ -377,17 +421,45 @@
                         <li><a class="nk-social-twitter" href="#" target="_blank"><span class="fab fa-twitter"></span></a></li>
                         <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
 
-
+                        <!-- Additional Social Buttons
+                            <li><a class="nk-social-behance" href="#"><span class="fab fa-behance"></span></a></li>
+                            <li><a class="nk-social-bitbucket" href="#"><span class="fab fa-bitbucket"></span></a></li>
+                            <li><a class="nk-social-dropbox" href="#"><span class="fab fa-dropbox"></span></a></li>
+                            <li><a class="nk-social-dribbble" href="#"><span class="fab fa-dribbble"></span></a></li>
+                            <li><a class="nk-social-deviantart" href="#"><span class="fab fa-deviantart"></span></a></li>
+                            <li><a class="nk-social-flickr" href="#"><span class="fab fa-flickr"></span></a></li>
+                            <li><a class="nk-social-foursquare" href="#"><span class="fab fa-foursquare"></span></a></li>
+                            <li><a class="nk-social-github" href="#"><span class="fab fa-github"></span></a></li>
+                            <li><a class="nk-social-instagram" href="#"><span class="fab fa-instagram"></span></a></li>
+                            <li><a class="nk-social-linkedin" href="#"><span class="fab fa-linkedin"></span></a></li>
+                            <li><a class="nk-social-medium" href="#"><span class="fab fa-medium"></span></a></li>
+                            <li><a class="nk-social-odnoklassniki" href="#"><span class="fab fa-odnoklassniki"></span></a></li>
+                            <li><a class="nk-social-paypal" href="#"><span class="fab fa-paypal"></span></a></li>
+                            <li><a class="nk-social-reddit" href="#"><span class="fab fa-reddit"></span></a></li>
+                            <li><a class="nk-social-skype" href="#"><span class="fab fa-skype"></span></a></li>
+                            <li><a class="nk-social-soundcloud" href="#"><span class="fab fa-soundcloud"></span></a></li>
+                            <li><a class="nk-social-slack" href="#"><span class="fab fa-slack"></span></a></li>
+                            <li><a class="nk-social-tumblr" href="#"><span class="fab fa-tumblr"></span></a></li>
+                            <li><a class="nk-social-vimeo" href="#"><span class="fab fa-vimeo"></span></a></li>
+                            <li><a class="nk-social-vk" href="#"><span class="fab fa-vk"></span></a></li>
+                            <li><a class="nk-social-wordpress" href="#"><span class="fab fa-wordpress"></span></a></li>
+                            <li><a class="nk-social-youtube" href="#"><span class="fab fa-youtube"></span></a></li>
+                        -->
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
     <!-- END: Footer -->
+    </div>
+
+
+
+
     <!-- START: Page Background -->
 
-    <img class="nk-page-background-top" src="~/assets/images/bg-top.png" alt="">
-    <img class="nk-page-background-bottom" src="~/assets/images/bg-bottom.png" alt="">
+    <img class="nk-page-background-top" src="assets/images/bg-top.png" alt="">
+    <img class="nk-page-background-bottom" src="assets/images/bg-bottom.png" alt="">
 
     <!-- END: Page Background -->
     <!-- START: Search Modal -->
@@ -410,69 +482,69 @@
         </div>
     </div>
     <!-- END: Search Modal -->
-    <!-- START: Login Modal -->
-    <!-- END: Login Modal -->
     <!-- START: Scripts -->
     <!-- Object Fit Polyfill -->
-    <script src="~/assets/vendor/object-fit-images/dist/ofi.min.js"></script>
+    <script src="assets/vendor/object-fit-images/dist/ofi.min.js"></script>
 
     <!-- GSAP -->
-    <script src="~/assets/vendor/gsap/src/minified/TweenMax.min.js"></script>
-    <script src="~/assets/vendor/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
+    <script src="assets/vendor/gsap/src/minified/TweenMax.min.js"></script>
+    <script src="assets/vendor/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
 
     <!-- Popper -->
-    <script src="~/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/vendor/popper.js/dist/umd/popper.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Sticky Kit -->
-    <script src="~/assets/vendor/sticky-kit/dist/sticky-kit.min.js"></script>
+    <script src="assets/vendor/sticky-kit/dist/sticky-kit.min.js"></script>
 
     <!-- Jarallax -->
-    <script src="~/assets/vendor/jarallax/dist/jarallax.min.js"></script>
-    <script src="~/assets/vendor/jarallax/dist/jarallax-video.min.js"></script>
+    <script src="assets/vendor/jarallax/dist/jarallax.min.js"></script>
+    <script src="assets/vendor/jarallax/dist/jarallax-video.min.js"></script>
 
     <!-- imagesLoaded -->
-    <script src="~/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 
     <!-- Flickity -->
-    <script src="~/assets/vendor/flickity/dist/flickity.pkgd.min.js"></script>
+    <script src="assets/vendor/flickity/dist/flickity.pkgd.min.js"></script>
 
     <!-- Photoswipe -->
-    <script src="~/assets/vendor/photoswipe/dist/photoswipe.min.js"></script>
-    <script src="~/assets/vendor/photoswipe/dist/photoswipe-ui-default.min.js"></script>
+    <script src="assets/vendor/photoswipe/dist/photoswipe.min.js"></script>
+    <script src="assets/vendor/photoswipe/dist/photoswipe-ui-default.min.js"></script>
 
     <!-- Jquery Validation -->
-    <script src="~/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 
     <!-- Jquery Countdown + Moment -->
-    <script src="~/assets/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
-    <script src="~/assets/vendor/moment/min/moment.min.js"></script>
-    <script src="~/assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+    <script src="assets/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
+    <script src="assets/vendor/moment/min/moment.min.js"></script>
+    <script src="assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
 
     <!-- Hammer.js -->
-    <script src="~/assets/vendor/hammerjs/hammer.min.js"></script>
+    <script src="assets/vendor/hammerjs/hammer.min.js"></script>
 
     <!-- NanoSroller -->
-    <script src="~/assets/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
+    <script src="assets/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
 
     <!-- SoundManager2 -->
-    <script src="~/assets/vendor/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
+    <script src="assets/vendor/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
 
     <!-- Seiyria Bootstrap Slider -->
-    <script src="~/assets/vendor/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+    <script src="assets/vendor/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
 
     <!-- Summernote -->
-    <script src="~/assets/vendor/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="assets/vendor/summernote/dist/summernote-bs4.min.js"></script>
 
     <!-- nK Share -->
-    <script src="~/assets/plugins/nk-share/nk-share.js"></script>
+    <script src="assets/plugins/nk-share/nk-share.js"></script>
 
     <!-- GoodGames -->
-    <script src="~/assets/js/goodgames.min.js"></script>
-    <script src="~/assets/js/goodgames-init.js"></script>
+    <script src="assets/js/goodgames.min.js"></script>
+    <script src="assets/js/goodgames-init.js"></script>
     <!-- END: Scripts -->
+
+
 
 </body>
 </html>

@@ -136,7 +136,6 @@ namespace GameStore.Controllers
             
 
             return View(details);
-
         }
 
         private IEnumerable<GameGenreViewModel> GetGenre()

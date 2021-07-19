@@ -118,6 +118,18 @@ namespace GameStore.Controllers
 
             return this.View(query);
         }
+
+        public IActionResult Delete(int ArticleId)
+        {
+            var article = this.data.Articles.FirstOrDefault(x => x.Id == ArticleId);
+
+            // add some admin-creator like logic !
+
+            this.data.Articles.Remove(article);
+            this.data.SaveChanges();
+
+            return Redirect("/Articles/All");
+        }
     }
 
     
