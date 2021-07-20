@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using GameStore.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace GamingWebAppDb.Models
+namespace GameStore.Data.Models
 {
     public class Genre
     {

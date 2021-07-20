@@ -1,8 +1,9 @@
-﻿using GamingWebAppDb.Models;
+﻿using GameStore.Models;
 using Microsoft.EntityFrameworkCore;
 using GameStore.Data.Models;
+using GameStore.Data;
 
-namespace GamingWebAppDb
+namespace GameStore
 {
     public class ApplicationDbContext : DbContext
     {

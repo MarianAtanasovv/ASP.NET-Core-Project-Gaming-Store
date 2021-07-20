@@ -1,5 +1,4 @@
 ﻿using GameStore.Data;
-using GamingWebAppDb.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

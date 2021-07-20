@@ -1,4 +1,4 @@
-﻿using GamingWebAppDb.Models;
+﻿using GameStore.Models;
 using System.Collections.Generic;
 
 namespace GameStore.Controllers

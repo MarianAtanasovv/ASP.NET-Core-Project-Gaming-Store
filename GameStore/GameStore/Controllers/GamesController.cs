@@ -1,7 +1,6 @@
 ﻿using GameStore.Data.Models;
+using GameStore.Models;
 using GameStore.Models.Games;
-using GamingWebAppDb;
-using GamingWebAppDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -150,6 +149,64 @@ namespace GameStore.Controllers
             return Redirect("/Games/All");
         }
 
+        public IActionResult Edit(int id)
+        {
+           
+            var game = this.data.Games.Where(x => x.Id == id)
+                .Select(x => new EditGameFormModel
+                {
+                    Title = x.Title,
+                    ImageUrl = x.ImageUrl,
+                    TrailerUrl = x.TrailerUrl,
+                    GenreId = x.GenreId,
+                    Price = x.Price,
+                    Description = x.Description,
+                    Requirements = x.Requirements,
+                    Guide = x.Guide,
+                    Genres = this.data.Genres.Select(x => new GameGenreViewModel
+                    {
+                        GenreId = x.Id,
+                        Name = x.Name
+                    }).ToList()
+                })
+                .FirstOrDefault();
+
+            return View(game);
+            
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditGameFormModel model)
+        {
+            //think of a better way to edit instead of delete/add
+
+            var oldGame = this.data.Games.Where(x => x.Id == model.Id).FirstOrDefault();
+
+            var newGame = this.data.Games.Where(x => x.Id == model.Id)
+                .Select(x => new Game
+                {
+                    Title = model.Title,
+                    ImageUrl = model.ImageUrl,
+                    TrailerUrl = model.TrailerUrl,
+                    GenreId = x.GenreId,
+                    Price = model.Price,
+                    Description = model.Description,
+                    Requirements = model.Requirements,
+                    Guide = model.Guide
+
+                })
+                .FirstOrDefault();
+
+            if (ModelState.IsValid)
+            {
+                this.data.Games.Remove(oldGame);
+                this.data.Games.Add(newGame);
+                this.data.SaveChanges();
+            }
+            
+
+            return Redirect("/Games/All");
+        }
         private IEnumerable<GameGenreViewModel> GetGenre()
         {
             var genres = this.data.Genres.Select(x => new GameGenreViewModel

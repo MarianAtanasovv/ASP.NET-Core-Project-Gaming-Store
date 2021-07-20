@@ -1,4 +1,4 @@
-﻿namespace GamingWebAppDb
+﻿namespace GameStore
 {
     public class DatabaseConfiguration
     {

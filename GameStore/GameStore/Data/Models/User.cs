@@ -1,8 +1,10 @@
 ﻿using GameStore.Data;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using GameStore.Models;
 
-namespace GamingWebAppDb.Models
+
+namespace GameStore.Data.Models
 {
     using static DataConstants;
 

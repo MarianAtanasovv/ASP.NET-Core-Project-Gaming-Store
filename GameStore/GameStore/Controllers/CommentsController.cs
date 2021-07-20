@@ -1,7 +1,6 @@
 ﻿
 using GameStore.Data.Models;
 using GameStore.Models.Comments;
-using GamingWebAppDb;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;

@@ -1,5 +1,4 @@
-﻿using GamingWebAppDb;
-using GamingWebAppDb.Models;
+﻿using GameStore.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

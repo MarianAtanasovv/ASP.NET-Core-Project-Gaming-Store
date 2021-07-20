@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using GameStore.Models;
 
-namespace GamingWebAppDb.Models
+
+namespace GameStore.Data.Models
 {
     public class ShoppingCartGame
     {
