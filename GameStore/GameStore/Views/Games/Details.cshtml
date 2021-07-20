@@ -245,15 +245,22 @@
     <div class="nk-blog-post nk-blog-post-border-bottom">
       
             <div class="item">
-                <div asp-for="@Model.ImageUrl" class="col-lg-3 col-md-5" >
+                <div asp-for="@Model.ImageUrl" class="col-lg-3 col-md-5">
                     <a href="" class="nk-post-img">
-                        <img src="@Model.ImageUrl" >
+                        <img src="@Model.ImageUrl">
 
-                        <span class="nk-post-categories">
+
+
+                    </a>
+                    
+                        <span class="nk-post-categories float-right">
                             <span class="bg-main-1">@Model.Genre</span>
                         </span>
 
-                    </a>
+                    <span class="nk-post-categories float-right">
+                        <span class="bg-main-1">@Model.Platform</span>
+                    </span>
+
                 </div>
                 <div class="col-lg-9 col-md-7">
                     <h2 class="nk-post-title h4 text-left"><a>@Model.Title</a></h2>

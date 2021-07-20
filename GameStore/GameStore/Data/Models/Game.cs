@@ -54,6 +54,10 @@ namespace GameStore.Models
 
         public IEnumerable<ShoppingCartGame> ShoppingCartGames { get; set; }
 
+        public Platform Platform { get; set; }
+
+        public int PlatformId { get; set; }
+
         //public IEnumerable<UserWishList> WishListGames { get; set; }
 
     }

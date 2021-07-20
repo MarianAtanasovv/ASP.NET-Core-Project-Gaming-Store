@@ -40,7 +40,12 @@ namespace GameStore.Models.Games
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
 
+        [Display(Name = "Platform")]
+        public int PlatformId { get; set; }
+
         public IEnumerable<GameGenreViewModel> Genres { get; set; }
+
+        public IEnumerable<GamePlatformViewModel> Platforms { get; set; }
 
         public string Guide { get; set; }
 

@@ -23,5 +23,7 @@ namespace GameStore.Controllers
 
         public string TrailerUrl { get; set; }
 
+        public string Platform { get; set; }
+
     }
 }

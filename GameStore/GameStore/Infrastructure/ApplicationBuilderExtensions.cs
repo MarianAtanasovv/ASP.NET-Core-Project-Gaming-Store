@@ -21,6 +21,7 @@ namespace GameStore.Infrastructure
             data.Database.Migrate();
 
             SeedGenres(data);
+            SeedPlatforms(data);
 
             return app;
         }
@@ -47,6 +48,24 @@ namespace GameStore.Infrastructure
                 new Genre {Name = "RTS"},
                 new Genre {Name = "Tower Defense"},
 
+            });
+
+            data.SaveChanges();
+        }
+
+        private static void SeedPlatforms(ApplicationDbContext data)
+        {
+            if (data.Platforms.Any())
+            {
+                return;
+            }
+
+            data.Platforms.AddRange(new[]
+            {
+                new Platform {Name = "Playstation"},
+                new Platform {Name = "PC"},
+                new Platform {Name = "Nintendo"},
+                new Platform {Name = "Xbox 360"},
 
             });
 

@@ -22,6 +22,8 @@ namespace GameStore
         public DbSet<Genre> Genres { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Platform> Platforms { get; set; }
  
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)

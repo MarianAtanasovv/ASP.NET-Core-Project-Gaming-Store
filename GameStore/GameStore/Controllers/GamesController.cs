@@ -21,7 +21,8 @@ namespace GameStore.Controllers
         {
             return View(new AddGameFormModel
             {
-                Genres = this.GetGenre()
+                Genres = this.GetGenre(),
+                Platforms = this.GetPlatform()
             });
         }
 
@@ -33,9 +34,15 @@ namespace GameStore.Controllers
                 this.ModelState.AddModelError(nameof(gameModel.GenreId), "Genre does not exist.");
             }
 
+            if (!this.data.Platforms.Any(c => c.Id == gameModel.PlatformId))
+            {
+                this.ModelState.AddModelError(nameof(gameModel.PlatformId), "Platform does not exist.");
+            }
+
             if (!ModelState.IsValid)
             {
                 gameModel.Genres = this.GetGenre();
+                gameModel.Platforms = this.GetPlatform();
 
                 return View(gameModel);
             }
@@ -50,7 +57,9 @@ namespace GameStore.Controllers
                 ImageUrl = gameModel.ImageUrl,
                 TrailerUrl = gameModel.TrailerUrl,
                 GenreId = gameModel.GenreId,
-                Guide = gameModel.Guide
+                Guide = gameModel.Guide,
+                PlatformId = gameModel.PlatformId
+               
                 
             };
 
@@ -97,6 +106,7 @@ namespace GameStore.Controllers
                     Price = x.Price,
                     ImageUrl = x.ImageUrl,
                     Genre = x.Genre.Name,
+                    Platform = x.Platform.Name
                 })
              .ToList();
 
@@ -128,7 +138,8 @@ namespace GameStore.Controllers
                  Price = x.Price,
                  ImageUrl = x.ImageUrl,
                  TrailerUrl = x.TrailerUrl,
-                 Genre = x.Genre.Name
+                 Genre = x.Genre.Name,
+                 Platform = x.Platform.Name
              })
               .FirstOrDefault();
 
@@ -162,6 +173,13 @@ namespace GameStore.Controllers
                     Price = x.Price,
                     Description = x.Description,
                     Requirements = x.Requirements,
+                    PlatformId = x.PlatformId,
+                    Platforms = this.data.Platforms.Select(x => new GamePlatformViewModel
+                    {
+                      PlatformId = x.Id,
+                      Name = x.Name
+                    })
+                    .ToList(),
                     Guide = x.Guide,
                     Genres = this.data.Genres.Select(x => new GameGenreViewModel
                     {
@@ -192,7 +210,8 @@ namespace GameStore.Controllers
                     Price = model.Price,
                     Description = model.Description,
                     Requirements = model.Requirements,
-                    Guide = model.Guide
+                    Guide = model.Guide,
+                    PlatformId = model.PlatformId
 
                 })
                 .FirstOrDefault();
@@ -217,6 +236,18 @@ namespace GameStore.Controllers
             .ToList();
 
             return genres;
+        }
+
+        private IEnumerable<GamePlatformViewModel> GetPlatform()
+        {
+            var platforms = this.data.Platforms.Select(x => new GamePlatformViewModel
+            {
+                PlatformId = x.Id,
+                Name = x.Name
+            })
+            .ToList();
+
+            return platforms;
         }
     }
 }
