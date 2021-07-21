@@ -58,6 +58,7 @@ namespace GameStore.Models
 
         public int PlatformId { get; set; }
 
+
         //public IEnumerable<UserWishList> WishListGames { get; set; }
 
     }

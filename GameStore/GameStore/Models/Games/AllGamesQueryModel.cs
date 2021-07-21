@@ -26,5 +26,8 @@ namespace GameStore.Models.Games
         public IEnumerable<string> Titles { get; set; }
 
         public IEnumerable<GameListingViewModel> Games { get; set; }
+
+        public GamePlatformViewModel Platform { get; set; }
+
     }
 }

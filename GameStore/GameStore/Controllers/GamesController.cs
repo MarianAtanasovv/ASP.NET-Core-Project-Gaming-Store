@@ -60,7 +60,6 @@ namespace GameStore.Controllers
                 Guide = gameModel.Guide,
                 PlatformId = gameModel.PlatformId
                
-                
             };
 
             this.data.Games.Add(game);
@@ -120,6 +119,7 @@ namespace GameStore.Controllers
             query.TotalGames = totalGames;
             query.Games = games;
             query.Titles = gameTitles;
+            
 
             return this.View(query);
         }
