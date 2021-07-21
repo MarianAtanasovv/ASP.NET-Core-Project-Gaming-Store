@@ -42,42 +42,12 @@ namespace GameStore
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<UserWishList>()
-            //    .HasKey(bc => new { bc.UserId, bc.GameId });
-
-            //modelBuilder.Entity<UserWishList>()
-            //    .HasOne(bc => bc.User)
-            //    .WithMany(b => b.WishListGames)
-            //    .HasForeignKey(bc => bc.GameId);
-
-            //modelBuilder.Entity<UserWishList>()
-            //   .HasOne(bc => bc.Game)
-            //   .WithMany(b => b.WishListGames)
-            //   .HasForeignKey(bc => bc.UserId);
-
-            //modelBuilder.Entity<User>()
-            //     .HasOne<ShoppingCart>(x => x.ShoppingCart)
-            //     .WithOne(x => x.User)
-            //     .HasForeignKey<ShoppingCart>(x => x.ShoppingCartId);
-
-            //modelBuilder.Entity<Game>()
-            //    .HasOne<Guide>(x => x.Guide)
-            //    .WithOne(x => x.Game)
-            //    .HasForeignKey<Guide>(x => x.GameId);
-
-            //modelBuilder.Entity<Article>()
-            //    .HasOne<Comment>(x => x.Comment)
-            //    .WithOne(x => x.Article)
-            //    .HasForeignKey<Article>(x => x.CommentId);
-
+           
             modelBuilder.Entity<Article>()
            .HasMany(c => c.Comments)
            .WithOne(e => e.Article);
 
-            //modelBuilder.Entity<Comment>()
-            //    .HasOne(x => x.Article)
-            //    .WithMany(x => x.Comments);
-
+           
         }
 
     }
