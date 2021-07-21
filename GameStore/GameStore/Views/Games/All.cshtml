@@ -58,6 +58,8 @@
     <!-- END: Styles -->
     <!-- jQuery -->
     <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
+    
+ 
 
 </head>
 <body>
@@ -250,6 +252,8 @@
         </div>
     </div>
     <!-- END: Navbar Mobile -->
+
+
     <div class="row">
         @foreach (var game in Model.Games)
         {
@@ -271,6 +275,39 @@
 </div>}
     </div>
 
+
+    @{ var previousPage = Model.CurrentPage - 1;
+                    if (previousPage < 1)
+                    {
+                        previousPage = 1;
+                    }
+
+                    var maxPage = Math.Ceiling((double)Model.TotalGames / AllGamesQueryModel.GamesPerPage); }
+
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-main-1 @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+               asp-controller="Games"
+               asp-action="All"
+               asp-route-currentPage="@previousPage"
+               asp-route-brand="@Model.Title"
+               asp-route-searchTerm="@Model.SearchTerm"
+               asp-route-sorting="@((int)Model.Sorting)"><<</a>
+        </div>
+
+        @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                                                     !Model.Games.Any(); }
+
+        <div class="col-md-6">
+            <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-main-1 float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+               asp-controller="Games"
+               asp-action="All"
+               asp-route-currentPage="@(Model.CurrentPage + 1)"
+               asp-route-brand="@Model.Title"
+               asp-route-searchTerm="@Model.SearchTerm"
+               asp-route-sorting="@((int)Model.Sorting)">>></a>
+        </div>
+    </div>
     <!-- START: Footer -->
     <footer class="nk-footer">
 
