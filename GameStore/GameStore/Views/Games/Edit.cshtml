@@ -1,7 +1,7 @@
 ﻿@model EditGameFormModel
 
 @{ ViewData["Title"] = "AddArticle";
-                Layout = "~/Views/Shared/_Layout.cshtml"; }
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 <!DOCTYPE html>
 
 
@@ -168,33 +168,37 @@
                                 Platforms
 
                             </a><ul class="dropdown">
-
                                 <li>
-                                    <a href="PC.html">
-                                        PC
+                                    <a href="/Games/All">
+                                        All Games
 
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="Playstation.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Playstation">
+
                                         Playstation
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Xbox360.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Xbox 360">
+
                                         Xbox360
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Nintendo.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Nintendo">
                                         Nintendo
-
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="/GamePlatform/GetPlatform?platform=PC">
+                                        PC
+                                    </a>
+                                </li>
 
                             </ul>
                         </li>
@@ -231,10 +235,10 @@
     <h1 class="text-center mt-2">Edit game!</h1>
     <form class="mx-auto w-50" method="post">
         <div class="form-group">
-            <div class="d-flex justify-content-start" >
+            <div class="d-flex justify-content-start">
                 <label asp-for="Title" class="h4 mb-2"></label>
             </div>
-            <input asp-for="Title" type="text" class="form-control"/>
+            <input asp-for="Title" type="text" class="form-control" />
             <span asp-validation-for="Title" class="small text-danger"></span>
         </div>
         <div class="form-group">
@@ -242,14 +246,15 @@
             <select asp-for="GenreId" class="form-control">
                 @foreach (var genre in Model.Genres)
                 {
-    <option value="@genre.GenreId">@genre.Name</option>}
+    <option value="@genre.GenreId">@genre.Name</option>
+}
             </select>
         </div>
         <span asp-validation-for="GenreId" class="small text-danger"></span>
         <div class="d-flex justify-content-start">
             <label asp-for="Description" class="h4 mb-2"></label>
         </div>
-        <input asp-for="Description" type="text" class="form-control"  />
+        <input asp-for="Description" type="text" class="form-control" />
         <span asp-validation-for="Description" class="small text-danger"></span>
         <div class="form-group">
             <div class="d-flex justify-content-start">
@@ -291,7 +296,7 @@
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Add">Edit</button>
             </div>
-</form>
+    </form>
 
     <!-- START: Footer -->
     <footer class="nk-footer">

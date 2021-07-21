@@ -1,10 +1,8 @@
 ﻿@model AllArticlesQueryModel
 
 
-@{
-    ViewData["Title"] = "Articles";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewData["Title"] = "Articles";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 
 <!DOCTYPE html>
@@ -175,28 +173,34 @@
                             </a><ul class="dropdown">
 
                                 <li>
-                                    <a href="PC.html">
-                                        PC
+                                    <a href="/Games/All">
+                                        All Games
 
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="Playstation.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Playstation">
+
                                         Playstation
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Xbox360.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Xbox 360">
+
                                         Xbox360
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Nintendo.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Nintendo">
                                         Nintendo
-
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/GamePlatform/GetPlatform?platform=PC">
+                                        PC
                                     </a>
                                 </li>
 
@@ -274,32 +278,31 @@
                     <div class="row">
                         @foreach (var article in Model.Articles)
                         {
-                            <div class="col-md-6">
-                                <!-- START: Post -->
-                                <div class="nk-blog-post">
-                                    <a href="blog-article.html" class="nk-post-img">
-                                        <img src="@article.ImageUrl" alt="Smell magic in the air. Or maybe barbecue">
-                                        <span class="nk-post-comments-count">4</span>
-                                    </a>
-                                    <div class="nk-gap"></div>
-                                    <h2 class="nk-post-title h4"><a href="blog-article.html">@article.Title</a></h2>
-                                    <div class="nk-post-by">
-                                        <img src="@article.ImageUrl" alt="Hitman" class="rounded-circle" width="35">by <a href="#">Hitman</a>
-                                        <div>
-                                            @article.CreatedOn
-                                        </div>
-                                    </div>
-                                    <div class="nk-gap"></div>
-                                    <div class="nk-post-text">
-                                        <p>@article.ShortDescription...</p>
-                                    </div>
-                                    <div class="nk-gap"></div>
-                                    <a href="/Articles/Details?Id=@article.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                                </div>
+            <div class="col-md-6">
+                <!-- START: Post -->
+                <div class="nk-blog-post">
+                    <a href="blog-article.html" class="nk-post-img">
+                        <img src="@article.ImageUrl" alt="Smell magic in the air. Or maybe barbecue">
+                        <span class="nk-post-comments-count">4</span>
+                    </a>
+                    <div class="nk-gap"></div>
+                    <h2 class="nk-post-title h4"><a href="blog-article.html">@article.Title</a></h2>
+                    <div class="nk-post-by">
+                        <img src="@article.ImageUrl" alt="Hitman" class="rounded-circle" width="35">by <a href="#">Hitman</a>
+                        <div>
+                            @article.CreatedOn
+                        </div>
+                    </div>
+                    <div class="nk-gap"></div>
+                    <div class="nk-post-text">
+                        <p>@article.ShortDescription...</p>
+                    </div>
+                    <div class="nk-gap"></div>
+                    <a href="/Articles/Details?Id=@article.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
+                </div>
 
-                                <!-- END: Post -->
-                            </div>
-                        }
+                <!-- END: Post -->
+            </div>}
                     </div>
                 </div>
             </div>

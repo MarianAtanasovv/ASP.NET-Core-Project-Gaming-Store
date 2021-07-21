@@ -1,10 +1,8 @@
 ﻿@model GameDetailsViewModel
 
 
-@{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewData["Title"] = "Details";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 
 <!DOCTYPE html>
@@ -157,31 +155,36 @@
                             </a><ul class="dropdown">
 
                                 <li>
-                                    <a href="PC.html">
-                                        PC
+                                    <a href="/Games/All">
+                                        All Games
 
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="Playstation.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Playstation">
+
                                         Playstation
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Xbox360.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Xbox 360">
+
                                         Xbox360
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Nintendo.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Nintendo">
                                         Nintendo
-
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="/GamePlatform/GetPlatform?platform=PC">
+                                        PC
+                                    </a>
+                                </li>
 
                             </ul>
                         </li>
@@ -243,64 +246,64 @@
     </div>
     <!-- END: Navbar Mobile -->
     <div class="nk-blog-post nk-blog-post-border-bottom">
-      
-            <div class="item">
-                <div asp-for="@Model.ImageUrl" class="col-lg-3 col-md-5">
-                    <a href="" class="nk-post-img">
-                        <img src="@Model.ImageUrl">
+
+        <div class="item">
+            <div asp-for="@Model.ImageUrl" class="col-lg-3 col-md-5">
+                <a href="" class="nk-post-img">
+                    <img src="@Model.ImageUrl">
 
 
 
-                    </a>
-                    
-                        <span class="nk-post-categories float-right">
-                            <span class="bg-main-1">@Model.Genre</span>
-                        </span>
+                </a>
 
-                    <span class="nk-post-categories float-right">
-                        <span class="bg-main-1">@Model.Platform</span>
-                    </span>
+                <span class="nk-post-categories float-right">
+                    <span class="bg-main-1">@Model.Genre</span>
+                </span>
 
+                <span class="nk-post-categories float-right">
+                    <span class="bg-main-1">@Model.Platform</span>
+                </span>
+
+            </div>
+            <div class="col-lg-9 col-md-7">
+                <h2 class="nk-post-title h4 text-left"><a>@Model.Title</a></h2>
+                <div class="nk-post-date mt-10 mb-10" style="font-size:30px">
+                    <span class="nk-product-price"></span>@Model.Price $
                 </div>
-                <div class="col-lg-9 col-md-7">
-                    <h2 class="nk-post-title h4 text-left"><a>@Model.Title</a></h2>
-                    <div class="nk-post-date mt-10 mb-10" style="font-size:30px">
-                        <span class="nk-product-price"></span>@Model.Price $
-                    </div>
 
-                    <div class="nk-post-text">
-                        <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Description:</h1>
-                        <p>@Model.Description</p>
-                    </div>
-                    <div class="nk-post-text">
-                        <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Requirements:</h1>
-                        <p>@Model.Requirements</p>
-                    </div>
-                    <div class="nk-post-text">
-                        <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Guide:</h1>
-                        <p>@Model.Guide</p>
-                    </div>
-                    <div class="nk-widget-content" style="padding-top: 20px">
-                        <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Trailer:</h1>
-                        <div class="nk-plain-video" data-video="@Model.TrailerUrl"></div>
-                    </div>
-                    <div class="gap-3"></div>
-                    <div>
-                        <row>
-                            <a href="/Games/Delete?id=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-red">Delete game!</a>
+                <div class="nk-post-text">
+                    <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Description:</h1>
+                    <p>@Model.Description</p>
+                </div>
+                <div class="nk-post-text">
+                    <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Requirements:</h1>
+                    <p>@Model.Requirements</p>
+                </div>
+                <div class="nk-post-text">
+                    <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Guide:</h1>
+                    <p>@Model.Guide</p>
+                </div>
+                <div class="nk-widget-content" style="padding-top: 20px">
+                    <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Trailer:</h1>
+                    <div class="nk-plain-video" data-video="@Model.TrailerUrl"></div>
+                </div>
+                <div class="gap-3"></div>
+                <div>
+                    <row>
+                        <a href="/Games/Delete?id=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-red">Delete game!</a>
 
-                        </row>
-                    </div>
-                    <div class="gap-3"></div>
-                    <div>
-                        <row>
-                            <a href="/Games/Edit?id=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-red">Edit game!</a>
+                    </row>
+                </div>
+                <div class="gap-3"></div>
+                <div>
+                    <row>
+                        <a href="/Games/Edit?id=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-red">Edit game!</a>
 
-                        </row>
-                    </div>
+                    </row>
                 </div>
             </div>
-        
+        </div>
+
     </div>
 
 

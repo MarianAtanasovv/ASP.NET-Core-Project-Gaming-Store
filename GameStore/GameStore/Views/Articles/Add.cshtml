@@ -1,9 +1,7 @@
 ﻿@model AddArticleFormModel
 
-@{
-    ViewData["Title"] = "AddArticle";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewData["Title"] = "AddArticle";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
 <!DOCTYPE html>
 
 
@@ -103,7 +101,7 @@
 
                             </a>
                         </li>
-                        
+
 
                         <li>
                             <span class="nk-cart-toggle">
@@ -151,10 +149,6 @@
         <!--
             START: Navbar
 
-            Additional Classes:
-                .nk-navbar-sticky
-                .nk-navbar-transparent
-                .nk-navbar-autohide
         -->
         <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
             <div class="container">
@@ -172,28 +166,34 @@
                             </a><ul class="dropdown">
 
                                 <li>
-                                    <a href="PC.html">
-                                        PC
+                                    <a href="/Games/All">
+                                        All Games
 
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="Playstation.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Playstation">
+
                                         Playstation
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Xbox360.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Xbox 360">
+
                                         Xbox360
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Nintendo.html">
+                                    <a href="/GamePlatform/GetPlatform?platform=Nintendo">
                                         Nintendo
-
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/GamePlatform/GetPlatform?platform=PC">
+                                        PC
                                     </a>
                                 </li>
 
@@ -239,14 +239,14 @@
             <input asp-for="Title" type="text" class="form-control" placeholder="Parents of online gamers need to think twice before..." />
             <span asp-validation-for="Title" class="small text-danger"></span>
         </div>
-        
+
         <div class="d-flex justify-content-start">
             <label asp-for="Content" class="h4 mb-2"></label>
         </div>
         <input asp-for="Content" type="text" class="form-control" placeholder="This article is about..." />
         <span asp-validation-for="Content" class="small text-danger"></span>
-       
-        
+
+
         <div class="form-group">
             <div class="d-flex justify-content-start">
                 <label asp-for="ImageUrl" class="h4 mb-2"></label>
@@ -396,8 +396,7 @@
         </div>
     </div>
 
-    <!-- END: Search Modal -->
-    <!-- END: Login Modal -->
+ 
     <!-- START: Scripts -->
     <!-- Object Fit Polyfill -->
     <script src="assets/vendor/object-fit-images/dist/ofi.min.js"></script>
@@ -459,8 +458,6 @@
     <script src="assets/js/goodgames.min.js"></script>
     <script src="assets/js/goodgames-init.js"></script>
     <!-- END: Scripts -->
-
-
 
 </body>
 </html>
