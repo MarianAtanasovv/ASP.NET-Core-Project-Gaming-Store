@@ -10,7 +10,7 @@ namespace GameStore.Models.Games
 {
     public class AllGamesQueryModel
     {
-        public const int GamesPerPage =6;
+        public const int GamesPerPage = 6;
 
         public string Title { get; set; }
 
