@@ -2,16 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using GameStore.Data.Models;
 using GameStore.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GameStore
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<User> Users { get; set; }
-
+        
         public DbSet<Game> Games { get; set; }
 
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        //public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         public DbSet<ShoppingCartGame> ShoppingCartGames { get; set; }
 
@@ -47,7 +48,6 @@ namespace GameStore
            .HasMany(c => c.Comments)
            .WithOne(e => e.Article);
 
-           
         }
 
     }
