@@ -83,25 +83,28 @@
                 <div class="nk-contacts-right">
                     <ul class="nk-contacts-icons">
 
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#modalSearch">
-                                <span class="fa fa-search"></span>
-                            </a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                    <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                        <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
+                    </form>
+ }
 
-                        <li>
-                            <a href="/Identity/Account/Register">
-                                Register
+                                else
+                                {
+                    <div class="row">
+                        <div class="col">
+                            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
+                                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
+                            </form>
+                        </div>
 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Identity/Account/Login">
-
-                                Login
-
-                            </a>
-                        </li>
+                        <div class="col">
+                            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
+                                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
+                            </form>
+                        </div>
+                    </div>}
 
                         <li>
                             <span class="nk-cart-toggle">
