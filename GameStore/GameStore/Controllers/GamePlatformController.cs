@@ -1,5 +1,6 @@
 ﻿using GameStore.Data.Models;
 using GameStore.Models.Games;
+using GameStore.Services.Games;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace GameStore.Controllers
                 var games = gamesQuery.Where(x => x.Platform.Name == platform)
                     .Skip((query.CurrentPage - 1) * AllGamesQueryModel.GamesPerPage)
                     .Take(AllGamesQueryModel.GamesPerPage)
-                    .Select(x => new GameListingViewModel
+                    .Select(x => new GameServiceModel
                     {
                         Id = x.Id,
                         Title = x.Title,

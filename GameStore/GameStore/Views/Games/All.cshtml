@@ -260,7 +260,8 @@
         @foreach (var game in Model.Games)
         {
 <div class="card mr-5 mb-10" style="width: 200px; height:300px">
-    <a href="/Games/Details?Id=@game.Id" class="nk-post-img">
+    @*<a href="/Games/Details?Id=@game.Id" class="nk-post-img">*@
+        <a asp-action="Details" asp-route-id="@game.Id" class="nk-post-img">
         <img src="@game.ImageUrl">
 
         <span class="nk-post-categories">

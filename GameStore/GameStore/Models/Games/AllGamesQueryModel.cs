@@ -1,5 +1,6 @@
 ﻿using GameStore.Controllers;
 using GameStore.Data.Models;
+using GameStore.Services.Games;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,7 +26,7 @@ namespace GameStore.Models.Games
 
         public IEnumerable<string> Titles { get; set; }
 
-        public IEnumerable<GameListingViewModel> Games { get; set; }
+        public IEnumerable<GameServiceModel> Games { get; set; }
 
 
     }

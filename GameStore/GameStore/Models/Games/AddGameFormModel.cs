@@ -1,4 +1,5 @@
 ﻿using GameStore.Data;
+using GameStore.Services.Games;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -43,9 +44,9 @@ namespace GameStore.Models.Games
         [Display(Name = "Platform")]
         public int PlatformId { get; set; }
 
-        public IEnumerable<GameGenreViewModel> Genres { get; set; }
+        public IEnumerable<GameGenreServiceModel> Genres { get; set; }
 
-        public IEnumerable<GamePlatformViewModel> Platforms { get; set; }
+        public IEnumerable<GamePlatformServiceModel> Platforms { get; set; }
 
         public string Guide { get; set; }
 

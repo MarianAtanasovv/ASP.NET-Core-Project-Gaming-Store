@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GameStore.Models.Games;
 using GameStore.Data.Models;
+using GameStore.Services.Games;
 
 namespace GameStore.Models.Games
 {
@@ -39,10 +40,9 @@ namespace GameStore.Models.Games
         [Display(Name = "Trailer URL")]
         public string TrailerUrl { get; set; }
 
-        [Required]
-        public IEnumerable<GameGenreViewModel> Genres { get; set; }
+        public IEnumerable<GameGenreServiceModel> Genres { get; set; }
 
-        public IEnumerable<GamePlatformViewModel> Platforms { get; set; }
+        public IEnumerable<GamePlatformServiceModel> Platforms { get; set; }
 
         public string Guide { get; set; }
 

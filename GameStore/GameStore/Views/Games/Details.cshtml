@@ -281,14 +281,14 @@
                 <div class="gap-3"></div>
                 <div>
                     <row>
-                        <a href="/Games/Delete?id=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Delete game!</a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Delete game!</a>
 
                     </row>
                 </div>
                 <div class="gap-5"></div>
                 <div>
                     <row>
-                        <a href="/Games/Edit?id=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Edit game!</a>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Edit game!</a>
 
                     </row>
                 </div>

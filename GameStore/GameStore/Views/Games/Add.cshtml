@@ -251,7 +251,7 @@
             <select asp-for="GenreId" class="form-control">
                 @foreach (var genre in Model.Genres)
                 {
-    <option value="@genre.GenreId">@genre.Name</option>}
+    <option value="@genre.Id">@genre.Name</option>}
             </select>
         </div>
         <div class="form-group">
@@ -259,7 +259,7 @@
             <select asp-for="PlatformId" class="form-control">
                 @foreach (var platform in Model.Platforms)
                 {
-    <option value="@platform.PlatformId">@platform.Name</option>
+    <option value="@platform.Id">@platform.Name</option>
     }
             </select>
         </div>

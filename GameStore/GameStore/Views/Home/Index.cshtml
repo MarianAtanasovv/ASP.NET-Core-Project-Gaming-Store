@@ -1,8 +1,7 @@
 ﻿@model AllGamesQueryModel
+@inject SignInManager<IdentityUser> signInManager
 
-@{
-    ViewData["Title"] = "Home Page";
-}
+@{ ViewData["Title"] = "Home Page"; }
 
 <!DOCTYPE html>
 
@@ -58,7 +57,7 @@
     <!-- END: Styles -->
     <!-- jQuery -->
     <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-   
+
 </head>
 <body>
     <header class="nk-header nk-header-opaque">
@@ -78,6 +77,19 @@
                 <div class="nk-contacts-right">
                     <ul class="nk-contacts-icons">
 
+                        @if (signInManager.IsSignedIn(User))
+                        {
+
+
+                           <li>
+                               <form asp-action="logout" asp-controller="account" asp-route-returnUrl="@this.Url.Action("Index", "Home", new { area = string.Empty })">
+                                   <button type="submit">Logout</button>
+                               </form>
+                           </li>
+                           }
+
+                        else 
+                        {
 
                         <li>
                             <a href="/Identity/Account/Register">
@@ -92,6 +104,8 @@
 
                             </a>
                         </li>
+                        }
+
                         <li>
                             <span class="nk-cart-toggle">
                                 <span class="fa fa-shopping-cart"></span>
@@ -136,13 +150,13 @@
         </div>
         <!-- END: Top Contacts -->
         <!--
-        START: Navbar
+            START: Navbar
 
-        Additional Classes:
-            .nk-navbar-sticky
-            .nk-navbar-transparent
-            .nk-navbar-autohide
-    -->
+            Additional Classes:
+                .nk-navbar-sticky
+                .nk-navbar-transparent
+                .nk-navbar-autohide
+        -->
         <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
             <div class="container">
                 <div class="nk-nav-table">
@@ -158,34 +172,34 @@
 
                             </a><ul class="dropdown">
 
-                                   <li>
-                                       <a href="/Games/All">
-                                           All Games
+                                <li>
+                                    <a href="/Games/All">
+                                        All Games
 
-                                       </a>
-                                   </li>
+                                    </a>
+                                </li>
 
-                                   <li>
-                                       <a href="/GamePlatform/GetPlatform?platform=Playstation">
-                                           Playstation
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="/GamePlatform/GetPlatform?platform=Xbox 360">
-                                           Xbox360
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="/GamePlatform/GetPlatform?platform=Nintendo">
-                                           Nintendo
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="/GamePlatform/GetPlatform?platform=PC">
-                                           PC
-                                       </a>
-                                   </li>
-                                 </ul>
+                                <li>
+                                    <a href="/GamePlatform/GetPlatform?platform=Playstation">
+                                        Playstation
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/GamePlatform/GetPlatform?platform=Xbox 360">
+                                        Xbox360
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/GamePlatform/GetPlatform?platform=Nintendo">
+                                        Nintendo
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/GamePlatform/GetPlatform?platform=PC">
+                                        PC
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li>
@@ -372,7 +386,6 @@
         <img class="nk-page-background-bottom" src="assets/images/bg-bottom.png" alt="">
 
         <!-- END: Page Background -->
-      
         <!-- START: Scripts -->
         <!-- Object Fit Polyfill -->
         <script src="assets/vendor/object-fit-images/dist/ofi.min.js"></script>
@@ -435,7 +448,7 @@
         <script src="assets/js/goodgames-init.js"></script>
         <!-- END: Scripts -->
 
-        </div>
+    </div>
 
 </body>
 </html>
