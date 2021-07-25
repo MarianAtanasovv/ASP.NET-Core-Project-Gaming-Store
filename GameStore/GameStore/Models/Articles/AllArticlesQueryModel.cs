@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameStore.Services.Articles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,6 +24,6 @@ namespace GameStore.Models.Articles
 
         public IEnumerable<string> Titles { get; set; }
 
-        public IEnumerable<ArticleListingViewModel> Articles { get; set; }
+        public IEnumerable<ArticleServiceModel> Articles { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 using GameStore.Data.Models;
 using GameStore.Infrastructure;
+using GameStore.Services.Articles;
+using GameStore.Services.Comments;
 using GameStore.Services.Games;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +41,9 @@ namespace GameStore
 
             services.AddControllersWithViews();
             services.AddScoped<IGameService, GameService>();
+            services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<ICommentService, CommentService>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

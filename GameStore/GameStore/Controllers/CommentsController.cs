@@ -1,6 +1,7 @@
 ﻿
 using GameStore.Data.Models;
 using GameStore.Models.Comments;
+using GameStore.Services.Comments;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace GameStore.Controllers
 {
     public class CommentsController : Controller
     {
-        private readonly ApplicationDbContext data;
+        private readonly ICommentService comments;
 
-        public CommentsController(ApplicationDbContext data)
+        public CommentsController(ICommentService comments)
         {
-            this.data = data;
+            this.comments = comments;
         }
 
         public IActionResult Add(int ArticleId) => View(new AddCommentToArticleViewModel()
@@ -24,41 +25,29 @@ namespace GameStore.Controllers
         [HttpPost]
         public IActionResult Add(AddCommentToArticleViewModel model)
         {
-            var comment = new Comment
+            if (!ModelState.IsValid)
             {
-                Id = model.Id,
-                Username = model.Username,
-                Content = model.Content,
-                Rating = model.Rating,
-                ArticleId = model.ArticleId,
-                CreatedOn = DateTime.UtcNow.ToString("r")
+                return View(model);
+            }
 
-            };
+            this.comments.Add(
+                model.Id,
+                model.Content,
+                model.Username,
+                model.Rating,
+                model.CreatedOn,
+                model.ArticleId
+                );
 
-            
-
-            this.data.Comments.Add(comment);
-            data.SaveChanges();
-
-            return Redirect($"/Comments/All?ArticleId={model.ArticleId}");
+            return Redirect($"/Comments/All?articleId={model.ArticleId}");
         }
 
-        public IActionResult All(int ArticleId)
+        public IActionResult All([FromQuery] AllCommentsQueryModel query, int articleId)
         {
-            
-            var comments = this.data.Comments
-                .Where(x => x.ArticleId == ArticleId)
-                .Select(x => new AllCommentsViewModel
-                {
-                    Username = x.Username,
-                    Content = x.Content,
-                    Rating = x.Rating,
-                    CreatedOn = x.CreatedOn
-                })
-                .ToList();
+            var commentsQuery = this.comments.All(query.CurrentPage,
+                query.CommentsPerPage, articleId);
 
-                var ratings = data.Comments.Where(d => d.ArticleId == ArticleId).FirstOrDefault();
-                
+            var comments = commentsQuery.Comments;
 
             return this.View(comments);
         }

@@ -1,5 +1,6 @@
 ﻿using GameStore.Data.Models;
 using GameStore.Models.Articles;
+using GameStore.Services.Articles;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,18 @@ namespace GameStore.Controllers
 {
     public class ArticlesController : Controller
     {
-        private readonly ApplicationDbContext data;
+        private readonly IArticleService articles;
 
-        public ArticlesController(ApplicationDbContext data)
+        public ArticlesController(IArticleService article)
         {
-            this.data = data;
+            this.articles = article;
         }
-        public IActionResult Index()
+        public IActionResult Add()
         {
             return View();
         }
 
+        [HttpPost]
         public IActionResult Add(AddArticleFormModel model)
         {
             if (!ModelState.IsValid)
@@ -28,151 +30,91 @@ namespace GameStore.Controllers
                 return View(model);
             }
 
-            var article = new Article
-            {
-                Title = model.Title,
-                Content = model.Content,
-                ImageUrl = model.ImageUrl,
-                TrailerUrl = model.TrailerUrl,
-                CreatedOn = DateTime.UtcNow.ToString("r"),
-               
-            };
+            this.articles.Add(
+                model.Id,
+                model.Title,
+                model.Content,
+                model.ImageUrl,
+                model.TrailerUrl,
+                model.CreatedOn.ToString("r"));
 
-            this.data.Articles.Add(article);
-            this.data.SaveChanges();
-
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(All));
         }
 
-        public IActionResult Details(int Id)
+        public IActionResult Details(int id)
         {
-            var details = this.data.Articles.Where(x => x.Id == Id)
-            .Select(x => new ArticleDetailsViewModel
+            var details = this.articles.Details(id);
+
+            return View(new ArticleDetailsViewModel
             {
-                Id = x.Id,
-                Content = x.Content,
-                Title = x.Title,
-                ImageUrl = x.ImageUrl,
-                TrailerUrl = x.TrailerUrl,
-                CreatedOn = x.CreatedOn,
-                
-            })
-              .FirstOrDefault();
+                Id = details.Id,
+                Content = details.Content,
+                Title = details.Title,
+                ImageUrl = details.ImageUrl,
+                TrailerUrl = details.TrailerUrl,
+                CreatedOn = details.CreatedOn,
 
-            return View(details);
-
+            });
         }
 
         public IActionResult All([FromQuery] AllArticlesQueryModel query)
         {
-            var articlesQuery = this.data.Articles.AsQueryable();
+            var articlesQueryResult = this.articles.All(
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                AllArticlesQueryModel.ArticlesPerPage,
+                query.Title);
 
-            if (!string.IsNullOrEmpty(query.Title))
-            {
-                articlesQuery = articlesQuery.Where(x => x.Title == query.Title);
-            }
+            var articleTitles = this.articles.AllArticles();
 
-            if (!string.IsNullOrEmpty(query.SearchTerm))
-            {
-                articlesQuery = articlesQuery.Where(x => x.Title.ToLower().Contains(query.SearchTerm.ToLower()));
-            }
-
-            articlesQuery = query.Sorting switch
-            {
-                ArticleSorting.Title => articlesQuery.OrderBy(t => t.Title),
-                ArticleSorting.CreatedOn => articlesQuery.OrderByDescending(p => p.CreatedOn),
-                _ => articlesQuery.OrderByDescending(x => x.Id)
-            };
-
-            var totalArticles = articlesQuery.Count();
-
-            var articles = articlesQuery
-                .Skip((query.CurrentPage - 1) * AllArticlesQueryModel.ArticlesPerPage)
-                .Take(AllArticlesQueryModel.ArticlesPerPage)
-                .Select(x => new ArticleListingViewModel
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    CreatedOn = x.CreatedOn,
-                    ShortDescription = x.Content.Substring(0, 200),
-                    Rating = x.Rating,
-                    ImageUrl = x.ImageUrl,
-                    TrailerUrl = x.TrailerUrl,
-
-                })
-             .ToList();
-
-            var articleTitles = this.data
-                .Articles
-                .Select(t => t.Title)
-                .Distinct()
-                .OrderBy(g => g)
-                .ToList();
-
-            query.TotalArticles = totalArticles;
-            query.Articles = articles;
+            query.TotalArticles = articlesQueryResult.TotalArticles;
+            query.Articles = articlesQueryResult.Articles;
             query.Titles = articleTitles;
 
             return this.View(query);
         }
 
-        public IActionResult Delete(int articleId)
+        public IActionResult Delete(int id)
         {
-            var article = this.data.Articles.FirstOrDefault(x => x.Id == articleId);
+            var article = this.articles.Delete(id);
 
             // add some admin-creator like logic !
 
-            this.data.Articles.Remove(article);
-            this.data.SaveChanges();
-
-            return Redirect("/Article/All");
+            return Redirect("Games/All");
         }
 
-        public IActionResult Edit(int articleId)
+        public IActionResult Edit(int id)
         {
-            var article = this.data.Articles.Where(x => x.Id == articleId)
-                .Select(x => new EditArticleFormModel
+            var article = this.articles.Details(id);
+
+                return View(new EditArticleFormModel
                 {
-                    Title = x.Title,
-                    Content = x.Content,
-                    ImageUrl = x.ImageUrl,
-                    TrailerUrl = x.TrailerUrl,
-                })
-                .FirstOrDefault();
-
-            if (article != null) 
-            {
-                return View(article);
-            }
-
-            return BadRequest();
+                    Title = article.Title,
+                    Content = article.Content,
+                    ImageUrl = article.ImageUrl,
+                    TrailerUrl = article.TrailerUrl,
+                });
 
         }
       
 
         [HttpPost]
-        public IActionResult Edit(EditArticleFormModel model)
+        public IActionResult Edit(int id, EditArticleFormModel model)
         {
-            //think of a better way to edit instead of delete/add
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-            var oldArticle = this.data.Articles.Where(x => x.Id == model.ArticleId).FirstOrDefault();
+            this.articles.Edit(
+                id,
+                model.Title,
+                model.Content,
+                model.ImageUrl,
+                model.TrailerUrl);
 
-            var newArticle = this.data.Articles.Where(x => x.Id == model.ArticleId)
-                .Select(x => new Article
-                {
-                    Title = model.Title,
-                    Content = model.Content,
-                    ImageUrl = model.ImageUrl,
-                    TrailerUrl = model.TrailerUrl,
-                    CreatedOn = oldArticle.CreatedOn
-                })
-                .FirstOrDefault();
-
-            this.data.Articles.Remove(oldArticle);
-            this.data.Articles.Add(newArticle);
-            this.data.SaveChanges();
-
-            return Redirect($"/Articles/All");
+            return RedirectToAction(nameof(All));
         }
     }
 

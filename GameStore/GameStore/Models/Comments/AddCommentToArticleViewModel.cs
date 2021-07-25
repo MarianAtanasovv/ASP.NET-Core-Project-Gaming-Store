@@ -10,6 +10,7 @@ namespace GameStore.Models.Comments
     using static DataConstants;
     public class AddCommentToArticleViewModel
     {
+        
         public int Id { get; set; }
 
         [Required]
@@ -23,6 +24,8 @@ namespace GameStore.Models.Comments
         public int Rating { get; set; }
 
         public int ArticleId { get; set; }
+
+        public string CreatedOn { get; set; }
 
 
     }

@@ -113,6 +113,7 @@ namespace GameStore.Controllers
             return Redirect("/Games/All");
         }
 
+        
         public IActionResult Edit(int id)
         {
             //var userId = this.User.Id();

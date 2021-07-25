@@ -83,15 +83,15 @@
                 <div class="nk-contacts-right">
                     <ul class="nk-contacts-icons">
 
-                        @if (User.Identity.IsAuthenticated)
-                        {
+                         @if (User.Identity.IsAuthenticated)
+                         {
                     <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
                         <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
                     </form>
  }
 
-                                else
-                                {
+                          else
+                          {
                     <div class="row">
                         <div class="col">
                             <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
@@ -104,7 +104,8 @@
                                 <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
                             </form>
                         </div>
-                    </div>}
+                    </div>
+                    }
 
                         <li>
                             <span class="nk-cart-toggle">
