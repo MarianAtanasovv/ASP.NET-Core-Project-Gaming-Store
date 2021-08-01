@@ -31,7 +31,7 @@ namespace GameStore.Services.Comments
                 Username = username,
                 Rating = rating,
                 CreatedOn = DateTime.UtcNow.ToString("r"),
-                ArticleId = articleId
+                ArticleId = (articleId)
             };
 
             this.data.Comments.Add(comment);
@@ -60,33 +60,22 @@ namespace GameStore.Services.Comments
             };
         }
 
-        public int Delete(int id)
+        public bool Delete(int id)
         {
             var comment = this.data.Comments.Find(id);
 
-            this.data.Remove(comment);
-            this.data.SaveChanges();
-
-            return comment.Id;
-        }
-
-        public bool Edit(int id, string content)
-        {
-            var commentData = this.data.Comments.Find(id);
-
-            if (commentData == null)
+            if (comment == null)
             {
                 return false;
             }
 
-            commentData.Content = content;
+            this.data.Remove(comment);
             this.data.SaveChanges();
 
             return true;
-
+           
         }
 
-        
         public static IEnumerable<AllCommentsViewModel> GetComments(IQueryable<Comment> commentQuery)
         {
             return commentQuery
@@ -99,6 +88,7 @@ namespace GameStore.Services.Comments
            })
            .ToList();
         }
+
 
         public IEnumerable<string> AllComments()
         {

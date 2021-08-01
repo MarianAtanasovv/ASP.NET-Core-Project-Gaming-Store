@@ -88,7 +88,7 @@ namespace GameStore.Controllers
         public IActionResult Details(int id)
         {
             var game = this.games.Details(id);
-
+            // handle error when there are no games!
             return View(new GameDetailsViewModel
             {
                 Id = game.Id,

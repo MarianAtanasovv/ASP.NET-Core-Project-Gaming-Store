@@ -43,10 +43,15 @@ namespace GameStore
         {
             base.OnModelCreating(modelBuilder);
 
-           
-            modelBuilder.Entity<Article>()
-           .HasMany(c => c.Comments)
-           .WithOne(e => e.Article);
+
+            // modelBuilder.Entity<Article>()
+            //.HasMany(c => c.Comments)
+            //.WithOne(e => e.Article);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Article)
+                .WithMany(c => c.Comments);
+                //.HasForeignKey<Comment>(x => x.ArticleId);
 
         }
 

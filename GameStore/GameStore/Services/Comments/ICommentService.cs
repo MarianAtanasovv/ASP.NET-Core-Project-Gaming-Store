@@ -8,10 +8,8 @@ namespace GameStore.Services.Comments
 {
     public interface ICommentService
     {
-        bool Edit(int id,
-          string content);
-
-        int Delete(int id);
+        
+        bool Delete(int id);
 
         CommentQueryServiceModel All(
             int currentPage,

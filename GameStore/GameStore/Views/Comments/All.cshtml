@@ -285,22 +285,29 @@
                             <div id="comments"></div>
                             <h3 class="nk-decorated-h-2"><span><span class="text-main-1 float-left">@Model.Count() Comments </span></span></h3>
                             <div class="nk-gap"></div>
-                            <div class="nk-comments">
+                            <div class="nk-comments float-left">
                                 <!-- START: Comment -->
                                 @foreach (var comment in Model)
                                 {
-                                    <div class="nk-comment">
-                                        <div class="nk-comment-meta">
-                                            <div style="color: #a38b63">Posted by: @comment.Username </div>
-                                            <div style="color: #a38b63">On @comment.CreatedOn</div>
-                                            <div style="color: #a38b63">Rating: @comment.Rating &#11088;</div>
+                            <div class="row">
+                                <div class="nk-comment-meta">
+                                    <div style="color: #a38b63">Posted by: @comment.Username </div>
+                                    <div style="color: #a38b63">On @comment.CreatedOn</div>
+                                    <div style="color: #a38b63">Rating: @comment.Rating &#11088;</div>
 
-                                        </div>
-                                        <div class="nk-comment-text" style="color:white; font-size:20px">
-                                            <p>@comment.Content</p>
-                                        </div>
+                                </div>
+                                <div class="nk-comment-text" style="color:white; font-size:20px">
+                                    <p>@comment.Content</p>
+                                    <div class="float-left" style="margin-bottom: 15px">
+                                        <form asp-action="Delete" asp-route-id="@comment.Id">
+                                            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Delete!</button>
+                                        </form>
                                     </div>
-                                }
+                                </div>
+
+
+                            </div>
+                                           }
                             </div>
                             <div class="nk-gap-2"></div>
                         </div>

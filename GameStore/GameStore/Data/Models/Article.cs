@@ -32,7 +32,6 @@ namespace GameStore.Data.Models
 
         public IEnumerable<Comment> Comments { get; set; }
 
-        
         public int Rating { get; set; }
 
         [Required]

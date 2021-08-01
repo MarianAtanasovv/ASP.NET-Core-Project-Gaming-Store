@@ -276,117 +276,130 @@
                     </div>
                 </div>
                 <div class="gap-3"></div>
-                <div>
-                    <row>
+                <div class="float-left">
+                    <col>
                         <a asp-action="Delete" asp-route-id="@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Delete article!</a>
 
-                    </row>
+                    </col>
                 </div>
                 <div class="gap-5"></div>
-                <div>
-                    <row>
+                <div class="float-left">
+                    <col>
                         <a asp-action="Edit" asp-route-id="@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Edit article!</a>
 
-                    </row>
-                    <div>
-                        <row>
-                            <a href="/Comments/Add?articleId=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Leave a comment!</a>
+                    </col>
 
-                        </row>
-                    </div>
                 </div>
-            </div>
-    </div>
+                <div class="gap-3 " ></div>
+                <div class="float-right">
+                    <col>
+                        <a href="/Comments/Add?articleId=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Leave a comment!</a>
 
-    @*Background img*@
+                    </col>
+                </div>
+                <div class="gap-5"></div>
+                <div class="float-right">
+                    <col>
+                        <a href="/Comments/All?articleId=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">All comments!</a>
 
-    <img class="nk-page-background-top" src="~/assets/images/bg-top.png" alt="">
-    <img class="nk-page-background-bottom" src="~/assets/images/bg-bottom.png" alt="">
+                    </col>
 
-    <!-- END: Page Background -->
-    <!-- START: Search Modal -->
-    <div class="nk-modal modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span class="ion-android-close"></span>
-                    </button>
-
-                    <h4 class="mb-0">Search</h4>
-
-                    <div class="nk-gap-1"></div>
-                    <form action="#" class="nk-form nk-form-style-1">
-                        <input type="text" value="" name="search" class="form-control" placeholder="Type something and press Enter" autofocus>
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- END: Search Modal -->
-    <!-- START: Login Modal -->
-    <!-- END: Login Modal -->
-    <!-- START: Scripts -->
-    <!-- Object Fit Polyfill -->
-    <script src="~/assets/vendor/object-fit-images/dist/ofi.min.js"></script>
 
-    <!-- GSAP -->
-    <script src="~/assets/vendor/gsap/src/minified/TweenMax.min.js"></script>
-    <script src="~/assets/vendor/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
+      
 
-    <!-- Popper -->
-    <script src="~/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
 
-    <!-- Bootstrap -->
-    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        @*Background img*@
 
-    <!-- Sticky Kit -->
-    <script src="~/assets/vendor/sticky-kit/dist/sticky-kit.min.js"></script>
+        <img class="nk-page-background-top" src="~/assets/images/bg-top.png" alt="">
+        <img class="nk-page-background-bottom" src="~/assets/images/bg-bottom.png" alt="">
 
-    <!-- Jarallax -->
-    <script src="~/assets/vendor/jarallax/dist/jarallax.min.js"></script>
-    <script src="~/assets/vendor/jarallax/dist/jarallax-video.min.js"></script>
+        <!-- END: Page Background -->
+        <!-- START: Search Modal -->
+        <div class="nk-modal modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="ion-android-close"></span>
+                        </button>
 
-    <!-- imagesLoaded -->
-    <script src="~/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+                        <h4 class="mb-0">Search</h4>
 
-    <!-- Flickity -->
-    <script src="~/assets/vendor/flickity/dist/flickity.pkgd.min.js"></script>
+                        <div class="nk-gap-1"></div>
+                        <form action="#" class="nk-form nk-form-style-1">
+                            <input type="text" value="" name="search" class="form-control" placeholder="Type something and press Enter" autofocus>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Search Modal -->
+        <!-- START: Login Modal -->
+        <!-- END: Login Modal -->
+        <!-- START: Scripts -->
+        <!-- Object Fit Polyfill -->
+        <script src="~/assets/vendor/object-fit-images/dist/ofi.min.js"></script>
 
-    <!-- Photoswipe -->
-    <script src="~/assets/vendor/photoswipe/dist/photoswipe.min.js"></script>
-    <script src="~/assets/vendor/photoswipe/dist/photoswipe-ui-default.min.js"></script>
+        <!-- GSAP -->
+        <script src="~/assets/vendor/gsap/src/minified/TweenMax.min.js"></script>
+        <script src="~/assets/vendor/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
 
-    <!-- Jquery Validation -->
-    <script src="~/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+        <!-- Popper -->
+        <script src="~/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
 
-    <!-- Jquery Countdown + Moment -->
-    <script src="~/assets/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
-    <script src="~/assets/vendor/moment/min/moment.min.js"></script>
-    <script src="~/assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Hammer.js -->
-    <script src="~/assets/vendor/hammerjs/hammer.min.js"></script>
+        <!-- Sticky Kit -->
+        <script src="~/assets/vendor/sticky-kit/dist/sticky-kit.min.js"></script>
 
-    <!-- NanoSroller -->
-    <script src="~/assets/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
+        <!-- Jarallax -->
+        <script src="~/assets/vendor/jarallax/dist/jarallax.min.js"></script>
+        <script src="~/assets/vendor/jarallax/dist/jarallax-video.min.js"></script>
 
-    <!-- SoundManager2 -->
-    <script src="~/assets/vendor/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
+        <!-- imagesLoaded -->
+        <script src="~/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 
-    <!-- Seiyria Bootstrap Slider -->
-    <script src="~/assets/vendor/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+        <!-- Flickity -->
+        <script src="~/assets/vendor/flickity/dist/flickity.pkgd.min.js"></script>
 
-    <!-- Summernote -->
-    <script src="~/assets/vendor/summernote/dist/summernote-bs4.min.js"></script>
+        <!-- Photoswipe -->
+        <script src="~/assets/vendor/photoswipe/dist/photoswipe.min.js"></script>
+        <script src="~/assets/vendor/photoswipe/dist/photoswipe-ui-default.min.js"></script>
 
-    <!-- nK Share -->
-    <script src="~/assets/plugins/nk-share/nk-share.js"></script>
+        <!-- Jquery Validation -->
+        <script src="~/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 
-    <!-- GoodGames -->
-    <script src="~/assets/js/goodgames.min.js"></script>
-    <script src="~/assets/js/goodgames-init.js"></script>
-    <!-- END: Scripts -->
+        <!-- Jquery Countdown + Moment -->
+        <script src="~/assets/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
+        <script src="~/assets/vendor/moment/min/moment.min.js"></script>
+        <script src="~/assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+
+        <!-- Hammer.js -->
+        <script src="~/assets/vendor/hammerjs/hammer.min.js"></script>
+
+        <!-- NanoSroller -->
+        <script src="~/assets/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
+
+        <!-- SoundManager2 -->
+        <script src="~/assets/vendor/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
+
+        <!-- Seiyria Bootstrap Slider -->
+        <script src="~/assets/vendor/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+
+        <!-- Summernote -->
+        <script src="~/assets/vendor/summernote/dist/summernote-bs4.min.js"></script>
+
+        <!-- nK Share -->
+        <script src="~/assets/plugins/nk-share/nk-share.js"></script>
+
+        <!-- GoodGames -->
+        <script src="~/assets/js/goodgames.min.js"></script>
+        <script src="~/assets/js/goodgames-init.js"></script>
+        <!-- END: Scripts -->
 
 </body>
 </html>

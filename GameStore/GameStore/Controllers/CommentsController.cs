@@ -51,5 +51,14 @@ namespace GameStore.Controllers
 
             return this.View(comments);
         }
+
+        public IActionResult Delete(int id)
+        {
+            this.comments.Delete(id);
+
+            // add some admin-creator like logic !
+            return Redirect("/Comments/All");
+        }
+
     }
 }
