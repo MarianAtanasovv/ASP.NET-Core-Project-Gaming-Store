@@ -8,8 +8,8 @@ namespace GameStore.Services.Comments
 {
     public interface ICommentService
     {
-        
-        bool Delete(int id);
+
+        bool Delete(string id);
 
         CommentQueryServiceModel All(
             int currentPage,
@@ -23,8 +23,11 @@ namespace GameStore.Services.Comments
         string username,
         int rating,
         string createdOn,
-        int articleId);
+        int articleId,
+        string userId);
 
         IEnumerable<string> AllComments();
+
+        
     }
 }

@@ -23,10 +23,10 @@ namespace GameStore.Controllers
         [Authorize]
         public IActionResult Add()
         {
-            //if (!User.IsAdmin())
-            //{
-            //    return Unauthorized();
-            //}
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
             return View(new AddGameFormModel
             {
@@ -39,11 +39,10 @@ namespace GameStore.Controllers
         [HttpPost]
         public IActionResult Add(AddGameFormModel gameModel)
         {
-            //add admin check
-            //if (!User.IsAdmin())
-            //{
-            //    return Unauthorized();
-            //}
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
             if (!this.games.GenreExists(gameModel.GenreId))
             {
@@ -98,10 +97,17 @@ namespace GameStore.Controllers
             return this.View(query);
         }
 
+        [Authorize]
         public IActionResult Details(int id)
         {
+
             var game = this.games.Details(id);
-            // handle error when there are no games!
+
+            if(game == null)
+            {
+                return View("~/Views/Errors/404.cshtml");
+            }
+
             return View(new GameDetailsViewModel
             {
                 Id = game.Id,
@@ -128,16 +134,21 @@ namespace GameStore.Controllers
 
             var game = this.games.Delete(id);
 
+            if (game == 0)
+            {
+                return View("~/Views/Errors/404.cshtml");
+            }
+
             return Redirect("/Games/All");
         }
 
         [Authorize]
         public IActionResult Edit(int id)
         {
-            //if (!User.IsAdmin())
-            //{
-            //    return Unauthorized();
-            //}
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
             var game = this.games.Details(id);
 
@@ -162,8 +173,10 @@ namespace GameStore.Controllers
         [HttpPost]
         public IActionResult Edit(int id, EditGameFormModel game)
         {
-
-            //admin role check
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
             if (!ModelState.IsValid)
             {
@@ -172,7 +185,6 @@ namespace GameStore.Controllers
 
                 return View(game);
             }
-
 
             this.games.Edit(
                id,

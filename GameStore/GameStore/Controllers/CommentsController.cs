@@ -1,20 +1,27 @@
 ﻿
 using GameStore.Data.Models;
+using GameStore.Infrastructure;
 using GameStore.Models.Comments;
 using GameStore.Services.Comments;
+using GameStore.Services.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
 
 namespace GameStore.Controllers
 {
     public class CommentsController : Controller
     {
         private readonly ICommentService comments;
+        private readonly IUserService users;
 
-        public CommentsController(ICommentService comments)
+
+        public CommentsController(ICommentService comments, IUserService users)
         {
             this.comments = comments;
+            this.users = users;
         }
 
         public IActionResult Add(int ArticleId) => View(new AddCommentToArticleViewModel()
@@ -23,8 +30,12 @@ namespace GameStore.Controllers
         });
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AddCommentToArticleViewModel model)
         {
+            var userId = this.users.IdUser(this.User.Id());
+
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -36,7 +47,8 @@ namespace GameStore.Controllers
                 model.Username,
                 model.Rating,
                 model.CreatedOn,
-                model.ArticleId
+                model.ArticleId,
+                userId
                 );
 
             return Redirect($"/Comments/All?articleId={model.ArticleId}");
@@ -52,11 +64,14 @@ namespace GameStore.Controllers
             return this.View(comments);
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
-            this.comments.Delete(id);
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
-            // add some admin-creator like logic !
+            this.comments.Delete(id);
             return Redirect("/Comments/All");
         }
 

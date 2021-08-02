@@ -91,22 +91,24 @@ namespace GameStore.Infrastructure
             Task
                 .Run(async () =>
                 {
-                    if (await roleManager.RoleExistsAsync("Administator"))
+                    if (await roleManager.RoleExistsAsync("Administrator"))
                     {
                         return;
                     }
 
-                    var role = new IdentityRole { Name = "Administator" };
+                    var role = new IdentityRole { Name = "Administrator" };
 
                     await roleManager.CreateAsync(role);
 
+                    const string adminUsername = "marian345";
                     const string adminEmail = "brwno98@abv.bg";
                     const string adminPassword = "siniteole98";
+                    
 
                     var user = new User
                     {
+                        UserName = adminUsername,
                         Email = adminEmail,
-                        UserName = adminEmail,
                     };
 
                     await userManager.CreateAsync(user, adminPassword);

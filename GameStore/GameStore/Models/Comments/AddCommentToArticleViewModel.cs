@@ -27,6 +27,8 @@ namespace GameStore.Models.Comments
 
         public string CreatedOn { get; set; }
 
+        public int UserId { get; set; }
+
 
     }
 }

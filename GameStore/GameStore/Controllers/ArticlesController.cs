@@ -1,6 +1,8 @@
 ﻿using GameStore.Data.Models;
+using GameStore.Infrastructure;
 using GameStore.Models.Articles;
 using GameStore.Services.Articles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,14 +19,27 @@ namespace GameStore.Controllers
         {
             this.articles = article;
         }
+
+        [Authorize]
         public IActionResult Add()
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AddArticleFormModel model)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -45,6 +60,11 @@ namespace GameStore.Controllers
         {
             var details = this.articles.Details(id);
 
+            if(details == null)
+            {
+                return View("~/Views/Errors/404.cshtml");
+            }
+
             return View(new ArticleDetailsViewModel
             {
                 Id = details.Id,
@@ -56,6 +76,7 @@ namespace GameStore.Controllers
 
             });
         }
+
 
         public IActionResult All([FromQuery] AllArticlesQueryModel query)
         {
@@ -75,15 +96,25 @@ namespace GameStore.Controllers
             return this.View(query);
         }
 
+        [Authorize]
         public IActionResult Delete(int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             var article = this.articles.Delete(id);
 
-            // add some admin-creator like logic !
+            if(article == 0)
+            {
+                return View("~/Views/Errors/404.cshtml");
+            }
 
-            return Redirect("Games/All");
+            return Redirect("Articles/All");
         }
 
+        [Authorize]
         public IActionResult Edit(int id)
         {
             var article = this.articles.Details(id);
@@ -100,8 +131,14 @@ namespace GameStore.Controllers
       
 
         [HttpPost]
+        [Authorize]
         public IActionResult Edit(int id, EditArticleFormModel model)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);

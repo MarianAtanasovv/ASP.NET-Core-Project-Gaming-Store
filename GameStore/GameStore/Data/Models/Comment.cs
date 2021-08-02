@@ -20,5 +20,7 @@ namespace GameStore.Data.Models
         public int ArticleId { get; set; }
 
         public string CreatedOn { get; set; }
+
+        public string UserId { get; set; }
     }
 }
