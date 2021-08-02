@@ -23,11 +23,10 @@ namespace GameStore.Controllers
         [Authorize]
         public IActionResult Add()
         {
-            //add admin check
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
+            //if (!User.IsAdmin())
+            //{
+            //    return Unauthorized();
+            //}
 
             return View(new AddGameFormModel
             {
@@ -36,9 +35,16 @@ namespace GameStore.Controllers
             });
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Add(AddGameFormModel gameModel)
         {
+            //add admin check
+            //if (!User.IsAdmin())
+            //{
+            //    return Unauthorized();
+            //}
+
             if (!this.games.GenreExists(gameModel.GenreId))
             {
                 this.ModelState.AddModelError(nameof(gameModel.GenreId), "Genre does not exist.");
@@ -112,20 +118,33 @@ namespace GameStore.Controllers
 
         }
 
+        [Authorize]
         public IActionResult Delete(int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             var game = this.games.Delete(id);
 
-            // add some admin-creator like logic !
             return Redirect("/Games/All");
         }
 
-        
+        [Authorize]
         public IActionResult Edit(int id)
         {
-            //var userId = this.User.Id();
+            //if (!User.IsAdmin())
+            //{
+            //    return Unauthorized();
+            //}
 
             var game = this.games.Details(id);
+
+            if(game == null)
+            {
+                return View("~/Views/Errors/404.cshtml");
+            }
 
             return View(new EditGameFormModel
             {
