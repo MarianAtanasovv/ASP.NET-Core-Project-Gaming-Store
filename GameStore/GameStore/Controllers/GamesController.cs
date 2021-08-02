@@ -1,7 +1,9 @@
 ﻿using GameStore.Data.Models;
+using GameStore.Infrastructure;
 using GameStore.Models;
 using GameStore.Models.Games;
 using GameStore.Services.Games;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -18,9 +20,14 @@ namespace GameStore.Controllers
             this.games = games;
         }
 
+        [Authorize]
         public IActionResult Add()
         {
             //add admin check
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
             return View(new AddGameFormModel
             {

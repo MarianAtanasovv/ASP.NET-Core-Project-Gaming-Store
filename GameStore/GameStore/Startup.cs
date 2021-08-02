@@ -6,6 +6,7 @@ using GameStore.Services.Games;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,33 +18,40 @@ namespace GameStore
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration; 
         }
+            
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options
-            .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services
+                .AddDbContext<ApplicationDbContext>(options => options
+                    .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => 
-            {
-                options.SignIn.RequireConfirmedAccount = false;
-                options.SignIn.RequireConfirmedEmail = false;
-                options.SignIn.RequireConfirmedPhoneNumber = false;
-
-            })
+            services
+                .AddDefaultIdentity<User>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddControllersWithViews();
-            services.AddScoped<IGameService, GameService>();
-            services.AddScoped<IArticleService, ArticleService>();
-            services.AddScoped<ICommentService, CommentService>();
 
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
+
+            services.AddTransient<IArticleService, ArticleService>();
+            services.AddTransient<IGameService, GameService>();
+            services.AddTransient<ICommentService, CommentService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -55,7 +63,6 @@ namespace GameStore
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }
-
             else
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -68,14 +75,11 @@ namespace GameStore
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()
-
                 .UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
-                endpoints.MapRazorPages();
-            });
-
-          
+                {
+                    endpoints.MapDefaultControllerRoute();
+                    endpoints.MapRazorPages();
+                });
         }
     }
 }
