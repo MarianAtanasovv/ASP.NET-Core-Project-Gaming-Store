@@ -9,7 +9,7 @@ namespace GameStore.Services.Comments
     public interface ICommentService
     {
 
-        bool Delete(string id);
+        bool Delete(int id);
 
         CommentQueryServiceModel All(
             int currentPage,

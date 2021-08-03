@@ -64,7 +64,7 @@ namespace GameStore.Controllers
             return this.View(comments);
         }
 
-        public IActionResult Delete(string id)
+        public IActionResult Delete(int id)
         {
             if (!User.IsAdmin())
             {

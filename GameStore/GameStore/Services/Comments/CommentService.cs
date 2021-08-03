@@ -63,7 +63,7 @@ namespace GameStore.Services.Comments
             };
         }
 
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             var comment = this.data.Comments.Find(id);
 
