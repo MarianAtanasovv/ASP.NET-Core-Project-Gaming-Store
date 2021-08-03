@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<AllCommentsViewModel>
 
 @{
-    ViewData["Title"] = "Articles";
+    ViewData["Title"] = "All";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,7 +18,6 @@
                             <div id="comments"></div>
                             <h3 class="nk-decorated-h-2"><span><span class="text-main-1 float-left">@Model.Count() Comments </span></span></h3>
                             <div class="nk-gap"></div>
-                            @*<div class="nk-comments float-left">*@
                                 <div class="nk-comments">
 
                                     @foreach (var comment in Model)
@@ -30,7 +29,6 @@
                                     <div style="color: #a38b63">Rating: @comment.Rating &#11088;</div>
 
                                 </div>
-                                @*<div class="nk-comment-text; float-left" style="color:white; font-size:20px">*@
                                     <div class="nk-comment-text;" style="color:white; font-size:20px">
 
                                         <p>@comment.Content</p>

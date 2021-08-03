@@ -166,7 +166,8 @@ namespace GameStore.Services.Games
                Guide = g.Guide,
                Platform = g.Platform.Name,
                ImageUrl = g.ImageUrl,
-               TrailerUrl = g.TrailerUrl
+               TrailerUrl = g.TrailerUrl,
+               Genre = g.Genre.Name
 
            })
            .ToList();
