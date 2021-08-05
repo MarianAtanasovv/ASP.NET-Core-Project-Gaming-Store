@@ -87,7 +87,8 @@ namespace GameStore.Services.Comments
                Id = x.Id,
                Content = x.Content,
                CreatedOn = x.CreatedOn,
-               Username = x.Username
+               Username = x.Username,
+               Rating = x.Rating
                
            })
            .ToList();

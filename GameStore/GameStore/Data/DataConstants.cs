@@ -34,6 +34,11 @@ namespace GameStore.Data
         public const int PasswordMinlength = 6;
         public const int PasswordMaxLength = 20;
 
+        public const int FirstNameMaxLength = 40;
+        public const int LastNameMaxLength = 40;
+
+
+
 
 
     }

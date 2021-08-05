@@ -66,6 +66,11 @@ else
                     <span class="nk-cart-toggle">
                         <span class="fa fa-shopping-cart"></span>
                         <span class="nk-badge">27</span>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()"> My Cart></a>
+                        }
+
                     </span>
                     <div class="nk-cart-dropdown">
 
@@ -152,7 +157,11 @@ else
                     <li>
                         <a href="/Articles/All">Blog</a>
                     </li>
-
+                    <li>
+                        <a href="Articles/Add">
+                            Add Articles
+                        </a>
+                    </li>
                     <li>
                         <a href="Games/Add">
                             Add Games
@@ -197,7 +206,7 @@ else
     @RenderSection("scripts", required: false)
     <footer class="nk-footer">
 
-        <div class="container" )>
+        <div class="container">
             <div class="float-left" style="margin-top: 35px">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1472.6493343712666!2d27.69347070574782!3d42.42137717547622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a6c7f5573ae503%3A0xf46ad844a446db20!2zODEzMCDQodC-0LfQvtC_0L7Quw!5e0!3m2!1sbg!2sbg!4v1628083493412!5m2!1sbg!2sbg"
                         width="550" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>

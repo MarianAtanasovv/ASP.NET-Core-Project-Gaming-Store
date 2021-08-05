@@ -4,14 +4,16 @@ using GameStore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GameStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210805115920_Test")]
+    partial class Test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,6 +56,22 @@ namespace GameStore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("GameStore.Data.Models.CartItem", b =>
+                {
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("GameId", "UserId");
+
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("GameStore.Data.Models.Comment", b =>
@@ -103,6 +121,41 @@ namespace GameStore.Data.Migrations
                     b.ToTable("Genres");
                 });
 
+            modelBuilder.Entity("GameStore.Data.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("GameStore.Data.Models.OrderGame", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId", "GameId");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("OrderGames");
+                });
+
             modelBuilder.Entity("GameStore.Data.Models.Platform", b =>
                 {
                     b.Property<int>("Id")
@@ -116,43 +169,6 @@ namespace GameStore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Platforms");
-                });
-
-            modelBuilder.Entity("GameStore.Data.Models.ShoppingCart", b =>
-                {
-                    b.Property<int>("ShoppingCartId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("ShoppingCartId");
-
-                    b.ToTable("ShoppingCart");
-                });
-
-            modelBuilder.Entity("GameStore.Data.Models.ShoppingCartGame", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ShoppingCartId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.HasIndex("ShoppingCartId");
-
-                    b.ToTable("ShoppingCartGames");
                 });
 
             modelBuilder.Entity("GameStore.Data.Models.User", b =>
@@ -203,6 +219,9 @@ namespace GameStore.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<int>("UserDataId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
@@ -221,6 +240,38 @@ namespace GameStore.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("GameStore.Data.Models.UserInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UsersInformation");
                 });
 
             modelBuilder.Entity("GameStore.Models.Game", b =>
@@ -413,6 +464,17 @@ namespace GameStore.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("GameStore.Data.Models.CartItem", b =>
+                {
+                    b.HasOne("GameStore.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
             modelBuilder.Entity("GameStore.Data.Models.Comment", b =>
                 {
                     b.HasOne("GameStore.Data.Models.Article", "Article")
@@ -424,19 +486,45 @@ namespace GameStore.Data.Migrations
                     b.Navigation("Article");
                 });
 
-            modelBuilder.Entity("GameStore.Data.Models.ShoppingCartGame", b =>
+            modelBuilder.Entity("GameStore.Data.Models.Order", b =>
                 {
-                    b.HasOne("GameStore.Models.Game", null)
-                        .WithMany("ShoppingCartGames")
+                    b.HasOne("GameStore.Data.Models.UserInformation", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GameStore.Data.Models.OrderGame", b =>
+                {
+                    b.HasOne("GameStore.Models.Game", "Game")
+                        .WithMany("OrderGames")
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GameStore.Data.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany("ShoppingCartGames")
-                        .HasForeignKey("ShoppingCartId");
+                    b.HasOne("GameStore.Data.Models.Order", "Order")
+                        .WithMany("OrderGames")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.Navigation("ShoppingCart");
+                    b.Navigation("Game");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("GameStore.Data.Models.UserInformation", b =>
+                {
+                    b.HasOne("GameStore.Data.Models.User", "User")
+                        .WithOne("UserData")
+                        .HasForeignKey("GameStore.Data.Models.UserInformation", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GameStore.Models.Game", b =>
@@ -519,19 +607,29 @@ namespace GameStore.Data.Migrations
                     b.Navigation("Games");
                 });
 
+            modelBuilder.Entity("GameStore.Data.Models.Order", b =>
+                {
+                    b.Navigation("OrderGames");
+                });
+
             modelBuilder.Entity("GameStore.Data.Models.Platform", b =>
                 {
                     b.Navigation("Games");
                 });
 
-            modelBuilder.Entity("GameStore.Data.Models.ShoppingCart", b =>
+            modelBuilder.Entity("GameStore.Data.Models.User", b =>
                 {
-                    b.Navigation("ShoppingCartGames");
+                    b.Navigation("UserData");
+                });
+
+            modelBuilder.Entity("GameStore.Data.Models.UserInformation", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("GameStore.Models.Game", b =>
                 {
-                    b.Navigation("ShoppingCartGames");
+                    b.Navigation("OrderGames");
                 });
 #pragma warning restore 612, 618
         }

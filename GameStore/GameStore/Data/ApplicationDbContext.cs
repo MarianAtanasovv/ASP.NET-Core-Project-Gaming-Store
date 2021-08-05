@@ -12,12 +12,6 @@ namespace GameStore
         
         public DbSet<Game> Games { get; set; }
 
-        //public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-
-        public DbSet<ShoppingCartGame> ShoppingCartGames { get; set; }
-
-        //public DbSet<UserWishList> UserWishListGames { get; set; }
-
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
@@ -25,7 +19,15 @@ namespace GameStore
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Platform> Platforms { get; set; }
- 
+
+        public DbSet<CartItem> CartItems { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderGame> OrderGames { get; set; }
+
+        public DbSet<UserInformation> UsersInformation { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
         {
@@ -43,15 +45,26 @@ namespace GameStore
         {
             base.OnModelCreating(modelBuilder);
 
-
-            // modelBuilder.Entity<Article>()
-            //.HasMany(c => c.Comments)
-            //.WithOne(e => e.Article);
-
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Article)
                 .WithMany(c => c.Comments);
-                //.HasForeignKey<Comment>(x => x.ArticleId);
+
+            modelBuilder.Entity<UserInformation>()
+               .HasOne(u => u.User)
+               .WithOne(u => u.UserData)
+               .HasForeignKey<UserInformation>(u => u.UserId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<OrderGame>()
+               .HasKey(op => new { op.OrderId, op.GameId });
+
+                modelBuilder.Entity<Order>()
+               .HasMany(o => o.OrderGames)
+               .WithOne(op => op.Order)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CartItem>()
+               .HasKey(x => new { x.GameId, x.UserId });
 
         }
 

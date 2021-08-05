@@ -1,6 +1,7 @@
 using GameStore.Data.Models;
 using GameStore.Infrastructure;
 using GameStore.Services.Articles;
+using GameStore.Services.Carts;
 using GameStore.Services.Comments;
 using GameStore.Services.Games;
 using GameStore.Services.Users;
@@ -54,6 +55,8 @@ namespace GameStore
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICartService, CartService>();
+
 
         }
 

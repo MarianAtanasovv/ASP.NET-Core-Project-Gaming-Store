@@ -11,8 +11,7 @@ namespace GameStore.Models
     {
         public Game()
         {
-            ShoppingCartGames = new List<ShoppingCartGame>();
-            //WishListGames = new List<UserWishList>();
+            this.OrderGames = new List<OrderGame>();
         }
 
         [Key]
@@ -52,14 +51,13 @@ namespace GameStore.Models
         [Url]
         public string TrailerUrl { get;  set; }
 
-        public IEnumerable<ShoppingCartGame> ShoppingCartGames { get; set; }
-
         public Platform Platform { get; set; }
 
         public int PlatformId { get; set; }
 
+        public IEnumerable<OrderGame> OrderGames { get; set; }
 
-        //public IEnumerable<UserWishList> WishListGames { get; set; }
+
 
     }
 }
