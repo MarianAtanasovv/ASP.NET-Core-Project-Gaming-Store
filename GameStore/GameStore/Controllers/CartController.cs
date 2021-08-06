@@ -1,10 +1,12 @@
 ﻿using GameStore.Infrastructure;
 using GameStore.Services.Carts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace GameStore.Controllers
 {
@@ -38,6 +40,31 @@ namespace GameStore.Controllers
             return RedirectToAction("All", "Games");
         }
 
+        [Authorize]
+        public IActionResult Remove(int gameId, string userId)
+        {
+            if (userId != User.Id())
+            {
+                return BadRequest();
+            }
+
+            cartService.Remove(gameId, userId);
+
+            return Redirect("MyCart/" + userId);
+        }
+
+        [Authorize]
+        public IActionResult Add(int gameId, string userId)
+        {
+            if (userId != User.Id())
+            {
+                return BadRequest();
+            }
+
+            cartService.Add(gameId, userId);
+
+            return Redirect("MyCart/" + userId);
+        }
         public IActionResult Delete(string id) => RedirectToAction("MyCart");
     }
 }

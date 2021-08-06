@@ -17,11 +17,12 @@ namespace GameStore.Services.Carts
           
         }
 
-        // /????
+        
         public IEnumerable<CartGameViewServiceModel> UsersCart(string userId)
         {
             return this.data.CartItems.Where(x => x.UserId == userId).Select(x => new CartGameViewServiceModel
             { 
+                GameId = x.Game.Id,
                 GameCoverImage = x.Game.ImageUrl,
                 GameName = x.Game.Title,
                 Quantity = x.Quantity,
@@ -32,7 +33,7 @@ namespace GameStore.Services.Carts
         }
 
 
-        public bool AddProductToCart(int Id, string userId)
+        public bool AddProductToCart(int id, string userId)
         {
             var user = data.Users
                 .Where(u => u.Id == userId)
@@ -44,7 +45,7 @@ namespace GameStore.Services.Carts
             }
 
             var product = data.Games
-                .Where(p => p.Id == Id)
+                .Where(p => p.Id == id)
                 .FirstOrDefault();
 
             if (product == null)
@@ -52,10 +53,10 @@ namespace GameStore.Services.Carts
                 return false;
             }
 
-            if (data.CartItems.Any(c => c.GameId == Id && c.UserId == userId))
+            if (data.CartItems.Any(c => c.GameId == id && c.UserId == userId))
             {
                 var cartItem = data.CartItems
-                    .Where(c => c.GameId == Id && c.UserId == userId)
+                    .Where(c => c.GameId == id && c.UserId == userId)
                     .FirstOrDefault();
 
                 cartItem.Quantity++;
@@ -68,7 +69,7 @@ namespace GameStore.Services.Carts
                 {
                     UserId = userId,
                     Quantity = 1,
-                    GameId = Id
+                    GameId = id
                 };
 
                 data.CartItems.Add(cartItem);
@@ -77,7 +78,47 @@ namespace GameStore.Services.Carts
 
             return true;
         }
+        public bool Remove(int gameId, string userId)
+        {
+            var cartItem = data.CartItems
+               .Where(s => s.GameId == gameId && s.UserId == userId)
+               .FirstOrDefault();
 
+            if (cartItem == null)
+            {
+                return false;
+            }
+
+            if (cartItem.Quantity > 1)
+            {
+                cartItem.Quantity--;
+                data.SaveChanges();
+            }
+            if(cartItem.Quantity == 1)
+            {
+                data.CartItems.Remove(cartItem);
+                data.SaveChanges();
+            }
+
+            return true;
+        }
+
+        public bool Add(int gameId, string userId)
+        {
+            var cartItem = data.CartItems
+                .Where(s => s.GameId == gameId && s.UserId == userId)
+                .FirstOrDefault();
+
+            if (cartItem == null)
+            {
+                return false;
+            }
+
+            cartItem.Quantity++;
+            data.SaveChanges();
+
+            return true;
+        }
 
     }
 }

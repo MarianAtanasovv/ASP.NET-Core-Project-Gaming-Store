@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<CartGameViewServiceModel>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -39,72 +40,39 @@
                     <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
                 </ul>
             </div>
-            <div class="nk-contacts-right">
+            <div class="nk-contacts-right" >
+               
+                        <span class="fa fa-shopping-cart"></span>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <a style="font-size: 19px"asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">My Cart</a>
+                        }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-    <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-        <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
-    </form> }
+            <form class="nk-contacts-icons"  asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
+            </form> 
+            }
 
-else
-{
-<div class="row">
-    <div class="col">
-        <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
-            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
-        </form>
-    </div>
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
+                        <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
+                    </form>
+                </div>
 
-    <div class="col">
-        <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
-            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
-        </form>
-    </div>
-</div>}
-                <li>
-                    <span class="nk-cart-toggle">
-                        <span class="fa fa-shopping-cart"></span>
-                        <span class="nk-badge">27</span>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()"> My Cart></a>
-                        }
-
-                    </span>
-                    <div class="nk-cart-dropdown">
-
-                        <div class="nk-widget-post">
-                            <a href="store-product.html" class="nk-post-image">
-                                <img src="assets/images/product-5-xs.jpg" alt="In all revolutions of">
-                            </a>
-                            <h3 class="nk-post-title">
-                                <a href="#" class="nk-cart-remove-item"><span class="ion-android-close"></span></a>
-                                <a href="store-product.html">In all revolutions of</a>
-                            </h3>
-                            <div class="nk-gap-1"></div>
-                            <div class="nk-product-price">€ 23.00</div>
-                        </div>
-
-                        <div class="nk-widget-post">
-                            <a href="store-product.html" class="nk-post-image">
-                                <img src="assets/images/product-7-xs.jpg" alt="With what mingled joy">
-                            </a>
-                            <h3 class="nk-post-title">
-                                <a href="#" class="nk-cart-remove-item"><span class="ion-android-close"></span></a>
-                                <a href="store-product.html">With what mingled joy</a>
-                            </h3>
-                            <div class="nk-gap-1"></div>
-                            <div class="nk-product-price">€ 14.00</div>
-                        </div>
-
-                        <div class="nk-gap-2"></div>
-                        <div class="text-center">
-                            <a href="store-checkout.html" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Proceed to Checkout</a>
-                        </div>
-                    </div>
-                </li>
-
+                <div class="col">
+                    <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
+                        <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
+                    </form>
+                </div>
+            </div>
+            }
+              
             </div>
         </div>
     </div>
