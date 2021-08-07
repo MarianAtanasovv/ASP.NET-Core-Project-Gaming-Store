@@ -2,8 +2,10 @@ using GameStore.Data.Models;
 using GameStore.Infrastructure;
 using GameStore.Services.Articles;
 using GameStore.Services.Carts;
+using GameStore.Services.CheckOut;
 using GameStore.Services.Comments;
 using GameStore.Services.Games;
+using GameStore.Services.Orders;
 using GameStore.Services.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,6 +58,9 @@ namespace GameStore
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<ICheckOutService, CheckOutService>();
+            services.AddTransient<IOrderService, OrderService>();
+
 
 
         }

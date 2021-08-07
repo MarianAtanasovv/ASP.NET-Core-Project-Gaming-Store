@@ -10,9 +10,9 @@ namespace GameStore.Data.Models
     {
         public string UserId { get; set; }
 
-        public UserInformation UserData { get; set; }
+        //public UserInformation UserData { get; set; }
 
-        public int UserDataId { get; set; }
+        //public int UserDataId { get; set; }
 
     }
 }

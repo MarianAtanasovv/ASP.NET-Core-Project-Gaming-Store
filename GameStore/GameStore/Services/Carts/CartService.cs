@@ -69,7 +69,9 @@ namespace GameStore.Services.Carts
                 {
                     UserId = userId,
                     Quantity = 1,
-                    GameId = id
+                    GameId = id,
+                    
+                    
                 };
 
                 data.CartItems.Add(cartItem);

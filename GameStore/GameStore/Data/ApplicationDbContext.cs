@@ -49,11 +49,11 @@ namespace GameStore
                 .HasOne(c => c.Article)
                 .WithMany(c => c.Comments);
 
-            modelBuilder.Entity<UserInformation>()
-               .HasOne(u => u.User)
-               .WithOne(u => u.UserData)
-               .HasForeignKey<UserInformation>(u => u.UserId)
-               .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<UserInformation>()
+            //   .HasOne(u => u.User)
+            //   .WithOne(u => u.UserData)
+            //   .HasForeignKey<UserInformation>(u => u.UserId)
+            //   .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<OrderGame>()
                .HasKey(op => new { op.OrderId, op.GameId });
