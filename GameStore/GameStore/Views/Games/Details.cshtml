@@ -29,6 +29,10 @@
                 <div class="nk-post-date mt-10 mb-10" style="font-size:30px">
                     <span class="nk-product-price"></span>@Model.Price $
                 </div>
+                <div>
+                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-Id="@Model.Id" asp-route-userId="@User.Id()" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1" style="float-right">Add to Cart</a> |
+
+                </div>
 
                 <div class="nk-post-text">
                     <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px">Description:</h1>
@@ -60,10 +64,7 @@
 
                     </row>
                 </div>
-                <div>
-                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-Id="@Model.Id" asp-route-userId="@User.Id()" >Add to Cart</a> |
-                    
-                </div>
+
             </div>
         </div>
 

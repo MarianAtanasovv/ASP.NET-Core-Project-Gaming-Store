@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="~/assets/css/goodgames.css">
     <link rel="stylesheet" href="~/assets/css/custom.css">
     <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        Stripe.setPublishableKey("pk_test_51JLsO5KlfxRzROBJpb5y6e7A66iOj5wfuOUnJFDyTwB0Q9ewEYtacBxOIGgrdvXxrjm8yeQ34ofTqWXGUSyFYGY200zvrdJGSk");
+    </script>
+
 
 
     <div class="nk-contacts-top">
@@ -40,39 +46,36 @@
                     <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
                 </ul>
             </div>
-            <div class="nk-contacts-right" >
-               
-                        <span class="fa fa-shopping-cart"></span>
+            <div class="nk-contacts-right">
 
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                        <a style="font-size: 19px"asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">My Cart</a>
-                        }
+                <span class="fa fa-shopping-cart"></span>
 
                 @if (User.Identity.IsAuthenticated)
                 {
-            <form class="nk-contacts-icons"  asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
-            </form> 
-            }
+    <a style="font-size: 19px" asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">My Cart</a>}
 
-        else
-        {
-            <div class="row">
-                <div class="col">
-                    <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
-                        <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
-                    </form>
-                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+    <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+        <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
+    </form> }
 
-                <div class="col">
-                    <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
-                        <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
-                    </form>
-                </div>
-            </div>
-            }
-              
+else
+{
+<div class="row">
+    <div class="col">
+        <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
+            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
+        </form>
+    </div>
+
+    <div class="col">
+        <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
+            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
+        </form>
+    </div>
+</div>      }
+
             </div>
         </div>
     </div>

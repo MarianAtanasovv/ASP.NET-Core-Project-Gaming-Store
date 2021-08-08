@@ -26,7 +26,8 @@ namespace GameStore.Services.Carts
                 GameCoverImage = x.Game.ImageUrl,
                 GameName = x.Game.Title,
                 Quantity = x.Quantity,
-                GamePrice = x.Game.Price
+                GamePrice = x.Game.Price,
+                TotalPrice = x.Quantity * x.Game.Price
 
             }).ToList();
         

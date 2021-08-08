@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Stripe;
 
 namespace GameStore
 {
@@ -59,7 +60,8 @@ namespace GameStore
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<ICheckOutService, CheckOutService>();
-            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IOrderingService, OrderingService>();
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
 
 
@@ -67,6 +69,9 @@ namespace GameStore
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
+
+
             app.PrepareDatabase();
 
             if (env.IsDevelopment())
