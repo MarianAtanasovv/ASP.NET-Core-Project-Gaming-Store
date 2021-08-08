@@ -37,6 +37,14 @@ namespace GameStore.Data
         public const int FirstNameMaxLength = 40;
         public const int LastNameMaxLength = 40;
 
+        public const string EmailBody = "Greetings, {email}! Thank you for your purchase! To activate your games simply enter the activation keys for each game! Have fun!";
+        public const string EmailEnding = "If you have any questions or want to buy find the best deals on the market find us at www.Gaming-Hub.com";
+        public const string EmailSubject = "Your games'activation keys!";
+        public const string EmailUsernameCredential = "letthisshiitwork@gmail.com";
+        public const string EmailPasswordCredential = "siniteole98";
+        public const string EmailHost = "smtp.gmail.com";
+
+
 
 
 

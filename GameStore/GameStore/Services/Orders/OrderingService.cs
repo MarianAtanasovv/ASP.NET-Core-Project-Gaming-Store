@@ -1,4 +1,5 @@
-﻿using GameStore.Data.Models;
+﻿using GameStore.Data;
+using GameStore.Data.Models;
 using GameStore.Services.Carts;
 using MlkPwgen;
 using System;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Orders
 {
+    using static DataConstants;
+
     public class OrderingService : IOrderingService
     {
         private readonly ApplicationDbContext data;
@@ -45,6 +48,8 @@ namespace GameStore.Services.Orders
 
             var id = this.data.Orders.Where(x => x.UserId == userId).OrderBy(x => x.OrderDate).Select(x => x.Id).LastOrDefault();
 
+            
+
             foreach (var game in cartGames)
             {
                 var gameId = game.GameId;
@@ -61,7 +66,7 @@ namespace GameStore.Services.Orders
                     .Where(p => p.UserId == userId && p.GameId == gameId)
                     .FirstOrDefault();
 
-                SendKeyAsync(userId);
+              
 
                 data.CartItems.Remove(itemCart);
                 data.SaveChanges();
@@ -81,44 +86,47 @@ namespace GameStore.Services.Orders
 
         public void SendKeyAsync(string userId)
         {
-           
+
             Task
                 .Run(async () =>
                 {
-                    var email = this.data.Users.Where(x => x.Id == userId).Select(x => x.Email);
+                    var email = this.data.Users.Where(x => x.Id == userId).Select(x => x.Email).FirstOrDefault().ToString();
 
                     var cart = this.cart.UsersCart(userId).ToList();
+
                     var stringBulder = new StringBuilder();
+
+                    var body = "$" + EmailBody;
+                    stringBulder.AppendLine(body);
 
                     foreach (var game in cart)
                     {
-                        var key = PasswordGenerator.Generate(length: 10, allowed: Sets.Alphanumerics);
-                        stringBulder.AppendLine(key);
+                        var key = PasswordGenerator.Generate(length: 20, allowed: Sets.Alphanumerics);
+                        stringBulder.AppendLine($"{game.GameName} - {key}");
                     }
 
+                    var ending = EmailEnding;
+                    stringBulder.AppendLine(ending);
 
-                    var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
                     var message = new MailMessage();
                     message.To.Add(new MailAddress("marian3455@gmail.com"));  // replace with valid value 
                     message.From = new MailAddress("letthisshiitwork@gmail.com");  // replace with valid value
-                    message.Subject = "Your email subject";
+                    message.Subject = EmailSubject;
                     message.Body = stringBulder.ToString();
                     message.IsBodyHtml = false;
 
                     using var smtp = new SmtpClient();
                     var credential = new NetworkCredential
                     {
-                        UserName = "letthisshiitwork@gmail.com",  // replace with valid value
-                        Password = "Siniteole98!"  // replace with valid value
+                        UserName = EmailUsernameCredential,  // replace with valid value
+                         Password = EmailPasswordCredential // replace with valid value
                     };
-
+             
                     smtp.Credentials = credential;
-                    smtp.Host = "smtp.gmail.com";
+                    smtp.Host = EmailHost;
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(message);
-
-                    
 
                 })
                 .GetAwaiter()

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Services\Orders\1vur2n2u.adv~" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
@@ -29,7 +33,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Platforms\" />
-    <Folder Include="Views\Orders\" />
   </ItemGroup>
 
 </Project>

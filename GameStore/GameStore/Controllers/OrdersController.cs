@@ -32,7 +32,7 @@ namespace GameStore.Controllers
             }
 
             this.order.CreateOrder(userId);
-            return RedirectToAction("FinishOrder", new { @userId = userId });
+            return RedirectToAction("SendEmail", new { @userId = userId });
         }
 
         public IActionResult FinishOrder(string userId)
@@ -44,14 +44,21 @@ namespace GameStore.Controllers
 
 
             this.order.FinishOrder(userId);
-            return RedirectToAction("SendEmail", new { @userId = userId});
+            return RedirectToAction("Index");
 
         }
 
-       public void SendEmail(string userId)
+       public IActionResult SendEmail(string userId)
         {
           
             this.order.SendKeyAsync(userId);
+            return RedirectToAction("FinishOrder", new { @userId = userId });
+
+        }
+
+       public IActionResult ThankYou()
+        {
+            return View();
         }
     }
 }
