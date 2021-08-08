@@ -15,22 +15,20 @@
     <div class="row">
         @foreach (var game in Model.Games)
         {
-<div class="card mr-5 mb-10" style="width: 150px; height:200px;">
-    <a asp-action="Details" asp-route-id="@game.Id" class="nk-post-img">
-        <img src="@game.ImageUrl">
+            <div class="card mr-5 mb-10" style="width: 150px; height:200px; object-fit: contain">
+                <a asp-action="Details" asp-route-id="@game.Id" class="nk-post-img">
+                    <img src="@game.ImageUrl">
 
-        <span class="nk-post-categories">
-            <span class="bg-main-1">@game.Genre</span>
-        </span>
-    </a>
-
-    <div class="col-es text-center h3">
-        <h2 class="nk-post-title" style="color:black"><a>@game.Title</a></h2>
-        <div class="nk-post-date" style="color:green">
-            <span class="nk-product-price"></span>@game.Price $
-        </div>
-    </div>
-</div>}
+                    <span class="nk-post-categories">
+                        <span class="bg-main-1">@game.Genre</span>
+                    </span>
+                </a>
+                <div class="col-es text-center h3">
+                  <h2 class="nk-post-title" style="color:black"><a>@game.Title</a></h2>
+                </div>
+            </div>
+          
+        }
     </div>
 
 

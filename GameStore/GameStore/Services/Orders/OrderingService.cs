@@ -1,7 +1,12 @@
 ﻿using GameStore.Data.Models;
+using GameStore.Services.Carts;
+using MlkPwgen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace GameStore.Services.Orders
@@ -9,10 +14,13 @@ namespace GameStore.Services.Orders
     public class OrderingService : IOrderingService
     {
         private readonly ApplicationDbContext data;
+        private readonly ICartService cart;
 
-        public OrderingService(ApplicationDbContext data)
+
+        public OrderingService(ApplicationDbContext data, ICartService cart)
         {
             this.data = data;
+            this.cart = cart;
         }
 
         public int CreateOrder(string userId)
@@ -53,6 +61,8 @@ namespace GameStore.Services.Orders
                     .Where(p => p.UserId == userId && p.GameId == gameId)
                     .FirstOrDefault();
 
+                SendKeyAsync(userId);
+
                 data.CartItems.Remove(itemCart);
                 data.SaveChanges();
             }
@@ -68,5 +78,53 @@ namespace GameStore.Services.Orders
 
             return order;
         }
+
+        public void SendKeyAsync(string userId)
+        {
+           
+            Task
+                .Run(async () =>
+                {
+                    var email = this.data.Users.Where(x => x.Id == userId).Select(x => x.Email);
+
+                    var cart = this.cart.UsersCart(userId).ToList();
+                    var stringBulder = new StringBuilder();
+
+                    foreach (var game in cart)
+                    {
+                        var key = PasswordGenerator.Generate(length: 10, allowed: Sets.Alphanumerics);
+                        stringBulder.AppendLine(key);
+                    }
+
+
+                    var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
+                    var message = new MailMessage();
+                    message.To.Add(new MailAddress("marian3455@gmail.com"));  // replace with valid value 
+                    message.From = new MailAddress("letthisshiitwork@gmail.com");  // replace with valid value
+                    message.Subject = "Your email subject";
+                    message.Body = stringBulder.ToString();
+                    message.IsBodyHtml = false;
+
+                    using var smtp = new SmtpClient();
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "letthisshiitwork@gmail.com",  // replace with valid value
+                        Password = "Siniteole98!"  // replace with valid value
+                    };
+
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+
+                    
+
+                })
+                .GetAwaiter()
+                .GetResult();
+            
+        }
     }
-}
+    }
+

@@ -1,20 +1,25 @@
 ﻿using GameStore.Infrastructure;
+using GameStore.Services.Carts;
 using GameStore.Services.Orders;
 using Microsoft.AspNetCore.Mvc;
+using MlkPwgen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace GameStore.Controllers
 {
     public class OrdersController : Controller
     {
         private readonly IOrderingService order;
+        private readonly ICartService cart;
 
-        public OrdersController(IOrderingService order)
+        public OrdersController(IOrderingService order, ICartService cart)
         {
             this.order = order;
+            this.cart = cart;
         }
 
        
@@ -37,9 +42,16 @@ namespace GameStore.Controllers
                 return BadRequest();
             }
 
-            this.order.FinishOrder(userId);
-            return Redirect("Index");
 
+            this.order.FinishOrder(userId);
+            return RedirectToAction("SendEmail", new { @userId = userId});
+
+        }
+
+       public void SendEmail(string userId)
+        {
+          
+            this.order.SendKeyAsync(userId);
         }
     }
 }
