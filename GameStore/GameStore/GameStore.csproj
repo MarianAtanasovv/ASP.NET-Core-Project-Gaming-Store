@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Platforms\**" />
+    <Content Remove="Models\Platforms\**" />
+    <EmbeddedResource Remove="Models\Platforms\**" />
+    <None Remove="Models\Platforms\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Services\Orders\1vur2n2u.adv~" />
   </ItemGroup>
 
@@ -29,10 +36,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="MlkPwgen" Version="0.3.0" />
     <PackageReference Include="Stripe.net" Version="39.62.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Platforms\" />
   </ItemGroup>
 
 </Project>
