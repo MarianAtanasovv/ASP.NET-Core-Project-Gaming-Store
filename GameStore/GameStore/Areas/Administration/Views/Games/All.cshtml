@@ -1,5 +1,75 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AllGamesQueryModel
+
+@{ ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+<body>
+
+    <partial name="_SearchAndSortGamePartial" model="@Model"></partial>
+
+    <div class="row">
+        @foreach (var game in Model.Games)
+        {
+            <div class="mr-5 mb-10" style="width: 150px; height:400px;">
+                <a asp-action="Details" asp-route-id="@game.Id" class="nk-post-img">
+                    <img src="@game.ImageUrl" style="width: 150px; height:400px;">
+
+                    <span class="nk-post-categories">
+                        <span class="bg-main-1">@game.Genre</span>
+                    </span>
+                </a>
+                <div>
+                    <h4 class="text-center">@game.Title</h4>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+
+
+
+
+
+    @{ var previousPage = Model.CurrentPage - 1;
+        if (previousPage < 1)
+        {
+            previousPage = 1;
+        }
+
+        var maxPage = Math.Ceiling((double)Model.TotalGames / AllGamesQueryModel.GamesPerPage); }
+
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-main-1 @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+               asp-controller="Games"
+               asp-action="All"
+               asp-route-currentPage="@previousPage"
+               asp-route-brand="@Model.Title"
+               asp-route-searchTerm="@Model.SearchTerm"
+               asp-route-sorting="@((int)Model.Sorting)"><<</a>
+        </div>
+
+        @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                                                        !Model.Games.Any(); }
+
+        <div class="col-md-6">
+            <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-main-1 float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+               asp-controller="Games"
+               asp-action="All"
+               asp-route-currentPage="@(Model.CurrentPage + 1)"
+               asp-route-brand="@Model.Title"
+               asp-route-searchTerm="@Model.SearchTerm"
+               asp-route-sorting="@((int)Model.Sorting)">>></a>
+        </div>
+    </div>
+
+
+</body>
+</html>

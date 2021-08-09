@@ -1,5 +1,4 @@
-﻿using GameStore.Data.Models;
-using GameStore.Infrastructure;
+﻿using GameStore.Infrastructure;
 using GameStore.Models.Articles;
 using GameStore.Services.Articles;
 using Microsoft.AspNetCore.Authorization;
@@ -9,35 +8,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GameStore.Controllers
+namespace GameStore.Areas.Administration.Controllers
 {
-    public class ArticlesController : Controller
+    public class ArticlesController : AdministrationController
     {
+        private readonly ApplicationDbContext data;
         private readonly IArticleService articles;
 
-        public ArticlesController(IArticleService article)
+        public ArticlesController(ApplicationDbContext data, IArticleService articles)
         {
-            this.articles = article;
+            this.data = data;
+            this.articles = articles;
         }
 
-        [Authorize]
         public IActionResult Add()
         {
-            //if (!User.IsAdmin())
-            //{
-            //    return Unauthorized();
-            //}
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AddArticleFormModel model)
         {
-            //if (!User.IsAdmin())
-            //{
-            //    return Unauthorized();
-            //}
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
             if (!ModelState.IsValid)
             {
@@ -55,11 +56,12 @@ namespace GameStore.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        [Authorize]
         public IActionResult Details(int id)
         {
             var details = this.articles.Details(id);
 
-            if(details == null)
+            if (details == null)
             {
                 return View("~/Views/Errors/404.cshtml");
             }
@@ -76,7 +78,7 @@ namespace GameStore.Controllers
             });
         }
 
-
+        [Authorize]
         public IActionResult All([FromQuery] AllArticlesQueryModel query)
         {
             var articlesQueryResult = this.articles.All(
@@ -105,7 +107,7 @@ namespace GameStore.Controllers
 
             var article = this.articles.Delete(id);
 
-            if(article == 0)
+            if (article == 0)
             {
                 return View("~/Views/Errors/404.cshtml");
             }
@@ -118,16 +120,16 @@ namespace GameStore.Controllers
         {
             var article = this.articles.Details(id);
 
-                return View(new EditArticleFormModel
-                {
-                    Title = article.Title,
-                    Content = article.Content,
-                    ImageUrl = article.ImageUrl,
-                    TrailerUrl = article.TrailerUrl,
-                });
+            return View(new EditArticleFormModel
+            {
+                Title = article.Title,
+                Content = article.Content,
+                ImageUrl = article.ImageUrl,
+                TrailerUrl = article.TrailerUrl,
+            });
 
         }
-      
+
 
         [HttpPost]
         [Authorize]
@@ -153,6 +155,4 @@ namespace GameStore.Controllers
             return RedirectToAction(nameof(All));
         }
     }
-
-    
 }

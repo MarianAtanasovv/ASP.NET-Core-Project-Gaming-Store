@@ -25,17 +25,26 @@ namespace GameStore.Areas.Administration.Controllers
             this.games = games;
         }
 
-        // GET: Administration/Games
-        public async Task<IActionResult> Index()
+
+        public IActionResult All([FromQuery] AllGamesQueryModel query)
         {
-            var applicationDbContext = data.Games.Include(g => g.Genre).Include(g => g.Platform);
-            return View(await applicationDbContext.ToListAsync());
+            var gamesQueryResult = this.games.All(
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                AllGamesQueryModel.GamesPerPage,
+                query.Title);
+
+            var gameTitles = this.games.AllGames();
+
+            query.TotalGames = gamesQueryResult.TotalGames;
+            query.Games = gamesQueryResult.Games;
+            query.Titles = gameTitles;
+
+
+            return this.View(query);
         }
 
-        // GET: Administration/Games/Details/5
-       
-
-        //GET: Administration/Games/Add
         public IActionResult Add()
         {
             if (!User.IsAdmin())
@@ -49,7 +58,6 @@ namespace GameStore.Areas.Administration.Controllers
                 Platforms = this.games.AllPlatforms()
             });
         }
-
         
         [HttpPost]
         public IActionResult Add(AddGameFormModel gameModel)
@@ -89,13 +97,8 @@ namespace GameStore.Areas.Administration.Controllers
                 gameModel.GenreId,
                 gameModel.PlatformId);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(All));
         }
-
-        // GET: Administration/Games/Edit/5
-
-
-        // POST: Administration/Games/Delete/5
        
         public IActionResult Delete(int id)
         {
@@ -111,7 +114,7 @@ namespace GameStore.Areas.Administration.Controllers
                 return View("~/Views/Errors/404.cshtml");
             }
 
-            return Redirect("/Games/All");
+            return RedirectToAction(nameof(All));
         }
 
         public IActionResult Edit(int id)
@@ -168,7 +171,7 @@ namespace GameStore.Areas.Administration.Controllers
                game.TrailerUrl);
 
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(All));
 
         }
 

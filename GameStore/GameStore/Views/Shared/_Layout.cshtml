@@ -128,19 +128,30 @@ else
                     <li>
                         <a href="/Articles/All">Blog</a>
                     </li>
-                    <li>
-                        <a href="Articles/Add">
-                            Add Articles
-                        </a>
-                    </li>
                     @if (User.IsInRole("Administrator"))
                     {
-                        <li>
-                            <a asp-area="Administration" asp-controller="Games" asp-action="Add">
-                                Add Games
-                            </a>
-                        </li>
-                    }
+                <li>
+                    <a asp-area="Administration" asp-controller="Articles" asp-action="Add">
+                        Add Articles
+                    </a>
+                </li>
+}
+                    @if (!User.IsInRole("Administrator"))
+                    {
+                <li>
+                    <a  asp-controller="Articles" asp-action="Add">
+                        Add Articles
+                    </a>
+                </li>
+}
+                    @if (User.IsInRole("Administrator"))
+                    {
+                <li>
+                    <a asp-area="Administration" asp-controller="Games" asp-action="Add">
+                        Add Games
+                    </a>
+                </li>
+}
 
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">

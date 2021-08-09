@@ -1,0 +1,65 @@
+﻿@model ArticleDetailsViewModel
+
+
+@{ ViewData["Title"] = "Details";
+   Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<body>
+
+    <div class="container">
+        <div class="row vertical-gap">
+            <div class="col-lg-12">
+                <div class="nk-blog-post">
+                    <a href="blog-article.html" class="nk-post-img">
+                        <img src="@Model.ImageUrl" alt="@Model.Title">
+                        <span class="nk-post-comments-count"></span>
+                    </a>
+                    <div class="nk-gap"></div>
+                    <div class="nk-post-by">
+                        <img src="@Model.ImageUrl" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="#">Witch Murder</a> @Model.CreatedOn
+                    </div>
+                    <div class="nk-gap"></div>
+                    <div class="nk-post-text">
+                        <p>@Model.Content</p>
+                    </div>
+                    <div class="nk-widget-content" style="padding-top: 20px">
+                        <h1 class="nk-post-date mt-10 mb-10" style="font-size:20px"></h1>
+                        <div class="nk-plain-video" data-video="@Model.TrailerUrl"></div>
+                    </div>
+                </div>
+                <div class="gap-3"></div>
+                <div class="float-left">
+                    <col>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Delete article!</a>
+                    </col>
+                </div>
+                <div class="gap-5"></div>
+                <div class="float-left">
+                    <col>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Edit article!</a>
+                    </col>
+                </div>
+                <div class="gap-3 " ></div>
+                <div class="float-right">
+                    <col>
+                        <a href="/Comments/Add?articleId=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Leave a comment!</a>
+                    </col>
+                </div>
+                <div class="gap-5"></div>
+                <div class="float-right">
+                    <col>
+                        <a href="/Comments/All?articleId=@Model.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">All comments!</a>
+                    </col>
+                </div>
+            </div>
+        </div>
+
+        <img class="nk-page-background-top" src="~/assets/images/bg-top.png" alt="">
+        <img class="nk-page-background-bottom" src="~/assets/images/bg-bottom.png" alt="">
+
+</body>
+</html>

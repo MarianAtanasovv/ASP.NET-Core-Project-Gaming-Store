@@ -52,19 +52,23 @@
                     <div class="nk-plain-video" data-video="@Model.TrailerUrl"></div>
                 </div>
                 <div class="gap-3"></div>
-                <div>
-                    <row>
-                        <a asp-action="Delete" asp-route-id="@Model.Id" asp-area="Administration" asp-controller="Games"  class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Delete game!</a>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <div>
+                        <row>
+                            <a asp-action="Delete" asp-route-id="@Model.Id" asp-area="Administration" asp-controller="Games" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Delete game!</a>
 
-                    </row>
-                </div>
-                <div class="gap-5"></div>
-                <div>
-                    <row>
-                        <a asp-action="Edit" asp-route-id="@Model.Id" asp-area="Administration" asp-controller="Games" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Edit game!</a>
+                        </row>
+                    </div>
+                    <div class="gap-5"></div>
+                    <div>
+                        <row>
+                            <a asp-action="Edit" asp-route-id="@Model.Id" asp-area="Administration" asp-controller="Games" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Edit game!</a>
 
-                    </row>
-                </div>
+                        </row>
+                    </div>
+                }
+
 
             </div>
         </div>
