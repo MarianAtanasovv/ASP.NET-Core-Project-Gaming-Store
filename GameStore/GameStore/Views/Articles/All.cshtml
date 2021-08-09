@@ -15,21 +15,21 @@
 
     <div class="container">
         <div class="row vertical-gap">
-            <div class="col-lg-8">
+            <div class="row-md-4">
                 <div class="nk-blog-grid">
                     <div class="row">
                         @foreach (var article in Model.Articles)
                         {
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="nk-blog-post">
                     <a class="nk-post-img">
-                        <img src="@article.ImageUrl" alt="Smell magic in the air. Or maybe barbecue">
-                        <span class="nk-post-comments-count">4</span>
+                        <img src="@article.ImageUrl" />
+                        
                     </a>
                     <div class="nk-gap"></div>
                     <h2 class="nk-post-title h4"><a>@article.Title</a></h2>
                     <div class="nk-post-by">
-                        <img src="@article.ImageUrl" alt="Hitman" class="rounded-circle" width="35">by <a href="#">Hitman</a>
+                        
                         <div>
                             @article.CreatedOn
                         </div>

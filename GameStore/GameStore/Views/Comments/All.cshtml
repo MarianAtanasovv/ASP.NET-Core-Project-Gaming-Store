@@ -36,7 +36,7 @@
                                     <div class="display: inline" style="margin-bottom: 15px">
                                         @if (User.IsInRole("Administrator"))
                                         {
-                                            <form asp-action="Delete" asp-route-id="@comment.Id">
+                                            <form asp-area="Administration" asp-controller="Comments" asp-action="Delete" asp-route-id="@comment.Id">
                                                 <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Delete!</button>
                                             </form>
                                         }

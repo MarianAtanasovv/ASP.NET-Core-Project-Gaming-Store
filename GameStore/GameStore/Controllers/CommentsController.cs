@@ -64,16 +64,6 @@ namespace GameStore.Controllers
             return this.View(comments);
         }
 
-        public IActionResult Delete(int id)
-        {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
-            this.comments.Delete(id);
-            return Redirect("/Comments/All");
-        }
 
     }
 }
