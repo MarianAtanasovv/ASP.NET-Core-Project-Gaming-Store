@@ -13,17 +13,15 @@ namespace GameStore.Controllers
 {
     public class OrdersController : Controller
     {
-        private readonly IOrderingService order;
+        private readonly IOrderService order;
         private readonly ICartService cart;
 
-        public OrdersController(IOrderingService order, ICartService cart)
+        public OrdersController(IOrderService order, ICartService cart)
         {
             this.order = order;
             this.cart = cart;
         }
 
-       
-        
         public IActionResult CreateOrder(string userId)
         {
             if (userId != User.Id())
@@ -31,8 +29,9 @@ namespace GameStore.Controllers
                 return BadRequest();
             }
 
-            this.order.CreateOrder(userId);
-            return RedirectToAction("SendEmail", new { @userId = userId });
+            this.order.CreateOrder(userId)
+                ;
+            return RedirectToAction("SendEmail", "SendEmails", new { @userId = userId });
         }
 
         public IActionResult FinishOrder(string userId)
@@ -42,19 +41,11 @@ namespace GameStore.Controllers
                 return BadRequest();
             }
 
-
             this.order.FinishOrder(userId);
             return RedirectToAction("ThankYou");
 
         }
 
-       public IActionResult SendEmail(string userId)
-        {
-          
-            this.order.SendKeyAsync(userId);
-            return RedirectToAction("FinishOrder", new { @userId = userId });
-
-        }
 
        public IActionResult ThankYou()
         {

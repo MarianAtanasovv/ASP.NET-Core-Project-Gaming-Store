@@ -6,6 +6,7 @@ using GameStore.Services.Articles;
 using GameStore.Services.Carts;
 using GameStore.Services.CheckOut;
 using GameStore.Services.Comments;
+using GameStore.Services.Emails;
 using GameStore.Services.Games;
 using GameStore.Services.Orders;
 using GameStore.Services.Users;
@@ -62,7 +63,9 @@ namespace GameStore
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<ICheckOutService, CheckOutService>();
-            services.AddTransient<IOrderingService, OrderingService>();
+            services.AddTransient<IOrderService, Services.Orders.OrderService>();
+            services.AddTransient<IEmailSenderService, EmailSenderService>();
+
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
 

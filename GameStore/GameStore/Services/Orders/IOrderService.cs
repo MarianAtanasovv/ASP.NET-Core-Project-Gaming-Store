@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Orders
 {
-    public interface IOrderingService
+    public interface IOrderService
     {
         public int CreateOrder(string userId);
 
@@ -14,6 +14,6 @@ namespace GameStore.Services.Orders
 
         public int GetOrderId(string userId);
 
-        public void SendKeyAsync(string userId);
+        
     }
 }

@@ -37,15 +37,16 @@ namespace GameStore.Controllers
             StripeConfiguration.ApiKey = "sk_test_51JLsO5KlfxRzROBJqb1qNfL01OSeNBxkrc0V2IRobIwPucWbH8uVVjYQZPZ0bXu5mUGlZLnTjOLwzZuAiY6tzgDG00z9xtu2UJ";
 
             var myCharge = new Stripe.ChargeCreateOptions();
-            // always set these properties
             myCharge.Amount = 100 *(Convert.ToInt64(cart));
             myCharge.Currency = "USD";
             myCharge.ReceiptEmail = stripeEmail;
             myCharge.Description = "Sample Charge";
             myCharge.Source = stripeToken;
             myCharge.Capture = true;
+
             var chargeService = new Stripe.ChargeService();
             Charge stripeCharge = chargeService.Create(myCharge);
+
             return RedirectToAction("CreateOrder", "Orders" , new { userId = userId});
 
         }

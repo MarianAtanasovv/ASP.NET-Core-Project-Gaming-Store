@@ -35,6 +35,10 @@ namespace GameStore.Controllers
         {
             var userId = this.users.IdUser(this.User.Id());
 
+            if(userId == null)
+            {
+                return NotFound();
+            }
 
             if (!ModelState.IsValid)
             {
