@@ -27,8 +27,8 @@
         <span asp-validation-for="Content" class="small text-danger"></span>
 
 
-        <div class="form-group row-sm-2" >
-          
+        <div class="form-group row-sm-2">
+
 
             <div class="rate" col-md-2>
                 <input type="radio" id="star5" name="rating" value="5" />
@@ -42,14 +42,18 @@
                 <input type="radio" id="star1" name="rating" value="1" />
                 <label for="star1" title="text">1 star</label>
             </div>
+
         </div>
         <span asp-validation-for="Rating" class="small text-danger"></span>
 
-        <div class="d-flex justify-content-center">
-            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Post Comment</button>
-        </div>
+
 
     </form>
+    <table>
+        <tr>
+            <td <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Post Comment</button></td>
+        </tr>
+  
 
 </body>
 </html>

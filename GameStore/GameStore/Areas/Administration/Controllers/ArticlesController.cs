@@ -53,7 +53,7 @@ namespace GameStore.Areas.Administration.Controllers
                 model.TrailerUrl,
                 model.CreatedOn.ToString("r"));
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("Index");
         }
 
         [Authorize]
@@ -76,25 +76,6 @@ namespace GameStore.Areas.Administration.Controllers
                 CreatedOn = details.CreatedOn,
 
             });
-        }
-
-        [Authorize]
-        public IActionResult All([FromQuery] AllArticlesQueryModel query)
-        {
-            var articlesQueryResult = this.articles.All(
-                query.SearchTerm,
-                query.Sorting,
-                query.CurrentPage,
-                AllArticlesQueryModel.ArticlesPerPage,
-                query.Title);
-
-            var articleTitles = this.articles.AllArticles();
-
-            query.TotalArticles = articlesQueryResult.TotalArticles;
-            query.Articles = articlesQueryResult.Articles;
-            query.Titles = articleTitles;
-
-            return this.View(query);
         }
 
         [Authorize]
@@ -152,7 +133,7 @@ namespace GameStore.Areas.Administration.Controllers
                 model.ImageUrl,
                 model.TrailerUrl);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(Index));
         }
     }
 }

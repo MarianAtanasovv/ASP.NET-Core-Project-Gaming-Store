@@ -32,7 +32,6 @@
     </script>
 
 
-
     <div class="nk-contacts-top">
         <div class="container">
             <div class="nk-contacts-left">
@@ -48,43 +47,52 @@
             </div>
             <div class="nk-contacts-right">
 
-                <span class="fa fa-shopping-cart"></span>
-
+              
                 @if (User.Identity.IsAuthenticated)
                 {
-    <a style="font-size: 19px" asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">My Cart</a>}
+    <div class="row">
+        <div class="col" style="float-right">
+            <form  asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">
+                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Cart</button>
+            </form>
 
-                @if (User.Identity.IsAuthenticated)
+        </div>
+
+        <div class="col" style="float-right">
+
+            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
+            </form>
+        </div>
+    </div> }
+
+                else
                 {
-    <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-        <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
-    </form> }
+    <div class="row">
+        <div class="col">
+            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
+                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
+            </form>
+        </div>
 
-else
-{
-<div class="row">
-    <div class="col">
-        <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
-            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
-        </form>
-    </div>
-
-    <div class="col">
-        <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
-            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
-        </form>
-    </div>
-</div>      }
-
+        <div class="col">
+            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
+                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
+            </form>
+        </div>
+    </div>}
             </div>
         </div>
     </div>
+
+
+
 
     <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
         <div class="container">
             <div class="nk-nav-table">
 
-                <a href="index.html" class="nk-nav-logo">
+                <a asp-controller="Home" asp-action="Index" class="nk-nav-logo">
                     <img src="~/assets/images/samurai.png" alt="Gaming Hub" width="120" height="120">
                 </a>
 
@@ -125,32 +133,29 @@ else
                         </ul>
                     </li>
 
+
                     <li>
-                        <a href="/Articles/All">Blog</a>
+                        <a asp-controller="Articles" asp-action="All">
+                            All Articles
+                        </a>
                     </li>
+
                     @if (User.IsInRole("Administrator"))
                     {
-                <li>
-                    <a asp-area="Administration" asp-controller="Articles" asp-action="Add">
-                        Add Articles
-                    </a>
-                </li>
+        <li>
+            <a asp-area="Administration" asp-controller="Articles" asp-action="Add">
+                Add Articles
+            </a>
+        </li>
 }
-                    @if (!User.IsInRole("Administrator"))
-                    {
-                <li>
-                    <a  asp-controller="Articles" asp-action="Add">
-                        Add Articles
-                    </a>
-                </li>
-}
+
                     @if (User.IsInRole("Administrator"))
                     {
-                <li>
-                    <a asp-area="Administration" asp-controller="Games" asp-action="Add">
-                        Add Games
-                    </a>
-                </li>
+        <li>
+            <a asp-area="Administration" asp-controller="Games" asp-action="Add">
+                Add Games
+            </a>
+        </li>
 }
 
                 </ul>

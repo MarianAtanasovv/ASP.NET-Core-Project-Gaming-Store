@@ -20,41 +20,7 @@ namespace GameStore.Controllers
             this.articles = article;
         }
 
-        [Authorize]
-        public IActionResult Add()
-        {
-            //if (!User.IsAdmin())
-            //{
-            //    return Unauthorized();
-            //}
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Add(AddArticleFormModel model)
-        {
-            //if (!User.IsAdmin())
-            //{
-            //    return Unauthorized();
-            //}
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            this.articles.Add(
-                model.Id,
-                model.Title,
-                model.Content,
-                model.ImageUrl,
-                model.TrailerUrl,
-                model.CreatedOn.ToString("r"));
-
-            return RedirectToAction(nameof(All));
-        }
-
+       
         public IActionResult Details(int id)
         {
             var details = this.articles.Details(id);
@@ -95,63 +61,7 @@ namespace GameStore.Controllers
             return this.View(query);
         }
 
-        [Authorize]
-        public IActionResult Delete(int id)
-        {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
-            var article = this.articles.Delete(id);
-
-            if(article == 0)
-            {
-                return View("~/Views/Errors/404.cshtml");
-            }
-
-            return Redirect("Articles/All");
-        }
-
-        [Authorize]
-        public IActionResult Edit(int id)
-        {
-            var article = this.articles.Details(id);
-
-                return View(new EditArticleFormModel
-                {
-                    Title = article.Title,
-                    Content = article.Content,
-                    ImageUrl = article.ImageUrl,
-                    TrailerUrl = article.TrailerUrl,
-                });
-
-        }
-      
-
-        [HttpPost]
-        [Authorize]
-        public IActionResult Edit(int id, EditArticleFormModel model)
-        {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            this.articles.Edit(
-                id,
-                model.Title,
-                model.Content,
-                model.ImageUrl,
-                model.TrailerUrl);
-
-            return RedirectToAction(nameof(All));
-        }
+       
     }
 
     

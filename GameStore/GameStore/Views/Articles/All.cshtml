@@ -22,12 +22,12 @@
                         {
             <div class="col-md-6">
                 <div class="nk-blog-post">
-                    <a href="blog-article.html" class="nk-post-img">
+                    <a class="nk-post-img">
                         <img src="@article.ImageUrl" alt="Smell magic in the air. Or maybe barbecue">
                         <span class="nk-post-comments-count">4</span>
                     </a>
                     <div class="nk-gap"></div>
-                    <h2 class="nk-post-title h4"><a href="blog-article.html">@article.Title</a></h2>
+                    <h2 class="nk-post-title h4"><a>@article.Title</a></h2>
                     <div class="nk-post-by">
                         <img src="@article.ImageUrl" alt="Hitman" class="rounded-circle" width="35">by <a href="#">Hitman</a>
                         <div>
@@ -39,7 +39,7 @@
                         <p>@article.ShortDescription...</p>
                     </div>
                     <div class="nk-gap"></div>
-                    <a href="/Articles/Details?Id=@article.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
+                    <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
                 </div>
             </div>
             }
