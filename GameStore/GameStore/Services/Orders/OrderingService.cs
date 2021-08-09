@@ -90,13 +90,13 @@ namespace GameStore.Services.Orders
             Task
                 .Run(async () =>
                 {
-                    var email = this.data.Users.Where(x => x.Id == userId).Select(x => x.Email).FirstOrDefault();
+                    var email = this.data.Users.Where(x => x.Id == userId).Select(x => x.Email).FirstOrDefault().ToString();
 
                     var cart = this.cart.UsersCart(userId).ToList();
 
                     var stringBulder = new StringBuilder();
 
-                    var body = "$" + EmailBody;
+                    var body = $"Greetings, {email}! Thank you for your purchase! To activate your games simply enter the activation keys for each game! Have fun!";;
                     stringBulder.AppendLine(body);
 
                     foreach (var game in cart)
@@ -109,8 +109,8 @@ namespace GameStore.Services.Orders
                     stringBulder.AppendLine(ending);
 
                     var message = new MailMessage();
-                    message.To.Add(new MailAddress("marian3455@gmail.com"));  // replace with valid value 
-                    message.From = new MailAddress("letthisshiitwork@gmail.com");  // replace with valid value
+                    message.To.Add(new MailAddress(email));  
+                    message.From = new MailAddress("letthisshiitwork@gmail.com");  
                     message.Subject = EmailSubject;
                     message.Body = stringBulder.ToString();
                     message.IsBodyHtml = false;
@@ -118,8 +118,8 @@ namespace GameStore.Services.Orders
                     using var smtp = new SmtpClient();
                     var credential = new NetworkCredential
                     {
-                        UserName = EmailUsernameCredential,  // replace with valid value
-                         Password = EmailPasswordCredential // replace with valid value
+                        UserName = "letthisshiitwork@gmail.com",  
+                         Password = "gwwzqgmgokhcrsee"
                     };
              
                     smtp.Credentials = credential;

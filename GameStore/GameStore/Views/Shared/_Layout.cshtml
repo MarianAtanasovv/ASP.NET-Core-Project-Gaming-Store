@@ -133,11 +133,15 @@ else
                             Add Articles
                         </a>
                     </li>
-                    <li>
-                        <a href="Games/Add">
-                            Add Games
-                        </a>
-                    </li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>
+                            <a asp-area="Administration" asp-controller="Games" asp-action="Add">
+                                Add Games
+                            </a>
+                        </li>
+                    }
+
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">
 

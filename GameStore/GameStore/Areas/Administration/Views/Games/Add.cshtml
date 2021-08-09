@@ -24,7 +24,8 @@
             <select asp-for="GenreId" class="form-control">
                 @foreach (var genre in Model.Genres)
                 {
-    <option value="@genre.Id">@genre.Name</option>}
+                    <option value="@genre.Id">@genre.Name</option>
+}
             </select>
         </div>
         <div class="form-group">
@@ -32,8 +33,8 @@
             <select asp-for="PlatformId" class="form-control">
                 @foreach (var platform in Model.Platforms)
                 {
-    <option value="@platform.Id">@platform.Name</option>
-    }
+                    <option value="@platform.Id">@platform.Name</option>
+                }
             </select>
         </div>
         <span asp-validation-for="GenreId" class="small text-danger"></span>
@@ -81,7 +82,7 @@
 
 
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Add">Add</button>
+            <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Create">Add</button>
         </div>
     </form>
 

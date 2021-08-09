@@ -1,3 +1,5 @@
+
+using GameStore.Controllers;
 using GameStore.Data.Models;
 using GameStore.Infrastructure;
 using GameStore.Services.Articles;
@@ -93,6 +95,17 @@ namespace GameStore
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {
+                    endpoints.MapDefaultAreaRoute();
+
+                    endpoints.MapControllerRoute(
+                        name: "Games Details",
+                        pattern: "/Cars/Details/{id}/{information}",
+                        defaults: new
+                        {
+                            controller = typeof(GamesController).GetControllerName(),
+                            action = nameof(GamesController.Details)
+                        });
+
                     endpoints.MapDefaultControllerRoute();
                     endpoints.MapRazorPages();
                 });

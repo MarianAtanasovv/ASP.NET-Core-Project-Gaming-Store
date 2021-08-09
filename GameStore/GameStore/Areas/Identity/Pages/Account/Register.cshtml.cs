@@ -52,6 +52,7 @@ namespace GameStore.Areas.Identity.Pages.Account
 
             [Required]
             [EmailAddress]
+            [DataType(DataType.EmailAddress)]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
@@ -74,7 +75,7 @@ namespace GameStore.Areas.Identity.Pages.Account
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
-        {
+        { 
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)

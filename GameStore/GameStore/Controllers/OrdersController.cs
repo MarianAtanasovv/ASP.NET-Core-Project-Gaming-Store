@@ -44,7 +44,7 @@ namespace GameStore.Controllers
 
 
             this.order.FinishOrder(userId);
-            return RedirectToAction("Index");
+            return RedirectToAction("ThankYou");
 
         }
 
