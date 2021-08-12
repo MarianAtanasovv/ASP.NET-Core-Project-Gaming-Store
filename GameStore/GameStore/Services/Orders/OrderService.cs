@@ -17,13 +17,11 @@ namespace GameStore.Services.Orders
     public class OrderService : IOrderService
     {
         private readonly ApplicationDbContext data;
-        private readonly ICartService cart;
 
 
-        public OrderService(ApplicationDbContext data, ICartService cart)
+        public OrderService(ApplicationDbContext data)
         {
             this.data = data;
-            this.cart = cart;
         }
 
         public int CreateOrder(string userId)

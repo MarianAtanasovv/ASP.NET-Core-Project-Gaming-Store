@@ -26,8 +26,8 @@ namespace GameStore.Models.Games
 
         public string Platform { get; set; }
 
-        public int PlatformId { get; set; }
+        //public int PlatformId { get; set; }
 
-        public int GenreId { get; set; }
+        //public int GenreId { get; set; }
     }
 }

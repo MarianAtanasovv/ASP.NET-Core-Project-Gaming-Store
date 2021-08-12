@@ -1,5 +1,4 @@
 ﻿using GameStore.Services.Carts;
-using GameStore.Services.CheckOut;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
 using System;
@@ -12,14 +11,13 @@ namespace GameStore.Controllers
 {
     public class CheckOutController : Controller
     {
-        private readonly ICheckOutService checkOut;
+       
         private readonly ICartService cart;
 
         
 
-        public CheckOutController(ICheckOutService checkOut, ICartService cart)
+        public CheckOutController(ICartService cart)
         {
-            this.checkOut = checkOut;
             this.cart = cart;
         }
         public ActionResult Charge()

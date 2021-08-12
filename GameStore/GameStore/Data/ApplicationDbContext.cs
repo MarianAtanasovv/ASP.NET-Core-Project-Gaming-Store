@@ -34,12 +34,16 @@ namespace GameStore
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
 
-            optionsBuilder.UseSqlServer(DatabaseConfiguration.ConnectionString);
-        }
+        //        base.OnConfiguring(optionsBuilder);
+
+        //        optionsBuilder.UseSqlServer(DatabaseConfiguration.ConnectionString);
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

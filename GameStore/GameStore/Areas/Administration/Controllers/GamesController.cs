@@ -10,6 +10,7 @@ using GameStore.Models;
 using GameStore.Infrastructure;
 using GameStore.Models.Games;
 using GameStore.Services.Games;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GameStore.Areas.Administration.Controllers
 {
@@ -45,13 +46,11 @@ namespace GameStore.Areas.Administration.Controllers
             return this.View(query);
         }
 
+        [Authorize]
+        [HttpGet]
         public IActionResult Add()
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
+           
             return View(new AddGameFormModel
             {
                 Genres = this.games.AllGenres(),
@@ -60,27 +59,28 @@ namespace GameStore.Areas.Administration.Controllers
         }
         
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AddGameFormModel gameModel)
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
+            //if (!User.IsAdmin())
+            //{
+            //    return Unauthorized();
+            //}
 
-            if (!this.games.GenreExists(gameModel.GenreId))
-            {
-                this.ModelState.AddModelError(nameof(gameModel.GenreId), "Genre does not exist.");
-            }
+            //if (!this.games.GenreExists(gameModel.GenreId))
+            //{
+            //    this.ModelState.AddModelError(nameof(gameModel.GenreId), "Genre does not exist.");
+            //}
 
-            if (!this.games.PlatformExists(gameModel.PlatformId))
-            {
-                this.ModelState.AddModelError(nameof(gameModel.PlatformId), "Platform does not exist.");
-            }
+            //if (!this.games.PlatformExists(gameModel.PlatformId))
+            //{
+            //    this.ModelState.AddModelError(nameof(gameModel.PlatformId), "Platform does not exist.");
+            //}
 
             if (!ModelState.IsValid)
             {
-                gameModel.Genres = this.games.AllGenres();
-                gameModel.Platforms = this.games.AllPlatforms();
+                //gameModel.Genres = this.games.AllGenres();
+                //gameModel.Platforms = this.games.AllPlatforms();
 
                 return View(gameModel);
             }
@@ -100,13 +100,10 @@ namespace GameStore.Areas.Administration.Controllers
             return RedirectToAction(nameof(All));
         }
        
+        [Authorize]
         public IActionResult Delete(int id)
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
+            
             var game = this.games.Delete(id);
 
             if (game == 0)
@@ -117,13 +114,11 @@ namespace GameStore.Areas.Administration.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        [HttpGet]
+        [Authorize]
         public IActionResult Edit(int id)
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
+          
             var game = this.games.Details(id);
 
             if (game == null)
@@ -145,12 +140,9 @@ namespace GameStore.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Edit(int id, EditGameFormModel game)
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
 
             if (!ModelState.IsValid)
             {
@@ -175,9 +167,9 @@ namespace GameStore.Areas.Administration.Controllers
 
         }
 
-        private bool GameExists(int id)
-        {
-            return data.Games.Any(e => e.Id == id);
-        }
+        //private bool GameExists(int id)
+        //{
+        //    return data.Games.Any(e => e.Id == id);
+        //}
     }
 }

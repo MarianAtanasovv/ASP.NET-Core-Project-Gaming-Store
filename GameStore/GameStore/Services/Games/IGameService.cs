@@ -38,6 +38,7 @@ namespace GameStore.Services.Games
            decimal price,
            string imageUrl,
            string trailerUrl);
+
         int Delete(int id);
 
         IEnumerable<string> AllGames();

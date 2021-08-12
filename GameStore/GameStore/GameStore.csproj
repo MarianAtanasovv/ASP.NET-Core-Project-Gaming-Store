@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="GSF.Core" Version="2.3.302" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8" />
@@ -40,6 +41,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="MlkPwgen" Version="0.3.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="ReportGenerator" Version="4.8.12" />
     <PackageReference Include="Stripe.net" Version="39.62.0" />
   </ItemGroup>
 
