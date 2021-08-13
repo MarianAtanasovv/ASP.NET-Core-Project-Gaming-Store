@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Models.Orders
 {
+   
     public class OrderFormModel
     {
         [Key]

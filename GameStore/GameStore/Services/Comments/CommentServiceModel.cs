@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Comments
 {
+   
     public class CommentServiceModel
     {
         public int Id { get; set; }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Carts
 {
+   
     public class CartServiceModel
     {
         public int CartGameId { get; set; }

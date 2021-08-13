@@ -11,6 +11,7 @@ using GameStore.Services.Games;
 namespace GameStore.Models.Games
 {
     using static DataConstants;
+   
 
     public class EditGameFormModel
     {

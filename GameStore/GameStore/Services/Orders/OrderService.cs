@@ -69,14 +69,6 @@ namespace GameStore.Services.Orders
             }
         }
 
-        public int GetOrderId(string userId)
-        {
-            var order = this.data.Orders.Where(x => x.UserId == userId).Select(x => x.Id).LastOrDefault();
-
-            return order;
-        }
-
-      
     }
 }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Comments
 {
+   
     public class CommentQueryServiceModel
     {
         public int CurrentPage { get; set; }
@@ -14,7 +15,6 @@ namespace GameStore.Services.Comments
 
         public int TotalComments { get; set; }
 
-        //
         public IEnumerable<AllCommentsViewModel> Comments { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Infrastructure
 {
+   
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder PrepareDatabase(

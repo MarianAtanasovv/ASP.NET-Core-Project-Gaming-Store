@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GameStore
 {
+    
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         

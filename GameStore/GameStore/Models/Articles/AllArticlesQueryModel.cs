@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Models.Articles
 {
+   
     public class AllArticlesQueryModel
     {
         public const int ArticlesPerPage = 8;

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace GameStore.Models.Comments
 {
     using static DataConstants;
+   
     public class AddCommentToArticleViewModel
     {
         

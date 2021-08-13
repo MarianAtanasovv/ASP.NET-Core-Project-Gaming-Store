@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GameStore.Models.Articles
 {
     using static DataConstants;
-
+ 
     public class EditArticleFormModel
     {
         

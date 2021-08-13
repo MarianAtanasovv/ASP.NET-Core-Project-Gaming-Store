@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Infrastructure
 {
+   
     public static class ClaimsPrincipalExtensions
     {
         public static string Id(this ClaimsPrincipal user)

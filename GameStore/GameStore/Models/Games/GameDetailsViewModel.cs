@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace GameStore.Models.Games
 {
+   
     public class GameDetailsViewModel
     {
+      
         public int Id { get; set; }
         public string Description { get; set; }
 

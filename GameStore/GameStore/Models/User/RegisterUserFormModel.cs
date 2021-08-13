@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GameStore.Models
 {
     using static DataConstants;
-
+   
     public class RegisterUserFormModel
     {
        

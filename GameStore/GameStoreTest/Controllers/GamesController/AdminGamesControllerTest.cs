@@ -79,37 +79,7 @@ namespace GameStoreTest
                           .WithModelOfType<AddGameFormModel>());
         }
 
-        [Theory]
-        [InlineData(1, "Test Title", "TestTestRequirementsDescription", "TestRequirementsTestRequirementsTestRequirements", "TestTestRequirementsGuide", 20.00,
-            "https://i.stack.imgur.com/GsDIl.jpg", "https://www.youtube.com/watch?v=_LcT5sLwmiw")]
-        public void PostAddShouldReturnRedirectAndSaveTheGame(
-              int id,
-                string title,
-               string description,
-               string requirements,
-               string guide,
-                decimal price,
-               string imageUrl,
-               string trailerUrl)
-          => MyController<GameStore.Areas.Administration.Controllers.GamesController>
-              .Instance(x => x.WithUser("Administrator"))
-
-              .Calling(c => c.Add(new AddGameFormModel
-              {
-                  Id = id,
-                  Title = title,
-                  Description = description,
-                  Requirements = requirements,
-                  Guide = guide,
-                  Price = price,
-                  ImageUrl = imageUrl,
-                  TrailerUrl = trailerUrl
-
-              }))
-              .ShouldReturn()
-              .Redirect(result => result
-                  .To<GameStore.Areas.Administration.Controllers.GamesController>(c => c.All(With.Any<AllGamesQueryModel>())));
-
+      
 
         [Fact]
         public void AllShouldReturnAllGames()

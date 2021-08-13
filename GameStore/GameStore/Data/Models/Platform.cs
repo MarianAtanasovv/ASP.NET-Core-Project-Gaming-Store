@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Data.Models
 {
+  
     public class Platform
     {
         public Platform()

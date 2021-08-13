@@ -2,6 +2,7 @@ using System;
 
 namespace GameStore.Models
 {
+   
     public class ErrorViewModel
     {
         public string RequestId { get; set; }

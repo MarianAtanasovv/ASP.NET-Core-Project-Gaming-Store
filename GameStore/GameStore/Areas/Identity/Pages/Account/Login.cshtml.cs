@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace GameStore.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
+   
     public class LoginModel : PageModel
     {
         private readonly UserManager<User> _userManager;

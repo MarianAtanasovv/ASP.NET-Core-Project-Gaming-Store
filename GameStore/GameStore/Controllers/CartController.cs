@@ -16,6 +16,7 @@ namespace GameStore.Controllers
 
         public CartController(ICartService cartService) => this.cartService = cartService;
 
+        [HttpGet]
         public IActionResult MyCart(string id)
         {
             if (this.User.Id() != id || User.IsAdmin())

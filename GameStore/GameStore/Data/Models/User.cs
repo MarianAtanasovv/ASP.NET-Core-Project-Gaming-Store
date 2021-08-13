@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Data.Models
 {
+   
     public class User : IdentityUser
     {
         public string UserId { get; set; }

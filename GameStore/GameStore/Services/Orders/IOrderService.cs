@@ -12,7 +12,7 @@ namespace GameStore.Services.Orders
 
         public void FinishOrder(string userId);
 
-        public int GetOrderId(string userId);
+       
 
         
     }

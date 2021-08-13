@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Models.Articles
 {
+    
     public enum ArticleSorting
     {
         Title = 0,

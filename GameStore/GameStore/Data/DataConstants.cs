@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Data
 {
+    
     public class DataConstants
     {
         public const int GameRequirementsMaxLenght = 500;

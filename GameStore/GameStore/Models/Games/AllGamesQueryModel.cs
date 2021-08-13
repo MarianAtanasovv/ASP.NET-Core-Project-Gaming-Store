@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Models.Games
 {
+   
     public class AllGamesQueryModel
     {
         public const int GamesPerPage = 6;

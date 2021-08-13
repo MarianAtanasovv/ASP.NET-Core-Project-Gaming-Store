@@ -14,12 +14,11 @@ namespace GameStore.Controllers
     public class OrdersController : Controller
     {
         private readonly IOrderService order;
-        private readonly ICartService cart;
 
-        public OrdersController(IOrderService order, ICartService cart)
+        public OrdersController(IOrderService order)
         {
             this.order = order;
-            this.cart = cart;
+            
         }
 
         public IActionResult CreateOrder(string userId)
@@ -29,8 +28,7 @@ namespace GameStore.Controllers
                 return BadRequest();
             }
 
-            this.order.CreateOrder(userId)
-                ;
+            this.order.CreateOrder(userId);
             return RedirectToAction("SendEmail", "SendEmails", new { @userId = userId });
         }
 

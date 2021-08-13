@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace GameStore.Data.Models
 {
     using static DataConstants;
+    
     public class UserInformation
     {
         public UserInformation()
@@ -27,8 +28,6 @@ namespace GameStore.Data.Models
 
         [Required]
         public int AddressId { get; set; }
-
-        //public Address Address { get; set; }
 
         public IEnumerable<Order> Orders { get; set; }
 

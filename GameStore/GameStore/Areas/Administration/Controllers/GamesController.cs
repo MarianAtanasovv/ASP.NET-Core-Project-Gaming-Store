@@ -26,7 +26,6 @@ namespace GameStore.Areas.Administration.Controllers
             this.games = games;
         }
 
-
         public IActionResult All([FromQuery] AllGamesQueryModel query)
         {
             var gamesQueryResult = this.games.All(
@@ -62,25 +61,21 @@ namespace GameStore.Areas.Administration.Controllers
         [Authorize]
         public IActionResult Add(AddGameFormModel gameModel)
         {
-            //if (!User.IsAdmin())
-            //{
-            //    return Unauthorized();
-            //}
 
-            //if (!this.games.GenreExists(gameModel.GenreId))
-            //{
-            //    this.ModelState.AddModelError(nameof(gameModel.GenreId), "Genre does not exist.");
-            //}
+            if (!this.games.GenreExists(gameModel.GenreId))
+            {
+                this.ModelState.AddModelError(nameof(gameModel.GenreId), "Genre does not exist.");
+            }
 
-            //if (!this.games.PlatformExists(gameModel.PlatformId))
-            //{
-            //    this.ModelState.AddModelError(nameof(gameModel.PlatformId), "Platform does not exist.");
-            //}
+            if (!this.games.PlatformExists(gameModel.PlatformId))
+            {
+                this.ModelState.AddModelError(nameof(gameModel.PlatformId), "Platform does not exist.");
+            }
 
             if (!ModelState.IsValid)
             {
-                //gameModel.Genres = this.games.AllGenres();
-                //gameModel.Platforms = this.games.AllPlatforms();
+                gameModel.Genres = this.games.AllGenres();
+                gameModel.Platforms = this.games.AllPlatforms();
 
                 return View(gameModel);
             }

@@ -13,18 +13,14 @@ namespace GameStoreTest.Data
     public class GetPlatformControllerTest
     {
         [Fact]
-        public void GetPlatformsShouldReturnGamesWithPlatforms()
+        public void GamePlatformeShouldMapToTheRightView()
         {
-            MyMvc.Pipeline()
-                .ShouldMap("/Games/GetPlatforms/Pc")
-                .To<GamePlatformController>(x => x.GetPlatform(new AllGamesQueryModel
-                {
-
-                }, "Pc"))
-                .Which(controller => controller.WithData())
-                .ShouldReturn()
-                .View(view => view.WithModelOfType<AllGamesQueryModel>());
-
+            MyRouting.Configuration()
+            .ShouldMap(x => x.WithLocation("GamePlatform/GetPlatform?platform=PC")
+            .WithUser())
+            .To<GamePlatformController>(x => x.GetPlatform(With.Any<AllGamesQueryModel>(), "PC"));
         }
+
+      
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Games
 {
+   
     public class GameQueryServiceModel
     {
         public int CurrentPage { get; set; }

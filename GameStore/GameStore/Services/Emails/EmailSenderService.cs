@@ -29,7 +29,7 @@ namespace GameStore.Services.Emails
             Task
                .Run(async () =>
                {
-                   var email = this.data.Users.Where(x => x.Id == userId).Select(x => x.Email).FirstOrDefault().ToString();
+                   var email = this.data.Users.Where(x => x.Id == userId).Select(x => x.Email).FirstOrDefault();
 
                    var cart = this.cart.UsersCart(userId).ToList();
 

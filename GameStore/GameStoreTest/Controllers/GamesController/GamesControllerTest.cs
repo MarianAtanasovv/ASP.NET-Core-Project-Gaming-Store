@@ -46,7 +46,6 @@ namespace GameStore.Test.Controllers
                 .ShouldReturn()
                 .View("~/Views/Errors/404.cshtml");
 
-
         }
 
         [Theory]

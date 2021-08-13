@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Infrastructure
 {
+    
     public static class EndpointRouteBuilderExtensions
     {
         public static void MapDefaultAreaRoute(this IEndpointRouteBuilder endpoints)

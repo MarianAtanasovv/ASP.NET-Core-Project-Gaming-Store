@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Models
 {
+   
     public class UserLoginFormModel
     {
         public string UserName { get; set; }

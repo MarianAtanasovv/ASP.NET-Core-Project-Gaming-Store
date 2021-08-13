@@ -10,12 +10,10 @@ namespace GameStore.Controllers
 {
     public class SendEmailsController : Controller
     {
-        private readonly IOrderService order;
         private readonly IEmailSenderService email;
 
-        public SendEmailsController(IOrderService order, IEmailSenderService email)
+        public SendEmailsController(IEmailSenderService email)
         {
-            this.order = order;
             this.email = email;
         }
 

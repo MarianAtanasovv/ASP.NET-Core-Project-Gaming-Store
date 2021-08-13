@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Infrastructure
 {
+    
     public class StripeSettings
     {
         public string SecretKey { get; set; }

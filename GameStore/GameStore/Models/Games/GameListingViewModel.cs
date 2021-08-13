@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace GameStore.Controllers
 {
+   
     public class GameListingViewModel
     {
         public int Id { get; set; }

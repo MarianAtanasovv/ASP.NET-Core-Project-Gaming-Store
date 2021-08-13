@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 [assembly: HostingStartup(typeof(GameStore.Areas.Identity.IdentityHostingStartup))]
 namespace GameStore.Areas.Identity
 {
+   
     public class IdentityHostingStartup : IHostingStartup
     {
         public void Configure(IWebHostBuilder builder)

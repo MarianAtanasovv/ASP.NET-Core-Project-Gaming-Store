@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Models.Games
 {
+   
     public class GamePlatformViewModel
     {
         public int PlatformId { get; set; }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Games
 {
+   
     public class GameServiceModel
     {
         public int Id { get; set; }

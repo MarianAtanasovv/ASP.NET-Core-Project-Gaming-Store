@@ -21,6 +21,7 @@ using Stripe;
 
 namespace GameStore
 {
+   
     public class Startup
     {
         public Startup(IConfiguration configuration)

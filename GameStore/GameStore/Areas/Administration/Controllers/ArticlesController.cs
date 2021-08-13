@@ -1,45 +1,32 @@
-﻿using GameStore.Infrastructure;
-using GameStore.Models.Articles;
+﻿using GameStore.Models.Articles;
 using GameStore.Services.Articles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Areas.Administration.Controllers
 {
     public class ArticlesController : AdministrationController
     {
-        private readonly ApplicationDbContext data;
+        
         private readonly IArticleService articles;
 
-        public ArticlesController(ApplicationDbContext data, IArticleService articles)
+        public ArticlesController(IArticleService articles)
         {
-            this.data = data;
+            
             this.articles = articles;
         }
 
         public IActionResult Add()
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
             return View();
         }
 
-        [HttpPost]
         [Authorize]
+        [HttpPost]
+       
         public IActionResult Add(AddArticleFormModel model)
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
+          
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -53,39 +40,15 @@ namespace GameStore.Areas.Administration.Controllers
                 model.TrailerUrl,
                 model.CreatedOn.ToString("r"));
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
-        [Authorize]
-        public IActionResult Details(int id)
-        {
-            var details = this.articles.Details(id);
-
-            if (details == null)
-            {
-                return View("~/Views/Errors/404.cshtml");
-            }
-
-            return View(new ArticleDetailsViewModel
-            {
-                Id = details.Id,
-                Content = details.Content,
-                Title = details.Title,
-                ImageUrl = details.ImageUrl,
-                TrailerUrl = details.TrailerUrl,
-                CreatedOn = details.CreatedOn,
-
-            });
-        }
+   
 
         [Authorize]
         public IActionResult Delete(int id)
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
+            
             var article = this.articles.Delete(id);
 
             if (article == 0)
@@ -93,13 +56,19 @@ namespace GameStore.Areas.Administration.Controllers
                 return View("~/Views/Errors/404.cshtml");
             }
 
-            return Redirect("Articles/All");
+            return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var article = this.articles.Details(id);
+
+            if (article == null)
+            {
+                return View("~/Views/Errors/404.cshtml");
+            }
 
             return View(new EditArticleFormModel
             {
@@ -116,10 +85,6 @@ namespace GameStore.Areas.Administration.Controllers
         [Authorize]
         public IActionResult Edit(int id, EditArticleFormModel model)
         {
-            if (!User.IsAdmin())
-            {
-                return Unauthorized();
-            }
 
             if (!ModelState.IsValid)
             {
@@ -133,7 +98,7 @@ namespace GameStore.Areas.Administration.Controllers
                 model.ImageUrl,
                 model.TrailerUrl);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
     }
 }

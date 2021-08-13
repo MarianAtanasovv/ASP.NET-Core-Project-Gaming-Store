@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Models.Articles
 {
+    
     public class ArticleListingViewModel
     {
         public int Id { get; set; }

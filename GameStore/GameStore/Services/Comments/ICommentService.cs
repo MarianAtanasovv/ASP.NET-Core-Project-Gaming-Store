@@ -26,8 +26,6 @@ namespace GameStore.Services.Comments
         int articleId,
         string userId);
 
-        IEnumerable<string> AllComments();
-
         
     }
 }

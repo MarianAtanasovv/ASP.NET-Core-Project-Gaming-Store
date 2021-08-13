@@ -94,17 +94,5 @@ namespace GameStore.Services.Comments
            .ToList();
         }
 
-
-        public IEnumerable<string> AllComments()
-        {
-            return this.data
-                  .Comments
-                  .Select(c => c.Content)
-                  .Distinct()
-                  .OrderBy(br => br)
-                  .ToList();
-        }
-
-      
     }
 }

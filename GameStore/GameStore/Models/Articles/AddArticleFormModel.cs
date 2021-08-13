@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GameStore.Models.Articles
 {
     using static DataConstants;
-
+   
     public class AddArticleFormModel
     {
         public int Id { get; set; }
