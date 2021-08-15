@@ -40,7 +40,7 @@ namespace GameStore.Areas.Administration.Controllers
                 model.TrailerUrl,
                 model.CreatedOn.ToString("r"));
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All", "Articles", new { area = "" });
         }
 
    

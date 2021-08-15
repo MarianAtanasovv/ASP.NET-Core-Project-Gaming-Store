@@ -1,17 +1,17 @@
 ﻿using GameStore.Data.Models;
-using System;
+using GameStore.Services.Articles.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace GameStore.Models.Articles
 {
    
-    public class ArticleDetailsViewModel
+    public class ArticleDetailsViewModel : IArticleModel
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
+
         public string ImageUrl { get; set; }
 
         public string Content { get; set; }

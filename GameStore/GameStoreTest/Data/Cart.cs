@@ -9,6 +9,6 @@ namespace GameStoreTest.Data
 {
     public static class Cart
     {
-        public static CartItem CartWithId(string id) => new() { UserId = id };
+        public static GameStore.Data.Models.Cart CartWithId(string id) => new() { UserId = id };
     }
 }

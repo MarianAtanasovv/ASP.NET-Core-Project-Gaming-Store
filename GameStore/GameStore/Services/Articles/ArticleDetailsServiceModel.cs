@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameStore.Services.Articles.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 namespace GameStore.Services.Articles
 {
    
-    public class ArticleDetailsServiceModel
+    public class ArticleDetailsServiceModel : IArticleModel
     {
         public int Id { get; set; }
 

@@ -39,7 +39,7 @@
                         <p>@article.ShortDescription...</p>
                     </div>
                     <div class="nk-gap"></div>
-                    <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
+                    <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" asp-route-information="@article.GetInformationArticle()" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
                 </div>
             </div>
             }

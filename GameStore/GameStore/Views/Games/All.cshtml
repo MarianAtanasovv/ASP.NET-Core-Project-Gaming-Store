@@ -16,7 +16,7 @@
         @foreach (var game in Model.Games)
         {
         <div class="mr-5 mb-10" style="width: 150px; height:400px;">
-            <a asp-action="Details" asp-route-id="@game.Id" class="nk-post-img">
+            <a asp-action="Details" asp-route-id="@game.Id" asp-route-information="@game.GetInformationGame()"  class="nk-post-img">
                 <img src="@game.ImageUrl" style="width: 150px; height:400px;">
 
                 <span class="nk-post-categories">

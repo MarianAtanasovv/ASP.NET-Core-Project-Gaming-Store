@@ -42,7 +42,7 @@ namespace GameStore.Controllers
         }
 
         [Authorize]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string information)
         {
 
             var game = this.games.Details(id);
@@ -50,6 +50,11 @@ namespace GameStore.Controllers
             if(game == null)
             {
                 return View("~/Views/Errors/404.cshtml");
+            }
+
+            if (information != game.GetInformationGame())
+            {
+                return View("~/Views/Errors/401.cshtml");
             }
 
             return View(new GameDetailsViewModel

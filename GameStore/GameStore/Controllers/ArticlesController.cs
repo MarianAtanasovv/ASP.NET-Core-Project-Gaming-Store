@@ -21,7 +21,7 @@ namespace GameStore.Controllers
         }
 
        
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string information)
         {
             var details = this.articles.Details(id);
 
@@ -29,6 +29,12 @@ namespace GameStore.Controllers
             {
                 return View("~/Views/Errors/404.cshtml");
             }
+
+            if (information != details.GetInformationArticle())
+            {
+                return View("~/Views/Errors/401.cshtml");
+            }
+
 
             return View(new ArticleDetailsViewModel
             {

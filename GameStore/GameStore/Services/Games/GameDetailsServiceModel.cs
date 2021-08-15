@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameStore.Services.Games.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 namespace GameStore.Services.Games
 {
    
-    public class GameDetailsServiceModel
+    public class GameDetailsServiceModel : IGameModel
     {
         public int Id { get; set; }
         public string Description { get; set; }
@@ -27,8 +28,5 @@ namespace GameStore.Services.Games
 
         public string Platform { get; set; }
 
-        //public int GenreId { get; set; }
-
-        //public int PlatformId { get; set; }
     }
 }

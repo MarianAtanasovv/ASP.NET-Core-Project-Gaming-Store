@@ -101,7 +101,7 @@ namespace GameStore
 
                     endpoints.MapControllerRoute(
                         name: "Games Details",
-                        pattern: "/Cars/Details/{id}/{information}",
+                        pattern: "/Games/Details/{id}/{information}",
                         defaults: new
                         {
                             controller = typeof(GamesController).GetControllerName(),

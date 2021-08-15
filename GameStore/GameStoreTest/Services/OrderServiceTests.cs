@@ -91,7 +91,7 @@ namespace GameStoreTest.Services
         public void FinishOrderShouldWorkCorrectly(string userId)
         {
             var data = DatabaseMock.Instance;
-            var cartItem = new CartItem()
+            var cartItem = new GameStore.Data.Models.Cart()
             {
                 GameId = 5,
                 GameCoverImage = "someRandomUrl",

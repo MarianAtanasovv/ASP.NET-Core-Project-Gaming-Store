@@ -32,38 +32,38 @@ namespace GameStore.Test.Controllers
                  
         }
 
-        [Theory]
-        [InlineData(1)]
-        public void NotFoundDetailsShouldReturnNotFound(int id)
-        {
+        //[Theory]
+        //[InlineData(1)]
+        //public void NotFoundDetailsShouldReturnNotFound(int id)
+        //{
 
-            MyMvc.Pipeline()
-                .ShouldMap(request => request.WithLocation("/Games/Details/2")
-                .WithUser()
-                .WithMethod(HttpMethod.Get))
-                .To<GamesController>(x => x.Details(2))
-                .Which()
-                .ShouldReturn()
-                .View("~/Views/Errors/404.cshtml");
+        //    MyMvc.Pipeline()
+        //        .ShouldMap(request => request.WithLocation("/Games/Details/2")
+        //        .WithUser()
+        //        .WithMethod(HttpMethod.Get))
+        //        .To<GamesController>(x => x.Details(2))
+        //        .Which()
+        //        .ShouldReturn()
+        //        .View("~/Views/Errors/404.cshtml");
 
-        }
+        //}
 
-        [Theory]
-        [InlineData(3)]
+        //[Theory]
+        //[InlineData(3)]
 
-        public void FoundDetailsShouldReturnDetailsPage(int id)
-        {
+        //public void FoundDetailsShouldReturnDetailsPage(int id)
+        //{
 
-           MyController<GamesController>
-                .Instance(controller => controller.WithData(GameWithId(id)))
-                .Calling(x => x.Details(id))
-                .ShouldReturn()
-                .View(view => view
-                    .WithModelOfType<GameDetailsViewModel>()
-                    .Passing(m => m.Id == id));
+        //   MyController<GamesController>
+        //        .Instance(controller => controller.WithData(GameWithId(id)))
+        //        .Calling(x => x.Details(id))
+        //        .ShouldReturn()
+        //        .View(view => view
+        //            .WithModelOfType<GameDetailsViewModel>()
+        //            .Passing(m => m.Id == id));
 
 
-        }
+        //}
 
 
 

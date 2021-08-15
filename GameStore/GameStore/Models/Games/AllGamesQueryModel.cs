@@ -1,6 +1,7 @@
 ﻿using GameStore.Controllers;
 using GameStore.Data.Models;
 using GameStore.Services.Games;
+using GameStore.Services.Games.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace GameStore.Models.Games
 {
    
-    public class AllGamesQueryModel
+    public class AllGamesQueryModel 
     {
         public const int GamesPerPage = 6;
 

@@ -86,7 +86,7 @@ namespace GameStoreTest.Services
 
             Assert.NotNull(rightGame);
 
-            var cartItem = new CartItem()
+            var cartItem = new GameStore.Data.Models.Cart()
             {
                 UserId = userId,
                 Quantity = 1,
@@ -181,7 +181,7 @@ namespace GameStoreTest.Services
             data.Games.Add(game);
             data.SaveChanges();
 
-            var cartItem = new CartItem()
+            var cartItem = new GameStore.Data.Models.Cart()
             {
                 UserId = userId,
                 Quantity = 1,
@@ -303,9 +303,9 @@ namespace GameStoreTest.Services
 
 
 
-        private static CartItem Cart()
+        private static GameStore.Data.Models.Cart Cart()
         {
-            return new CartItem
+            return new GameStore.Data.Models.Cart
             {
                 GameId = 5,
                 Game = new Game
