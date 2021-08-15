@@ -53,16 +53,16 @@ namespace GameStore.Services.Orders
 
                 data.OrderGames.Add(new OrderGame
                 {
+                    
                     OrderId = id,
                     GameId = gameId,
                     Quantity = quantity,
+                    UserId = userId
                 });
 
                 var itemCart = data.CartItems
                     .Where(p => p.UserId == userId && p.GameId == gameId)
                     .FirstOrDefault();
-
-              
 
                 data.CartItems.Remove(itemCart);
                 data.SaveChanges();

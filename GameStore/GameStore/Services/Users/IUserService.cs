@@ -1,7 +1,6 @@
-﻿using System;
+﻿using GameStore.Models.Users;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace GameStore.Services.Users
 {
@@ -9,5 +8,6 @@ namespace GameStore.Services.Users
     {
         string IdUser(string userId);
 
+        public IEnumerable<AccountOrdersListingViewModel> UsersPurchases(string userId);
     }
 }

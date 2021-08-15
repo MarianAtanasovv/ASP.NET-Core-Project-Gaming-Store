@@ -12,7 +12,6 @@ namespace GameStore.Models.Games
 {
     using static DataConstants;
    
-
     public class EditGameFormModel
     {
         public int Id { get; set; }

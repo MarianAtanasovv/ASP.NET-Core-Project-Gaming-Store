@@ -21,30 +21,17 @@ namespace GameStore
 
         public DbSet<Platform> Platforms { get; set; }
 
-        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Cart> CartItems { get; set; }
 
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderGame> OrderGames { get; set; }
-
-        public DbSet<UserInformation> UsersInformation { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
         {
 
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-
-        //        base.OnConfiguring(optionsBuilder);
-
-        //        optionsBuilder.UseSqlServer(DatabaseConfiguration.ConnectionString);
-        //    }
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,11 +41,6 @@ namespace GameStore
                 .HasOne(c => c.Article)
                 .WithMany(c => c.Comments);
 
-            //modelBuilder.Entity<UserInformation>()
-            //   .HasOne(u => u.User)
-            //   .WithOne(u => u.UserData)
-            //   .HasForeignKey<UserInformation>(u => u.UserId)
-            //   .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<OrderGame>()
                .HasKey(op => new { op.OrderId, op.GameId });
@@ -68,7 +50,7 @@ namespace GameStore
                .WithOne(op => op.Order)
                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<CartItem>()
+            modelBuilder.Entity<Cart>()
                .HasKey(x => new { x.GameId, x.UserId });
 
         }

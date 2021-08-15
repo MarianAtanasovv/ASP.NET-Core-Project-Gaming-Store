@@ -1,0 +1,68 @@
+﻿@model List<AccountOrdersListingViewModel>
+
+@{
+    ViewData["Title"] = "My Purchases";
+}
+
+<img class="nk-page-background-top" src="~/assets/images/bg-bottom.png" alt="">
+<div class="container">
+    <div class="nk-store nk-store-cart">
+
+        <h2>Purchase history</h2>
+        @if (Model.Count() == 0)
+        {
+            <div align="center" class="container" style="height: 300px; width:300px">
+                <h3 class="text-center">You have no previous purchases!.</h3>
+                <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" role="button" asp-controller="Games" asp-action="All">Games</a>
+            </div>
+
+
+        }
+
+        else
+        {
+            <div class="table-responsive">
+                <table class="table nk-store-cart-products">
+                    <tbody>
+                        @foreach (var game in Model)
+                        {
+                            var totalSum = game.GamePrice * game.Quantity;
+                            var orderDate = game.OrderDate.ToString();
+                            var orderDateFormatted = DateTime.Parse(orderDate);
+
+                        
+                        <tr style="margin-bottom:10px">
+
+                            <td class="nk-product-cart-thumb">
+                                <a href="store-product.html" class="nk-image-box-1 nk-post-image">
+                                    <img src="@game.GameCoverImage" height="50" width="30">
+                                </a>
+                            </td>
+
+                            <td style="width: 10px" class="nk-product-cart-title">
+                                <h5 class="h8">Product: @game.GameName</h5>
+
+                            </td>
+                            <td class="nk-product-cart-price">
+                                <h5 class="h6">Price: €@totalSum </h5>
+                            </td>
+                            <td  class="nk-product-cart-quantity">
+                                <h5 class="h6">Quantity: @game.Quantity</h5>
+
+
+                            </td>
+                            <td>
+                                <h5 class="h6">Order Date: @orderDateFormatted</h5>
+                            </td>
+
+                        </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+
+    </div>
+        </div>

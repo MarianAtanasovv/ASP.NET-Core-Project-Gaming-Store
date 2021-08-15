@@ -1,0 +1,49 @@
+﻿
+@{ ViewData["Title"] = "About us";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+
+
+<div class="container" style="height: 400px; width:300px">
+
+
+    <video playsinline autoplay muted loop poster="polina.jpg" id="bgvid" style="position:absolute">
+        <source src="~/assets/videos/The only thing they fear... is YOU(1) (1) (convert-video-online.com).mp4" type='video/mp4'>
+
+    </video>
+    <div style="text-align:center">
+
+        <button type="button" style="position: relative; color:gray" onclick="myFunction()" class="btn btn-link btn-xs">Just let me watch the video...</button>
+        <p id="myParagraph" style="position: relative; margin-top: 50px; background-color:gray; color: white; border-style: solid; font-size: 17px; font-style: italic" ;>
+            We are Gaming Hub. A newly arising online games shop.
+            Games are a source of fun and fun should be available for everyone.
+            That's why here you can find all the games you love for way cheaper prices. Have fun and keep gaming!
+            
+        </p>
+    </div>
+</div>
+    
+
+<style>
+    video {
+        object-fit: fill;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myParagraph");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>

@@ -50,21 +50,28 @@
               
                 @if (User.Identity.IsAuthenticated)
                 {
-    <div class="row">
-        <div class="col" style="float-right">
-            <form  asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">
-                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Cart</button>
-            </form>
+                <div class="row">
+                    <div class="col" style="float-right">
+                        <form>
+                            <button class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">Cart</button>
+                        </form>
 
-        </div>
+                    </div>
+                    <div class="col" style="float-right">
 
-        <div class="col" style="float-right">
+                        <form >
+                            <button  asp-controller="Users" asp-action="AccountHistory" asp-route-userId="@User.Id()" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">My Profile</button>
+                        </form>
 
-            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
-            </form>
-        </div>
-    </div> }
+                    </div>
+
+                    <div class="col" style="float-right">
+
+                        <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
+                        </form>
+                    </div>
+                </div> }
 
                 else
                 {
@@ -140,23 +147,29 @@
                         </a>
                     </li>
 
-                    @if (User.IsInRole("Administrator"))
-                    {
-        <li>
-            <a asp-area="Administration" asp-controller="Articles" asp-action="Add">
-                Add Articles
-            </a>
-        </li>
-}
+                    <li>
+                        <a asp-controller="AboutUs" asp-action="Index">
+                           About Us
+                        </a>
+                    </li>
 
                     @if (User.IsInRole("Administrator"))
                     {
-        <li>
-            <a asp-area="Administration" asp-controller="Games" asp-action="Add">
-                Add Games
-            </a>
-        </li>
-}
+                        <li>
+                            <a asp-area="Administration" asp-controller="Articles" asp-action="Add">
+                                Add Articles
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>
+                            <a asp-area="Administration" asp-controller="Games" asp-action="Add">
+                                Add Games
+                            </a>
+                        </li>
+                    }
 
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">

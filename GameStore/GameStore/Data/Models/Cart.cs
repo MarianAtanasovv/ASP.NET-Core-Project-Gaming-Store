@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GameStore.Data.Models
 {
    
-    public class CartItem
+    public class Cart
     {
         [Required]
         public string UserId { get; set; }

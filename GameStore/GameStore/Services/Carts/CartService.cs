@@ -66,7 +66,7 @@ namespace GameStore.Services.Carts
             }
             else
             {
-                var cartItem = new CartItem()
+                var cartItem = new Cart()
                 {
                     UserId = userId,
                     Quantity = 1,
