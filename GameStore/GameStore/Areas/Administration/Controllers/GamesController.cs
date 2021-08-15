@@ -92,7 +92,7 @@ namespace GameStore.Areas.Administration.Controllers
                 gameModel.GenreId,
                 gameModel.PlatformId);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("All", "Games", new { area = "" });
         }
        
         [Authorize]
