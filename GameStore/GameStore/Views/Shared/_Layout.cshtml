@@ -31,63 +31,76 @@
         Stripe.setPublishableKey("pk_test_51JLsO5KlfxRzROBJpb5y6e7A66iOj5wfuOUnJFDyTwB0Q9ewEYtacBxOIGgrdvXxrjm8yeQ34ofTqWXGUSyFYGY200zvrdJGSk");
     </script>
 
+    <script type="text/javascript">
+        setInterval("settime()", 1000);
+
+        function settime() {
+            var dateTime = new Date();
+            var hour = dateTime.getHours();
+            var minute = dateTime.getMinutes();
+            var second = dateTime.getSeconds();
+
+            if (minute < 10)
+                minute = "0" + minute;
+
+            if (second < 10)
+                second = "0" + second;
+
+            var time = "" + hour + ":" + minute + ":" + second;
+
+            document.getElementById("clock").value = time;
+        }
+    </script>
+
 
     <div class="nk-contacts-top">
         <div class="container">
             <div class="nk-contacts-left">
-                <ul class="nk-social-links">
-                    <li><a class="nk-social-rss" href="#"><span class="fa fa-rss"></span></a></li>
-                    <li><a class="nk-social-twitch" href="#"><span class="fab fa-twitch"></span></a></li>
-                    <li><a class="nk-social-steam" href="#"><span class="fab fa-steam"></span></a></li>
-                    <li><a class="nk-social-facebook" href="#"><span class="fab fa-facebook"></span></a></li>
-                    <li><a class="nk-social-google-plus" href="#"><span class="fab fa-google-plus"></span></a></li>
-                    <li><a class="nk-social-twitter" href="#" target="_blank"><span class="fab fa-twitter"></span></a></li>
-                    <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
-                </ul>
+                <input type="text" id="clock" style="background-color: transparent; color: white; border: 0; font-size:30px; width: 150px" />
             </div>
             <div class="nk-contacts-right">
+               
 
-              
                 @if (User.Identity.IsAuthenticated)
                 {
-                <div class="row">
-                    <div class="col" style="float-right">
-                        <form>
-                            <button class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">Cart</button>
-                        </form>
+                    <div class="row">
+                        <div class="col" style="float-right">
+                            <form>
+                                <button class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" asp-controller="Cart" asp-action="MyCart" asp-route-id="@User.Id()">Cart</button>
+                            </form>
 
-                    </div>
-                    <div class="col" style="float-right">
+                        </div>
+                        <div class="col" style="float-right">
 
-                        <form >
-                            <button  asp-controller="Users" asp-action="AccountHistory" asp-route-userId="@User.Id()" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">My Profile</button>
-                        </form>
+                            <form>
+                                <button asp-controller="Users" asp-action="AccountHistory" asp-route-userId="@User.Id()" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">My Profile</button>
+                            </form>
 
-                    </div>
+                        </div>
 
-                    <div class="col" style="float-right">
+                        <div class="col" style="float-right">
 
-                        <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
-                        </form>
-                    </div>
-                </div> }
+                            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Logout</button>
+                            </form>
+                        </div>
+                    </div> }
 
                 else
                 {
-    <div class="row">
-        <div class="col">
-            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
-                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
-            </form>
-        </div>
+                    <div class="row">
+                        <div class="col">
+                            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Login" method="get">
+                                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Login</button>
+                            </form>
+                        </div>
 
-        <div class="col">
-            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
-                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
-            </form>
-        </div>
-    </div>}
+                        <div class="col">
+                            <form class="nk-contacts-icons" asp-area="Identity" asp-page="/Account/Register" method="post">
+                                <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Register</button>
+                            </form>
+                        </div>
+                    </div>}
             </div>
         </div>
     </div>
@@ -149,7 +162,7 @@
 
                     <li>
                         <a asp-controller="AboutUs" asp-action="Index">
-                           About Us
+                            About Us
                         </a>
                     </li>
 

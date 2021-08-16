@@ -15,7 +15,7 @@ namespace GameStore.Models.Articles
         public int Id { get; set; }
 
         [Required]
-        [StringLength(ArticleTitleMaxLength, MinimumLength = ArticleTitleMinLength, ErrorMessage = "Article title should be between {1} and {2} characters long.")]
+        [StringLength(ArticleTitleMaxLength, MinimumLength = ArticleTitleMinLength, ErrorMessage = "Article title should be between {2} and {1} characters long.")]
         public string Title { get; set; }
 
         [Required]
@@ -24,7 +24,7 @@ namespace GameStore.Models.Articles
         public string ImageUrl { get; set; }
 
         [Required]
-        [StringLength(ArticleMaxLength, MinimumLength = ArticleMinLength, ErrorMessage = "Article should be between {1} and {2} characters long.")]
+        [StringLength(ArticleMaxLength, MinimumLength = ArticleMinLength, ErrorMessage = "Article should be between {2} and {1} characters long.")]
         public string Content { get; set; }
 
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;

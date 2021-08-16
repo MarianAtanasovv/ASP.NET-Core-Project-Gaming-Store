@@ -16,11 +16,11 @@ namespace GameStore.Models.Games
         public int Id { get; set; }
 
         [Required]
-        [StringLength(GameTitleMaxLength, MinimumLength = GameTitleMinLength, ErrorMessage = "Game title should be between {1} and {2} characters long.")]
+        [StringLength(GameTitleMaxLength, MinimumLength = GameTitleMinLength, ErrorMessage = "Game title should be between {2} and {1} characters long.")]
         public string Title { get;  set; }
 
         [Required]
-        [StringLength(GameDescriptionsMaxLenght, MinimumLength = GameDescriptionMinLength, ErrorMessage = "Game description should be between {1} and {2} characters long.")]
+        [StringLength(GameDescriptionsMaxLenght, MinimumLength = GameDescriptionMinLength, ErrorMessage = "Game description should be between {2} and {1} characters long.")]
         public string Description { get;  set; }
 
         [Required]
@@ -28,7 +28,7 @@ namespace GameStore.Models.Games
         public string Requirements { get;  set; }
 
         [Required]
-        [Range(0.0, GamePriceMaxValue, ErrorMessage = "Game price should be between {1} and {2}$.")]
+        [Range(0.0, GamePriceMaxValue, ErrorMessage = "Game price should be between {2} and {1}$.")]
         public decimal Price { get; set; }
 
         [Required]
