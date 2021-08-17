@@ -30,7 +30,9 @@ namespace GameStore.Services.Carts
         }
 
 
-        public bool AddProductToCart(int id, string userId)
+        public bool AddProductToCart(
+            int id,
+            string userId)
         {
             var user = data.Users
                 .Where(u => u.Id == userId)
@@ -77,7 +79,9 @@ namespace GameStore.Services.Carts
 
             return true;
         }
-        public bool Remove(int gameId, string userId)
+        public bool Remove(
+            int gameId,
+            string userId)
         {
             var cartItem = data.CartItems
                .Where(s => s.GameId == gameId && s.UserId == userId)
@@ -102,7 +106,9 @@ namespace GameStore.Services.Carts
             return true;
         }
 
-        public bool Add(int gameId, string userId)
+        public bool Add(
+            int gameId, 
+            string userId)
         {
             var cartItem = data.CartItems
                 .Where(s => s.GameId == gameId && s.UserId == userId)

@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameStore.Areas.Administration.Controllers
 {
+    using static AdminConstants;
 
-    [Authorize(Roles = "Administrator")]
-    [Area("Administration")]
+    [Authorize(Roles = AdministratorRoleName)]
+    [Area(AreaName)]
     public abstract class AdministrationController : Controller
     {
 

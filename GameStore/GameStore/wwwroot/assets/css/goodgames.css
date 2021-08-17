@@ -785,7 +785,7 @@ h6,
 
 .nk-decorated-h::before,
 .nk-decorated-h-2::before {
-    -webkit-box-flex: 20px;
+    -webkit-box-flex:inherit;
         -ms-flex: 20px;
             flex: 20px;
     width: 20px;

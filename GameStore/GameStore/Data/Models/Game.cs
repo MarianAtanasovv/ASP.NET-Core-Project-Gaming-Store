@@ -56,7 +56,5 @@ namespace GameStore.Models
 
         public IEnumerable<OrderGame> OrderGames { get; set; }
 
-
-
     }
 }

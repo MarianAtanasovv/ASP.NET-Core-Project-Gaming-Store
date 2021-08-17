@@ -32,6 +32,5 @@ namespace GameStore.Services.Articles
 
         IEnumerable<string> AllArticles();
 
-
     }
 }

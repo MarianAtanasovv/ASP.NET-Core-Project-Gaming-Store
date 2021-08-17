@@ -16,7 +16,8 @@ namespace GameStore.Services.Comments
         }
 
 
-        public int Add(int id,
+        public int Add(
+            int id,
             string content,
             string username,
             int rating,
@@ -43,7 +44,10 @@ namespace GameStore.Services.Comments
 
         }
 
-        public CommentQueryServiceModel All(int currentPage, int commentsPerPage, int articleId)
+        public CommentQueryServiceModel All(
+            int currentPage, 
+            int commentsPerPage, 
+            int articleId)
         {
             var commentsQuery = this.data.Comments.AsQueryable().Where(x => x.ArticleId == articleId);
 

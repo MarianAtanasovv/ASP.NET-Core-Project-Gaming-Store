@@ -78,7 +78,8 @@ namespace GameStore.Services.Games
             return details;
         }
 
-        public int Add(int id,
+        public int Add(
+            int id,
             string title,
             string description,
             string requirements,
@@ -120,7 +121,8 @@ namespace GameStore.Services.Games
             return game.Id;
         }
 
-        public bool Edit(int id,
+        public bool Edit(
+            int id,
             string title,
             string description,
             string requirements,

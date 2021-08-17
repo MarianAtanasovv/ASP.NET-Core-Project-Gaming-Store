@@ -51,6 +51,7 @@ namespace GameStore
             modelBuilder.Entity<Cart>()
                .HasKey(x => new { x.GameId, x.UserId });
 
+
         }
 
     }

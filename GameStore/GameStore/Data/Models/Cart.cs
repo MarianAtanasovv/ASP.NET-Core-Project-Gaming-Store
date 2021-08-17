@@ -17,5 +17,7 @@ namespace GameStore.Data.Models
         public virtual Game Game { get; set; }
 
         public string GameCoverImage { get; set; }
+
+        public int TimesBought { get; set; }
     }
 }

@@ -14,7 +14,8 @@ namespace GameStore.Services.Articles
             this.data = data;
         }
 
-        public int Add(int id,
+        public int Add(
+            int id,
             string title,
             string content,
             string imageUrl,
@@ -89,7 +90,8 @@ namespace GameStore.Services.Articles
             return article.Id;
         }
 
-        public bool Edit(int id,
+        public bool Edit(
+            int id,
             string title,
             string content,
             string imageUrl,
@@ -120,7 +122,7 @@ namespace GameStore.Services.Articles
                Id = g.Id,
                Title = g.Title,
                Content = g.Content,
-               ShortDescription = g.Content.Substring(0, 200),
+               ShortDescription = g.Content.Substring(0, 400),
                Rating = g.Rating,
                CreatedOn = g.CreatedOn,
                ImageUrl = g.ImageUrl,

@@ -22,5 +22,6 @@
         public string Genre { get; set; }
 
         public string Platform { get; set; }
+
     }
 }
