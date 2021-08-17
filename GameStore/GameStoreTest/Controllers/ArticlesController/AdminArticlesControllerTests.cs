@@ -93,12 +93,12 @@ namespace GameStoreTest.Test.Controllers
 
 
               }))
-              .ShouldReturn()
-                 .Redirect(result => result
-                    .To<HomeController>(c => c.Index()));
+               .ShouldReturn()
+                  .Redirect(result => result
+                      .To<ArticlesController>(c => c.All(With.Any<AllArticlesQueryModel>())));
 
 
-       
+
         [Theory]
         [InlineData(5)]
         public void EditArticleShouldBeOnlyForAuthorizedAndReturnView(int id)

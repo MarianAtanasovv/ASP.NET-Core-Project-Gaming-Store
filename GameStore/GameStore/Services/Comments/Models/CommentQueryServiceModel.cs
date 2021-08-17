@@ -1,12 +1,9 @@
 ﻿using GameStore.Models.Comments;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Services.Comments
 {
-   
+
     public class CommentQueryServiceModel
     {
         public int CurrentPage { get; set; }

@@ -2,10 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Controllers
 {
@@ -13,8 +10,6 @@ namespace GameStore.Controllers
     {
        
         private readonly ICartService cart;
-
-        
 
         public CheckOutController(ICartService cart)
         {

@@ -20,28 +20,34 @@
                     <div class="row">
                         @foreach (var article in Model.Articles)
                         {
-            <div class="col-md-4">
-                <div class="nk-blog-post">
-                    <a class="nk-post-img">
-                        <img src="@article.ImageUrl" />
-                        
-                    </a>
-                    <div class="nk-gap"></div>
-                    <h2 class="nk-post-title h4"><a>@article.Title</a></h2>
-                    <div class="nk-post-by">
-                        
-                        <div>
-                            @article.CreatedOn
+                        <div class="row-md-4" style="margin-bottom: 20px; border: 1px solid black; border-color:indigo">
+                            <div class="nk-blog-post">
+
+                                <div class="nk-gap"></div>
+                                <h2 class="nk-post-title h4"><a>@article.Title</a></h2>
+
+                                <div class="nk-gap"></div>
+                                <div class="">
+                                    <a class="col-md-2" style="float:left;">
+                                        <img src="@article.ImageUrl" width="180"
+                                             height="200" />
+
+                                    </a>
+                                    <p style="margin-left:20px">@article.ShortDescription...</p>
+
+                                </div>
+
+
+
+
+                                <div class="nk-gap"></div>
+
+                            </div>
+                            <div style="float-left">
+                                @article.CreatedOn
+                            </div>
+                            <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" asp-route-information="@article.GetInformationArticle()" style="float:right;" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
                         </div>
-                    </div>
-                    <div class="nk-gap"></div>
-                    <div class="nk-post-text">
-                        <p>@article.ShortDescription...</p>
-                    </div>
-                    <div class="nk-gap"></div>
-                    <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" asp-route-information="@article.GetInformationArticle()" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                </div>
-            </div>
             }
                     </div>
                 </div>

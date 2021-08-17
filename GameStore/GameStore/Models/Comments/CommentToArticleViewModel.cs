@@ -1,6 +1,6 @@
 ﻿namespace GameStore.Controllers
 {
-   
+
     internal class CommentToArticleViewModel
     {
         

@@ -1,14 +1,11 @@
 ﻿using GameStore.Services.Articles;
 using GameStore.Services.Articles.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Models.Articles
 {
-   
+
     public class AllArticlesQueryModel : IArticleModel
     {
         public const int ArticlesPerPage = 8;

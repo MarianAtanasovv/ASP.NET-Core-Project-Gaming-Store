@@ -2,10 +2,8 @@
 using GameStore.Models.Games;
 using GameStore.Services.Games;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Controllers
 {
@@ -69,8 +67,6 @@ namespace GameStore.Controllers
                 query.TotalGames = totalGames;
                 query.Games = games;
                 query.Titles = gameTitles;
-
-
 
             return View(query);
         }

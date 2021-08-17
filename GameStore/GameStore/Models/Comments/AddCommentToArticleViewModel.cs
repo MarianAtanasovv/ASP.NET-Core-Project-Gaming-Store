@@ -1,14 +1,10 @@
 ﻿using GameStore.Data;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Models.Comments
 {
     using static DataConstants;
-   
+
     public class AddCommentToArticleViewModel
     {
         

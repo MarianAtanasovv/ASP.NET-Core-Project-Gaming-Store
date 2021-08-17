@@ -1,12 +1,9 @@
 ﻿using GameStore.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Models.Articles
 {
-    
+
     public class ArticleListingViewModel
     {
         public int Id { get; set; }

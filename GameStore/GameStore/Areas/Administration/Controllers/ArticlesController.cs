@@ -43,8 +43,6 @@ namespace GameStore.Areas.Administration.Controllers
             return RedirectToAction("All", "Articles", new { area = "" });
         }
 
-   
-
         [Authorize]
         public IActionResult Delete(int id)
         {
@@ -53,7 +51,7 @@ namespace GameStore.Areas.Administration.Controllers
 
             if (article == 0)
             {
-                return View("~/Views/Errors/404.cshtml");
+                return NotFound();
             }
 
             return RedirectToAction("Index", "Home");
@@ -67,7 +65,7 @@ namespace GameStore.Areas.Administration.Controllers
 
             if (article == null)
             {
-                return View("~/Views/Errors/404.cshtml");
+                return NotFound();
             }
 
             return View(new EditArticleFormModel

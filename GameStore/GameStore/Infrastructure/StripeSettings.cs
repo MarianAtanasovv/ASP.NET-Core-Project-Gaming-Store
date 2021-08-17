@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GameStore.Infrastructure
+﻿namespace GameStore.Infrastructure
 {
-    
+
     public class StripeSettings
     {
         public string SecretKey { get; set; }

@@ -85,9 +85,11 @@ namespace GameStore
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error/Error");
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithRedirects("/Error/Error{0}");
 
             app
                 .UseHttpsRedirection()

@@ -1,13 +1,11 @@
-﻿using GameStore.Models;
-using Microsoft.EntityFrameworkCore;
-using GameStore.Data.Models;
-using GameStore.Data;
+﻿using GameStore.Data.Models;
+using GameStore.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameStore
 {
-    
+
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         

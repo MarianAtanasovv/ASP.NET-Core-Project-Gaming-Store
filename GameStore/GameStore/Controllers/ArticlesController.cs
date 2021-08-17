@@ -1,13 +1,7 @@
-﻿using GameStore.Data.Models;
-using GameStore.Infrastructure;
+﻿using GameStore.Infrastructure;
 using GameStore.Models.Articles;
 using GameStore.Services.Articles;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Controllers
 {
@@ -20,19 +14,20 @@ namespace GameStore.Controllers
             this.articles = article;
         }
 
-       
+      
         public IActionResult Details(int id, string information)
         {
             var details = this.articles.Details(id);
 
             if(details == null)
             {
-                return View("~/Views/Errors/404.cshtml");
+                return NotFound();
             }
 
             if (information != details.GetInformationArticle())
             {
-                return View("~/Views/Errors/401.cshtml");
+                return Unauthorized();
+
             }
 
 
@@ -48,7 +43,7 @@ namespace GameStore.Controllers
             });
         }
 
-
+        
         public IActionResult All([FromQuery] AllArticlesQueryModel query)
         {
             var articlesQueryResult = this.articles.All(

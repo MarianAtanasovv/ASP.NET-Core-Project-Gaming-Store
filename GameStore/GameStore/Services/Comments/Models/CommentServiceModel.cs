@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GameStore.Services.Comments
+﻿namespace GameStore.Services.Comments
 {
-   
+
     public class CommentServiceModel
     {
         public int Id { get; set; }

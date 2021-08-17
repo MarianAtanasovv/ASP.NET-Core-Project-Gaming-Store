@@ -1,8 +1,6 @@
 ﻿using GameStore.Data;
 using GameStore.Services.Carts;
 using MlkPwgen;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;

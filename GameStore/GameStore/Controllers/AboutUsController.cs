@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-
 namespace GameStore.Controllers
 {
     public class AboutUsController : Controller

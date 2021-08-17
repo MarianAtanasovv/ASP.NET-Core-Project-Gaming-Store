@@ -1,12 +1,6 @@
-﻿using GameStore.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GameStore.Services.Carts
+﻿namespace GameStore.Services.Carts
 {
-   
+
     public class CartGameViewServiceModel
     {
         public int GameId { get; set; }

@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using GameStore;
-using GameStore.Models;
-using GameStore.Infrastructure;
-using GameStore.Models.Games;
+﻿using GameStore.Models.Games;
 using GameStore.Services.Games;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GameStore.Areas.Administration.Controllers
 {
@@ -103,7 +94,7 @@ namespace GameStore.Areas.Administration.Controllers
 
             if (game == 0)
             {
-                return View("~/Views/Errors/404.cshtml");
+                return NotFound();
             }
 
             return RedirectToAction(nameof(All));
@@ -118,7 +109,7 @@ namespace GameStore.Areas.Administration.Controllers
 
             if (game == null)
             {
-                return View("~/Views/Errors/404.cshtml");
+                return NotFound();
             }
 
             return View(new EditGameFormModel
@@ -161,10 +152,5 @@ namespace GameStore.Areas.Administration.Controllers
             return RedirectToAction(nameof(All));
 
         }
-
-        //private bool GameExists(int id)
-        //{
-        //    return data.Games.Any(e => e.Id == id);
-        //}
     }
 }

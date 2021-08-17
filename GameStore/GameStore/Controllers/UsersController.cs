@@ -14,7 +14,6 @@ namespace GameStore.Controllers
             this.user = user;
         }
 
-
         [Route("Users/AccountHistory/{userId}")]
         public IActionResult AccountHistory(string userId)
         {

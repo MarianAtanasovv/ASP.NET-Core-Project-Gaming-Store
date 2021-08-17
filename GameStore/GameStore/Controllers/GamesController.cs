@@ -1,13 +1,8 @@
-﻿using GameStore.Data.Models;
-using GameStore.Infrastructure;
-using GameStore.Models;
+﻿using GameStore.Infrastructure;
 using GameStore.Models.Games;
 using GameStore.Services.Games;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace GameStore.Controllers
 {
@@ -47,14 +42,14 @@ namespace GameStore.Controllers
 
             var game = this.games.Details(id);
 
-            if(game == null)
+            if (game == null)
             {
-                return View("~/Views/Errors/404.cshtml");
+                return NotFound();
             }
 
             if (information != game.GetInformationGame())
             {
-                return View("~/Views/Errors/401.cshtml");
+                return Unauthorized();
             }
 
             return View(new GameDetailsViewModel
@@ -72,8 +67,5 @@ namespace GameStore.Controllers
             });
 
         }
-
-      
-
     }
 }

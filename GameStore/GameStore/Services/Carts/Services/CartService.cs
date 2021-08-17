@@ -1,9 +1,6 @@
 ﻿using GameStore.Data.Models;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Services.Carts
 {
@@ -17,7 +14,6 @@ namespace GameStore.Services.Carts
           
         }
 
-        
         public IEnumerable<CartGameViewServiceModel> UsersCart(string userId)
         {
             return this.data.CartItems.Where(x => x.UserId == userId).Select(x => new CartGameViewServiceModel

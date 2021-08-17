@@ -1,12 +1,6 @@
 ﻿using GameStore.Infrastructure;
-using GameStore.Services.Carts;
 using GameStore.Services.Orders;
 using Microsoft.AspNetCore.Mvc;
-using MlkPwgen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace GameStore.Controllers
@@ -25,7 +19,7 @@ namespace GameStore.Controllers
         {
             if (userId != User.Id())
             {
-                return BadRequest();
+                return Unauthorized();
             }
 
             this.order.CreateOrder(userId);
@@ -36,7 +30,7 @@ namespace GameStore.Controllers
         {
             if (userId != User.Id())
             {
-                return BadRequest();
+                return Unauthorized();
             }
 
             this.order.FinishOrder(userId);
@@ -44,10 +38,9 @@ namespace GameStore.Controllers
 
         }
 
-
        public IActionResult ThankYou()
-        {
+       {
             return View();
-        }
+       }
     }
 }

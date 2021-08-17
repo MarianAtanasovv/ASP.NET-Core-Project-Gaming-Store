@@ -1,14 +1,9 @@
-﻿
-using GameStore.Data.Models;
-using GameStore.Infrastructure;
+﻿using GameStore.Infrastructure;
 using GameStore.Models.Comments;
 using GameStore.Services.Comments;
 using GameStore.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
-using Microsoft.AspNetCore.Identity;
 
 namespace GameStore.Controllers
 {

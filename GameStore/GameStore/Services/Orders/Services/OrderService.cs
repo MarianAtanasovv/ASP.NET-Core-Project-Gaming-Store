@@ -1,19 +1,10 @@
 ﻿using GameStore.Data;
 using GameStore.Data.Models;
-using GameStore.Services.Carts;
-using MlkPwgen;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.Services.Orders
 {
-    using static DataConstants;
-
     public class OrderService : IOrderService
     {
         private readonly ApplicationDbContext data;

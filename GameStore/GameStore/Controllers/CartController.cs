@@ -2,11 +2,6 @@
 using GameStore.Services.Carts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 
 namespace GameStore.Controllers
 {
@@ -49,7 +44,7 @@ namespace GameStore.Controllers
         {
             if (userId != User.Id())
             {
-                return BadRequest();
+                return Unauthorized();
             }
 
             cartService.Remove(gameId, userId);
@@ -62,7 +57,7 @@ namespace GameStore.Controllers
         {
             if (userId != User.Id())
             {
-                return BadRequest();
+                return Unauthorized();
             }
 
             cartService.Add(gameId, userId);

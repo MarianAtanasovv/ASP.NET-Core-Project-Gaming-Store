@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.Data.Models
 {
-    
+
     public class Genre
     {
         public Genre()

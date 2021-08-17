@@ -1,17 +1,13 @@
 ﻿using GameStore.Data;
+using GameStore.Services.Games;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using GameStore.Models.Games;
-using GameStore.Data.Models;
-using GameStore.Services.Games;
 
 namespace GameStore.Models.Games
 {
     using static DataConstants;
-   
+
     public class EditGameFormModel
     {
         public int Id { get; set; }

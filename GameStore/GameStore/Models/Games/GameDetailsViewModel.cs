@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GameStore.Models.Games
+﻿namespace GameStore.Models.Games
 {
-   
+
     public class GameDetailsViewModel
     {
       
@@ -27,9 +22,5 @@ namespace GameStore.Models.Games
         public string Genre { get; set; }
 
         public string Platform { get; set; }
-
-        //public int PlatformId { get; set; }
-
-        //public int GenreId { get; set; }
     }
 }

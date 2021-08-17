@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace GameStore.Models
 {
     using static DataConstants;
-   
+
     public class Game
     {
         public Game()
@@ -16,7 +16,6 @@ namespace GameStore.Models
 
         [Key]
         public int Id { get; set; }
-
 
         [Required]
         public string Guide { get; set; }
