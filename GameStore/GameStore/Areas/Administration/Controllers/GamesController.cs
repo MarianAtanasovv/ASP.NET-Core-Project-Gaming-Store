@@ -1,4 +1,5 @@
-﻿using GameStore.Models.Games;
+﻿using GameStore.Infrastructure;
+using GameStore.Models.Games;
 using GameStore.Services.Games;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -149,7 +150,38 @@ namespace GameStore.Areas.Administration.Controllers
                game.TrailerUrl);
 
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("All", "Games", new { area = "" });
+
+        }
+        [Authorize]
+        public IActionResult Details(int id, string information)
+        {
+
+            var game = this.games.Details(id);
+
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            if (information != game.GetInformationGame())
+            {
+                return Unauthorized();
+            }
+
+            return View(new GameDetailsViewModel
+            {
+                Id = game.Id,
+                Title = game.Title,
+                Description = game.Description,
+                Requirements = game.Requirements,
+                Guide = game.Guide,
+                ImageUrl = game.ImageUrl,
+                TrailerUrl = game.TrailerUrl,
+                Platform = game.Platform,
+                Genre = game.Genre,
+                Price = game.Price
+            });
 
         }
     }

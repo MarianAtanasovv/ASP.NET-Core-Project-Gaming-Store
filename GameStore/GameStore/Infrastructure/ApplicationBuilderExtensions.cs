@@ -100,7 +100,7 @@ namespace GameStore.Infrastructure
 
                     await roleManager.CreateAsync(role);
 
-                    const string adminUsername = "marian345";
+                    const string adminUsername = "testAdmin";
                     const string adminEmail = "test123@abv.bg";
                     const string adminPassword = "test123";
                     

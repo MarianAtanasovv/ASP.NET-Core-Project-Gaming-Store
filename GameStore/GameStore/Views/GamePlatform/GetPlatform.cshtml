@@ -11,25 +11,34 @@
     <partial name="_SearchAndSortGamePartial" model="@Model"></partial>
 
     <div class="row">
-        @foreach (var game in Model.Games)
+        @if (Model.Games.Count() == 0)
         {
-    <div class="card mr-5 mb-10" style="width: 150px; height:200px;">
-        <a asp-action="Details" asp-route-id="@game.Id" class="nk-post-img">
-            <img src="@game.ImageUrl">
-
-            <span class="nk-post-categories">
-                <span class="bg-main-1">@game.Genre</span>
-            </span>
-        </a>
-
-        <div class="col-es text-center h3">
-            <h2 class="nk-post-title" style="color:black"><a>@game.Title</a></h2>
-            <div class="nk-post-date" style="color:green">
-                <span class="nk-product-price"></span>@game.Price $
+            <div align="center" class="container" style="height: 300px; width:300px">
+                <h3 class="text-center">Sorry, no games were found!</h3>
+                <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" role="button" asp-controller="Games" asp-action="All">Games</a>
             </div>
+
+        }
+
+        else
+        {
+            @foreach (var game in Model.Games)
+            {
+                <div class="mr-5 mb-10" style="width: 150px; height:400px; margin-right: 15px">
+                    <a asp-action="Details" asp-route-id="@game.Id" asp-route-information="@game.GetInformationGame()" class="nk-post-img">
+                        <img src="@game.ImageUrl" style="width: 150px; height:400px;">
+
+                        <span class="nk-post-categories">
+                            <span class="bg-main-1">@game.Genre</span>
+                        </span>
+                    </a>
+                    <div>
+                        <h4 class="text-center">@game.Title</h4>
+                    </div>
+                </div>
+            }
+        }
         </div>
-    </div>}
-    </div>
     
 
 </body>

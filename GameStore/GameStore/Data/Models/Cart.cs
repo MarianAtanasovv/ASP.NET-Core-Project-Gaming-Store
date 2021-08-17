@@ -18,6 +18,6 @@ namespace GameStore.Data.Models
 
         public string GameCoverImage { get; set; }
 
-        public int TimesBought { get; set; }
+        
     }
 }

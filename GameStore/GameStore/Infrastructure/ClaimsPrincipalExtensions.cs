@@ -1,7 +1,9 @@
-﻿using System.Security.Claims;
+﻿using GameStore.Areas.Administration;
+using System.Security.Claims;
 
 namespace GameStore.Infrastructure
 {
+    using static AdminConstants;
 
     public static class ClaimsPrincipalExtensions
     {
@@ -12,7 +14,7 @@ namespace GameStore.Infrastructure
           
         public static bool IsAdmin(this ClaimsPrincipal user)
         {
-            return user.IsInRole("Administrator");
+            return user.IsInRole(AdministratorRoleName);
         }
            
     }

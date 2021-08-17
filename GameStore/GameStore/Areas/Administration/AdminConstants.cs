@@ -7,7 +7,7 @@ namespace GameStore.Areas.Administration
 {
     public class AdminConstants
     {
-         public const string AreaName = "Admininistration";
+         public const string AreaName = "Administration";
          public const string AdministratorRoleName = "Administrator";
         
     }

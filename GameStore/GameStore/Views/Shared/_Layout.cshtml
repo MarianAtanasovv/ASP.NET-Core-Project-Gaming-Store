@@ -118,7 +118,7 @@
 
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
                     <li class=" nk-drop-item">
-                        <a href="Platforms.html">
+                        <a >
                             Platforms
 
                         </a><ul class="dropdown">
@@ -155,7 +155,7 @@
 
 
                     <li>
-                        <a asp-controller="Articles" asp-action="All">
+                        <a asp-controller="Articles" asp-action="All" asp-area="">
                             All Articles
                         </a>
                     </li>
@@ -227,7 +227,7 @@
     <img class="nk-page-background-top" src="~/assets/images/bg-top.png" alt="">
     <img class="nk-page-background-bottom" src="~/assets/images/bg-bottom.png" alt="">
     @RenderSection("scripts", required: false)
-    <footer class="nk-footer" style="position: fixed; bottom: 0">
+    <footer class="nk-footer" >
 
         <div class="container">
             <div class="float-left" style="margin-top: 35px">
