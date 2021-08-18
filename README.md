@@ -31,3 +31,6 @@ Credentials:
 adminUsername = "testAdmin"\
 adminEmail = "test123@abv.bg"\
 adminPassword = "test123"
+
+Deployed on Azure: 
+https://gaming-hub.azurewebsites.net/Games/All
