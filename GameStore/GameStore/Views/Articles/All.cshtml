@@ -13,6 +13,15 @@
 <body>
 
     <partial name="_SearchAndSortArticlePartial" model="@Model"></partial>
+    @if (Model.Articles.Count() == 0)
+    {
+        <div align="center" class="container" style="height: 300px; width:300px">
+            <h3 class="text-center">Sorry, no articles available at the moment!</h3>
+
+        </div>
+
+    }
+
 
     <div class="container">
         <div class="row vertical-gap">
@@ -21,32 +30,32 @@
                     <div class="row">
                         @foreach (var article in Model.Articles)
                         {
-                        <div class="row-md-4" style="margin-bottom: 20px; border: 1px solid black; border-color:indigo">
-                            <div class="nk-blog-post">
+                            <div class="row-md-4" style="margin-bottom: 20px; border: 1px solid black; border-color:indigo">
+                                <div class="nk-blog-post">
 
-                                <div class="nk-gap"></div>
-                                <h2 class="nk-post-title h4"><a>@article.Title</a></h2>
+                                    <div class="nk-gap"></div>
+                                    <h2 class="nk-post-title h4"><a>@article.Title</a></h2>
 
-                                <div class="nk-gap"></div>
-                                <div class="">
-                                    <a class="col-md-2" style="float:left;">
-                                        <img src="@article.ImageUrl" width="180"
-                                             height="200" />
+                                    <div class="nk-gap"></div>
+                                    <div class="">
+                                        <a class="col-md-2" style="float:left;">
+                                            <img src="@article.ImageUrl" width="180"
+                                                 height="200" />
 
-                                    </a>
-                                    <p style="margin-left:20px">@article.ShortDescription...</p>
+                                        </a>
+                                        <p style="margin-left:20px">@article.ShortDescription...</p>
+
+                                    </div>
+
+                                    <div class="nk-gap"></div>
 
                                 </div>
-
-                                <div class="nk-gap"></div>
-
+                                <div style="float-left">
+                                    @article.CreatedOn
+                                </div>
+                                <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" asp-route-information="@article.GetInformationArticle()" style="float:right;" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
                             </div>
-                            <div style="float-left">
-                                @article.CreatedOn
-                            </div>
-                            <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" asp-route-information="@article.GetInformationArticle()" style="float:right;" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                        </div>
-            }
+                        }
                     </div>
                 </div>
             </div>
@@ -74,7 +83,7 @@
         </div>
 
         @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-                                                      !Model.Articles.Any(); }
+                                                       !Model.Articles.Any(); }
 
         <div class="col-md-6">
             <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-main-1 float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"

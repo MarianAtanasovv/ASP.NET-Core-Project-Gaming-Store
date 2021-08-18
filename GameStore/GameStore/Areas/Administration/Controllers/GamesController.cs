@@ -98,7 +98,8 @@ namespace GameStore.Areas.Administration.Controllers
                 return NotFound();
             }
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("All", "Games", new { area = "" });
+
         }
 
         [HttpGet]
