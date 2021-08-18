@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.Data.Models
 {
-    
+   
+
     public class OrderGame
     {
         [Required]
@@ -16,6 +17,7 @@ namespace GameStore.Data.Models
 
         public Game Game { get; set; }
 
+        [Required]
         public int Quantity { get; set; }
 
         public User User { get; set; }

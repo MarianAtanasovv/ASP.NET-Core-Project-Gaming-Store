@@ -8,9 +8,9 @@ namespace GameStore.Services.Comments
 {
     public class CommentService : ICommentService
     {
-        private readonly ApplicationDbContext data;
+        private readonly GameShopDbContext data;
 
-        public CommentService(ApplicationDbContext data)
+        public CommentService(GameShopDbContext data)
         {
             this.data = data;
         }

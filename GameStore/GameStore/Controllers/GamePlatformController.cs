@@ -9,9 +9,9 @@ namespace GameStore.Controllers
 {
     public class GamePlatformController : Controller
     {
-        private readonly ApplicationDbContext data;
+        private readonly GameShopDbContext data;
 
-        public GamePlatformController(ApplicationDbContext data)
+        public GamePlatformController(GameShopDbContext data)
         {
             this.data = data;
         }

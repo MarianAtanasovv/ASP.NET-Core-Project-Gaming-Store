@@ -3400,7 +3400,7 @@ img.rounded {
     white-space: initial;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 100px) {
     .nk-navbar.nk-navbar-top .nk-nav-logo {
         display: none;
     }
@@ -3742,7 +3742,7 @@ img.rounded {
 
 .nk-navbar-side .nk-nav-logo {
     display: block;
-    width: 100%;
+    width: 50%;
     padding: 20px 25px;
 }
 

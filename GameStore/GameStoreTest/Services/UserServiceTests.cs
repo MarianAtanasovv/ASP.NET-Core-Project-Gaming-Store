@@ -1,4 +1,5 @@
 ﻿using GameStore.Data.Models;
+using GameStore.Models.CustomerSupportTicket;
 using GameStore.Models.Users;
 using GameStore.Services.Users;
 using GameStoreTest.Data;
@@ -59,6 +60,37 @@ namespace GameStoreTest.Services
             var userService = new UserService(data);
             var userServiceData = userService.UsersPurchases(userId);
             Assert.Equal(order.UserId, userId);
+        }
+
+        [Theory]
+        [InlineData("5")]
+        public void MyTicketsAnswers(string userId)
+        {
+            var data = DatabaseMock.Instance;
+            var tickets = data.CustomerSupportTicketAnswers.Where(x => x.UserId == userId).Select(x => new AllCustomerSupportTicketAnswersViewModel
+            {
+                Content = x.Content,
+                Sender = x.Sender,
+                SentOn = x.SentOn
+            }).ToList();
+
+            var ticket = new CustomerSupportTicketAnswer
+            {
+                Id = 1,
+                Content = "testtestetestetetestetestestetest",
+                SentOn = "5/6/2005 09:34:42 PM",
+                UserId = "5"
+            };
+
+            data.CustomerSupportTicketAnswers.Add(ticket);
+            data.SaveChanges();
+
+            Assert.Equal(data.CustomerSupportTicketAnswers.Count(), 1);
+
+            var customerService = new UserService(data);
+            var customerServiceData = customerService.MyTicketsAnswers(userId);
+
+
         }
 
     }

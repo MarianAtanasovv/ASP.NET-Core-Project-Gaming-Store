@@ -25,7 +25,7 @@
                 @foreach (var genre in Model.Genres)
                 {
                     <option value="@genre.Id">@genre.Name</option>
-}
+                }
             </select>
         </div>
         <div class="form-group">
@@ -41,13 +41,14 @@
         <div class="d-flex justify-content-start">
             <label asp-for="Description" class="h4 mb-2"></label>
         </div>
-        <input asp-for="Description" type="text" class="form-control" placeholder="This game is about..." style="height:150px" />
+        <textarea style="height:120px;" asp-for="Description" type="text" class="form-control" placeholder="This game is about.."> </textarea>
+
         <span asp-validation-for="Description" class="small text-danger"></span>
         <div class="form-group">
             <div class="d-flex justify-content-start">
                 <label asp-for="Requirements" class="h4 mb-2"></label>
             </div>
-            <input asp-for="Requirements" type="text" class="form-control" placeholder="CPU: Intel Core 2 Quad CPU Q6600..." style="height:50px"/>
+            <input asp-for="Requirements" type="text" class="form-control" placeholder="CPU: Intel Core 2 Quad CPU Q6600..." style="height:50px" />
         </div>
         <span asp-validation-for="Requirements" class="small text-danger"></span>
         <div class="form-group">
@@ -61,7 +62,8 @@
             <div class="d-flex justify-content-start">
                 <label asp-for="Guide" class="h4 mb-2"></label>
             </div>
-            <input asp-for="Guide" type="text" class="form-control" placeholder="Starting tips, walkthrough" style="height:150px"/>
+            <textarea style="height:120px" asp-for="Guide" type="text" class="form-control" placeholder="Starting tips..."> </textarea>
+
         </div>
         <span asp-validation-for="Guide" class="small text-danger"></span>
         <div class="form-group">

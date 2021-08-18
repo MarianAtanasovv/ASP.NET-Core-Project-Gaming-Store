@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace GameStore.Data.Models
 {
    
+
     public class User : IdentityUser
     {
         public User()
@@ -14,6 +15,8 @@ namespace GameStore.Data.Models
         public string UserId { get; set; }
 
         public IEnumerable<OrderGame> OrderedGames{ get; set; }
+
+        
 
     }
 }

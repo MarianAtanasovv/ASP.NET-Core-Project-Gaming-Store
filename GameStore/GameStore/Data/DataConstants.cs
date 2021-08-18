@@ -1,5 +1,6 @@
 ﻿namespace GameStore.Data
 {
+   
 
     public class DataConstants
     {
@@ -40,10 +41,8 @@
         public const string EmailPasswordCredential = "siniteole98";
         public const string EmailHost = "smtp.gmail.com";
 
-
-
-
-
+        public const int CustomerSupportTicketContentMaxLength = 1000;
+        public const int CustomerSupportTicketContentMinLength = 20;
 
     }
 }

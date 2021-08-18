@@ -5,6 +5,7 @@ using GameStore.Infrastructure;
 using GameStore.Services.Articles;
 using GameStore.Services.Carts;
 using GameStore.Services.Comments;
+using GameStore.Services.CustomerSupport;
 using GameStore.Services.Emails;
 using GameStore.Services.Games;
 using GameStore.Services.Orders;
@@ -35,7 +36,7 @@ namespace GameStore
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddDbContext<ApplicationDbContext>(options => options
+                .AddDbContext<GameShopDbContext>(options => options
                     .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -49,7 +50,7 @@ namespace GameStore
                     options.Password.RequireUppercase = false;
                 })
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<GameShopDbContext>();
 
 
             services.AddControllersWithViews(options =>
@@ -64,6 +65,7 @@ namespace GameStore
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrderService, Services.Orders.OrderService>();
             services.AddTransient<IEmailSenderService, EmailSenderService>();
+            services.AddTransient<ICustomerSupportService, CustomerSupportService>();
 
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 

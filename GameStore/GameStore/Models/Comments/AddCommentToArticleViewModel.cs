@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace GameStore.Models.Comments
 {
     using static DataConstants;
+   
 
     public class AddCommentToArticleViewModel
     {

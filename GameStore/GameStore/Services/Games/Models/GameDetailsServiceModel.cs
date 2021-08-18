@@ -2,6 +2,7 @@
 
 namespace GameStore.Services.Games
 {
+   
 
     public class GameDetailsServiceModel : IGameModel
     {

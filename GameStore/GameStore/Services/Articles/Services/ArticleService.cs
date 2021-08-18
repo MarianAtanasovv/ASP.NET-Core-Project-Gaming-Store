@@ -8,8 +8,8 @@ namespace GameStore.Services.Articles
     public class ArticleService : IArticleService
     {
 
-        private readonly ApplicationDbContext data;
-        public ArticleService(ApplicationDbContext data)
+        private readonly GameShopDbContext data;
+        public ArticleService(GameShopDbContext data)
         {
             this.data = data;
         }

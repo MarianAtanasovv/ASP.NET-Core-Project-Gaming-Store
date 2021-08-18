@@ -20,7 +20,8 @@
         <div class="d-flex justify-content-start">
             <label asp-for="Content" class="h4 mb-2"></label>
         </div>
-        <input asp-for="Content" type="text" class="form-control" placeholder="This article is about..." style="height:120px"/>
+        <textarea style="height:120px;" asp-for="Content" type="text" class="form-control" placeholder="This article is about..."> </textarea>
+
         <span asp-validation-for="Content" class="small text-danger"></span>
 
 

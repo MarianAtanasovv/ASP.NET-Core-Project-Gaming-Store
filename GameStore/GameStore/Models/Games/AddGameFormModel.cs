@@ -7,6 +7,8 @@ using System.ComponentModel.DataAnnotations;
 namespace GameStore.Models.Games
 {
     using static DataConstants;
+   
+
 
     public class AddGameFormModel
     {

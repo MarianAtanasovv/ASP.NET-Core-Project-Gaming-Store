@@ -4,11 +4,12 @@ using System.Linq;
 
 namespace GameStore.Services.Carts
 {
+
     public class CartService : ICartService
     {
-        private readonly ApplicationDbContext data;
+        private readonly GameShopDbContext data;
 
-        public CartService(ApplicationDbContext data)
+        public CartService(GameShopDbContext data)
         {
             this.data = data;
           

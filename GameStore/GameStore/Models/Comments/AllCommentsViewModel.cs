@@ -1,5 +1,7 @@
 ﻿namespace GameStore.Models.Comments
 {
+   
+
     public class AllCommentsViewModel
     {
         public int Id { get; set; }

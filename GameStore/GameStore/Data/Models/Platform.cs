@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.Data.Models
 {
+   
 
     public class Platform
     {

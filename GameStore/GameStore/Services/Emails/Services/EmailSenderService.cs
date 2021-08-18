@@ -13,10 +13,10 @@ namespace GameStore.Services.Emails
 
     public class EmailSenderService : IEmailSenderService
     {
-        private readonly ApplicationDbContext data;
+        private readonly GameShopDbContext data;
         private readonly ICartService cart;
 
-        public EmailSenderService(ApplicationDbContext data, ICartService cart)
+        public EmailSenderService(GameShopDbContext data, ICartService cart)
         {
             this.data = data;
             this.cart = cart;

@@ -1,0 +1,58 @@
+﻿@model List<AllCustomerSupportTicketViewModel>
+
+@{
+    ViewData["Title"] = "Support Tickets";
+}
+
+<img class="nk-page-background-top" src="~/assets/images/bg-bottom.png" alt="">
+<div class="container">
+    <div class="nk-store nk-store-cart">
+
+        <h2>Tickets</h2>
+        @if (Model.Count() == 0)
+        {
+            <div align="center" class="container" style="height: 300px; width:300px">
+                <h3 class="text-center">No tickets to review!</h3>
+                <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" role="button" asp-controller="Home" asp-action="Index">Home</a>
+            </div>
+
+
+        }
+
+        else
+        {
+            <div class="table-responsive">
+                <table class="table nk-store-cart-products">
+                    <tbody>
+                        @foreach (var ticket in Model)
+                        {
+
+                        <tr style="margin-bottom:10px">
+
+                            <td style="width: 10px" class="nk-product-cart-title">
+                                <h5 class="h8">User: @ticket.UserEmail</h5>
+
+                            </td>
+                            <td class="nk-product-cart-price">
+                                <h5 class="h6">Content: @ticket.Content </h5>
+                            </td>
+                            <td class="nk-product-cart-quantity">
+                                <h5 class="h6">CreatedOn: @ticket.CreatedOn</h5>
+
+                            </td>
+                            <td>
+                                <a asp-action="Answer" asp-area="Administration" asp-controller="CustomerSupportTicket" asp-route-id="@ticket.Id" asp-route-userId="@User.Id()" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Answer ticket!</a>
+                            </td>
+                        </tr>
+                           
+                           
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+
+    </div>
+</div>

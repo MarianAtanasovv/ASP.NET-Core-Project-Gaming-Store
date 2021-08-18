@@ -1,5 +1,6 @@
 ﻿namespace GameStore.Models.Games
 {
+   
 
     public class GameGenreViewModel
     {

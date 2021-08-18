@@ -1,4 +1,5 @@
-﻿using GameStore.Models.Users;
+﻿using GameStore.Data.Models;
+using GameStore.Models.Users;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,10 +8,10 @@ namespace GameStore.Services.Users
 {
     public class UserService : IUserService
     {
-        private readonly ApplicationDbContext data;
+        private readonly GameShopDbContext data;
 
 
-        public UserService(ApplicationDbContext data)
+        public UserService(GameShopDbContext data)
         {
             this.data = data;
         }
@@ -32,6 +33,19 @@ namespace GameStore.Services.Users
                 GamePrice = x.Game.Price,
                 TotalPrice = x.Quantity * x.Game.Price,
                 OrderDate = x.Order.OrderDate.ToString()
+
+            }).ToList();
+
+        }
+
+        public IEnumerable<CustomerSupportTicketAnswer> MyTicketsAnswers(string userId)
+        {
+            return this.data.CustomerSupportTicketAnswers.Where(x => x.UserId == userId).Select(x => new CustomerSupportTicketAnswer
+            {
+               Id = x.Id,
+               Content = x.Content,
+               Sender = x.Sender,
+               SentOn = x.SentOn
 
             }).ToList();
 

@@ -3,6 +3,8 @@ using GameStore.Services.Games.Models;
 
 namespace GameStore.Infrastructure
 {
+   
+
     public static class ModelExtensions
     {
         public static string GetInformationGame(this IGameModel game)

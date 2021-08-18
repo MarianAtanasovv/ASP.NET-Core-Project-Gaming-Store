@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace GameStore.Models.Users
 {
+   
+
     public class AccountOrdersListingViewModel
     {
         public Game Game { get; set; }

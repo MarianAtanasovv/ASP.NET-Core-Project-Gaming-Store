@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace GameStore.Models.Articles
 {
+   
 
     public class ArticleDetailsViewModel : IArticleModel
     {

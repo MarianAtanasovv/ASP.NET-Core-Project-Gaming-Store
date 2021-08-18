@@ -5,7 +5,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.Models
 {
+   
     using static DataConstants;
+   
 
     public class Game
     {

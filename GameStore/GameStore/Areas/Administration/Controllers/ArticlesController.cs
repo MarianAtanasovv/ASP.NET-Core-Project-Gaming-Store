@@ -17,13 +17,13 @@ namespace GameStore.Areas.Administration.Controllers
             this.articles = articles;
         }
 
+        [Authorize]
         public IActionResult Add()
         {
             return View();
         }
 
         [Authorize]
-
         public IActionResult All([FromQuery] AllArticlesQueryModel query)
         {
             var articlesQueryResult = this.articles.All(
@@ -44,7 +44,6 @@ namespace GameStore.Areas.Administration.Controllers
 
         [Authorize]
         [HttpPost]
-       
         public IActionResult Add(AddArticleFormModel model)
         {
           

@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GameStore.Areas.Identity
 {
    
+
     public class IdentityHostingStartup : IHostingStartup
     {
         public void Configure(IWebHostBuilder builder)

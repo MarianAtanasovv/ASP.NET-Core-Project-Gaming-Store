@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace GameStore.Infrastructure
 {
+   
 
     public static class EndpointRouteBuilderExtensions
     {

@@ -1,5 +1,6 @@
 ﻿namespace GameStore.Services.Games
 {
+   
 
     public class GameGenreServiceModel
     {

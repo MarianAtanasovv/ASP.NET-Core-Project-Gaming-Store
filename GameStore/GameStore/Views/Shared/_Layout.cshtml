@@ -112,13 +112,13 @@
         <div class="container">
             <div class="nk-nav-table">
 
-                <a asp-controller="Home" asp-action="Index" class="nk-nav-logo">
-                    <img src="~/assets/images/samurai.png" alt="Gaming Hub" width="120" height="120">
+                <a asp-controller="Home" asp-action="Index" class="nk-nav-logo" style="margin-right:600px; width:60px ">
+                    <img src="~/assets/images/samurai.png" alt="Gaming Hub" width="120" height="120" >
                 </a>
 
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
                     <li class=" nk-drop-item">
-                        <a >
+                        <a>
                             Platforms
 
                         </a><ul class="dropdown">
@@ -159,6 +159,16 @@
                             All Articles
                         </a>
                     </li>
+                    
+                    @if (User != null)
+                    {
+                        <li>
+                            <a asp-controller="CustomerSupportTicket" asp-action="Send" asp-area="">
+                                Send Ticket
+                            </a>
+                        </li>
+                    }
+
                     <li>
                         <a asp-controller="Games" asp-action="All">
                             All Games
@@ -186,6 +196,15 @@
                         <li>
                             <a asp-area="Administration" asp-controller="Games" asp-action="Add">
                                 Add Games
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>
+                            <a asp-area="Administration" asp-controller="CustomerSupportTicket" asp-action="All">
+                                Review Tickets
                             </a>
                         </li>
                     }

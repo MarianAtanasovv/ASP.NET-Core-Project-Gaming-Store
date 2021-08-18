@@ -12,8 +12,7 @@
 <body>
 
     <h1 class="text-center mt-2">Welcome back, Gamer!</h1>
-    <hr class="bg-primary w-75">
-    <form id="account" class="mx-auto w-50" method="post">
+    <form id="account"style="height: 630px;" class="mx-auto w-50" method="post">
 
         <hr />
         <div asp-validation-summary="All" class="text-danger"></div>
@@ -32,10 +31,7 @@
             <button type="submit" class="btn btn-primary">Log in</button>
         </div>
         <div class="form-group">
-            <p>
-                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-            </p>
-            <p>
+            
                 <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
             </p>
             

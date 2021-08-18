@@ -1,5 +1,6 @@
 ﻿namespace GameStore.Services.Comments
 {
+   
 
     public class CommentServiceModel
     {

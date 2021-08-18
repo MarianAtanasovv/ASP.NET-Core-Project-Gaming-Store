@@ -7,9 +7,9 @@ namespace GameStore.Services.Games
 {
     public class GameService : IGameService
     {
-        private readonly ApplicationDbContext data;
+        private readonly GameShopDbContext data;
 
-        public GameService(ApplicationDbContext data)
+        public GameService(GameShopDbContext data)
         {
             this.data = data;
         }

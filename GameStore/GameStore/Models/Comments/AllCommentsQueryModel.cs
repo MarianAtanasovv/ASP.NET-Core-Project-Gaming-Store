@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace GameStore.Models.Comments
 {
+   
+
     public class AllCommentsQueryModel
     {
         public int CommentsPerPage = 8;

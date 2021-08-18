@@ -1,5 +1,6 @@
 ﻿namespace GameStore.Controllers
 {
+   
 
     public class GameListingViewModel
     {

@@ -4,6 +4,7 @@ using System.Security.Claims;
 namespace GameStore.Infrastructure
 {
     using static AdminConstants;
+   
 
     public static class ClaimsPrincipalExtensions
     {

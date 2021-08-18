@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.Models.Articles
 {
+   
 
     public class AllArticlesQueryModel : IArticleModel
     {

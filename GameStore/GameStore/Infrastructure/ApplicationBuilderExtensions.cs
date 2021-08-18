@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Infrastructure
 {
+   
 
     public static class ApplicationBuilderExtensions
     {
@@ -29,14 +30,14 @@ namespace GameStore.Infrastructure
 
         private static void MigrateDatabase(IServiceProvider services)
         {
-            var data = services.GetRequiredService<ApplicationDbContext>();
+            var data = services.GetRequiredService<GameShopDbContext>();
 
             data.Database.Migrate();
         }
 
         private static void SeedGenres(IServiceProvider services)
         {
-            var data = services.GetRequiredService<ApplicationDbContext>();
+            var data = services.GetRequiredService<GameShopDbContext>();
 
             if (data.Genres.Any())
             {
@@ -65,7 +66,7 @@ namespace GameStore.Infrastructure
 
         private static void SeedPlatforms(IServiceProvider services)
         {
-            var data = services.GetRequiredService<ApplicationDbContext>();
+            var data = services.GetRequiredService<GameShopDbContext>();
 
             if (data.Platforms.Any())
             {

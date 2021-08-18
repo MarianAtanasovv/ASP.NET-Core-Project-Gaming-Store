@@ -1,7 +1,8 @@
 ﻿using GameStore.Infrastructure;
+using GameStore.Models.CustomerSupportTicket;
 using GameStore.Services.Users;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Linq;
 
 namespace GameStore.Controllers
 {
@@ -25,6 +26,19 @@ namespace GameStore.Controllers
             var usersProducts = user.UsersPurchases(userId);
 
             return View(usersProducts);
+        }
+
+        public IActionResult MyTicketsAnswers(AllCustomerSupportTicketAnswersViewModel ticket, string userId)
+        {
+            var tickets = this.user.MyTicketsAnswers(userId).Select(x => new AllCustomerSupportTicketAnswersViewModel
+            {
+                SentOn = x.SentOn,
+                Content = x.Content,
+                Sender = x.Sender
+            })
+                .ToList();
+
+            return View(tickets);
         }
     }
 }

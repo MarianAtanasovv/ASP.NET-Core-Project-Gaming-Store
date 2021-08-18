@@ -160,8 +160,8 @@ namespace GameStoreTest.Test.Controllers
 
                 }))
                 .ShouldReturn()
-                .Redirect(result => result
-                    .To<HomeController>(c => c.Index()));
+                  .Redirect(result => result
+                      .To<ArticlesController>(c => c.All(With.Any<AllArticlesQueryModel>())));
         }
     }
 }

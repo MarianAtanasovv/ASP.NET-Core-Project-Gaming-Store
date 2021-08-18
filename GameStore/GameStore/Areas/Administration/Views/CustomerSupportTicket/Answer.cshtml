@@ -1,0 +1,36 @@
+﻿@model AddCustomerTicketAnswer
+
+
+@{
+    ViewData["Title"] = "Send";
+}
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<body>
+    <h1 class="text-center mt-2">Send a ticket!</h1>
+    <form class="mx-auto w-50" method="post">
+
+
+        <div class="d-flex justify-content-start">
+            <label asp-for="Content" class="h4 mb-2"></label>
+        </div>
+        <textarea style="height:120px; margin-bottom:10px" asp-for="Content" type="text" class="form-control" placeholder="My problem is..."> </textarea>
+
+        <span asp-validation-for="Content" class="small text-danger"></span>
+
+
+
+
+        <div class="d-flex justify-content-center">
+            <button asp-controller="CustomerSupportTicket" asp-action="Answer" type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Send Ticket</button>
+        </div>
+
+    </form>
+
+
+
+</body>
+</html>

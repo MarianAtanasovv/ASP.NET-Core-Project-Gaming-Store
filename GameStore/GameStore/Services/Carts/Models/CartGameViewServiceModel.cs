@@ -1,5 +1,6 @@
 ﻿namespace GameStore.Services.Carts
 {
+   
 
     public class CartGameViewServiceModel
     {

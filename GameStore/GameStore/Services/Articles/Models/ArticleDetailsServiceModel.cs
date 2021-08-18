@@ -2,6 +2,7 @@
 
 namespace GameStore.Services.Articles
 {
+   
 
     public class ArticleDetailsServiceModel : IArticleModel
     {

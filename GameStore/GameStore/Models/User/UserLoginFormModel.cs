@@ -1,5 +1,6 @@
 ﻿namespace GameStore.Models
 {
+   
 
     public class UserLoginFormModel
     {

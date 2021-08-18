@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameStore
 {
+   
 
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class GameShopDbContext : IdentityDbContext<User>
     {
         
         public DbSet<Game> Games { get; set; }
@@ -25,8 +26,13 @@ namespace GameStore
 
         public DbSet<OrderGame> OrderGames { get; set; }
 
+        public DbSet<CustomerSupportTicket> CustomerSupportTickets { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
+        public DbSet<CustomerSupportTicketAnswer> CustomerSupportTicketAnswers { get; set; }
+
+
+
+        public GameShopDbContext(DbContextOptions<GameShopDbContext> options) : base (options)
         {
 
         }

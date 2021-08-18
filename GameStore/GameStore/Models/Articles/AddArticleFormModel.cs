@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace GameStore.Models.Articles
 {
     using static DataConstants;
+   
 
     public class AddArticleFormModel
     {

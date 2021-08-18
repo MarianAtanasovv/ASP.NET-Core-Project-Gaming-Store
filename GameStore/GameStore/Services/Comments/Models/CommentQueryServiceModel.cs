@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace GameStore.Services.Comments
 {
+   
 
     public class CommentQueryServiceModel
     {

@@ -7,10 +7,10 @@ namespace GameStore.Services.Orders
 {
     public class OrderService : IOrderService
     {
-        private readonly ApplicationDbContext data;
+        private readonly GameShopDbContext data;
 
 
-        public OrderService(ApplicationDbContext data)
+        public OrderService(GameShopDbContext data)
         {
             this.data = data;
         }

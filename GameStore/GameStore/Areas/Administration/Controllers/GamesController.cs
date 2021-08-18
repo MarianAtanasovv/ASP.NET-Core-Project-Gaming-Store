@@ -9,10 +9,10 @@ namespace GameStore.Areas.Administration.Controllers
     [Area("Administration")]
     public class GamesController : Controller
     {
-        private readonly ApplicationDbContext data;
+        private readonly GameShopDbContext data;
         private readonly IGameService games;
 
-        public GamesController(ApplicationDbContext data, IGameService games)
+        public GamesController(GameShopDbContext data, IGameService games)
         {
            this.data = data;
             this.games = games;
