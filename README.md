@@ -30,4 +30,4 @@ This project is licensed under the MIT License
 Credentials:
 adminUsername = "testAdmin"\
 adminEmail = "test123@abv.bg"\
-adminPassword = "test123"\
+adminPassword = "test123"
