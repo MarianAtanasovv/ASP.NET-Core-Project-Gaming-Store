@@ -2,7 +2,6 @@
 
 namespace GameStore.Data.Models
 {
-   
 
     public class CustomerSupportTicketAnswer
     {
