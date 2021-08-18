@@ -6,8 +6,7 @@
     {
         public const int GameRequirementsMaxLenght = 500;
         public const int GameDescriptionsMaxLenght = 5000;
-        public const int GameTitleMaxLength = 25;
-      
+        public const int GameTitleMaxLength = 45;
         public const int GameTitleMinLength = 3;
         public const int GameDescriptionMinLength = 15;
         public const int GameRequirementsMinLength = 20;
