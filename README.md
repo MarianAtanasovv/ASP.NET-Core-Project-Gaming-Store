@@ -5,18 +5,18 @@ The application has users, games, a blog with articles and comments, orders. Eac
 Users can search and sort the games and articles and view details about them. Users can order games and recieve a game activation key via email.
 Admins can add, remove, edit and delete blog articles and games.
 
-🔨 Built With
-ASP.NET CORE 5.0 MVC
-ASP.NET CORE View Components
-ASP.NET CORE Areas
-MSSQL Server
-Bootstrap
-CSS
-Javascript 
-MyTested.AspNetCore.Mvc
-HTML
-Moq
-Xunit
+🔨 Built With\
+ASP.NET CORE 5.0 MVC\
+ASP.NET CORE View Components\
+ASP.NET CORE Areas\
+MSSQL Server\
+Bootstrap\
+CSS\
+Javascript\
+MyTested.AspNetCore.Mvc\
+HTML\
+Moq\
+Xunit\
 
 Database Diagram
 [![Untitled.png](https://i.postimg.cc/VvNNkGFS/Untitled.png)](https://postimg.cc/k6kCjyz9)
