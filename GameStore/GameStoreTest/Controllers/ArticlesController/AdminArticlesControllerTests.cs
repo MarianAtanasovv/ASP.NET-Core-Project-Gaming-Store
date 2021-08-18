@@ -1,12 +1,6 @@
 ﻿using GameStore.Controllers;
-using GameStore.Data.Models;
 using GameStore.Models.Articles;
 using MyTested.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace GameStoreTest.Test.Controllers

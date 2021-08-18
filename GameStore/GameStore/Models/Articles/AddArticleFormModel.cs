@@ -28,7 +28,7 @@ namespace GameStore.Models.Articles
 
 
         [Required]
-        [Display(Name = "Trailer Url")]
+        [Display(Name = "Video")]
         [Url]
         public string TrailerUrl { get; set; }
 

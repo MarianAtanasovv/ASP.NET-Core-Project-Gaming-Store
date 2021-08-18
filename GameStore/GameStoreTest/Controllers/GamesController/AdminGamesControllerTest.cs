@@ -1,20 +1,8 @@
-﻿using FluentAssertions;
-using GameStore.Controllers;
+﻿using GameStore.Data.Models;
 using GameStore.Models;
 using GameStore.Models.Games;
-using GameStore.Services.Games;
-using Moq;
 using MyTested.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
-using GameStore.Areas.Administration.Controllers;
-using GameStore;
-using Microsoft.EntityFrameworkCore;
-using GameStore.Data.Models;
 
 namespace GameStoreTest
 {

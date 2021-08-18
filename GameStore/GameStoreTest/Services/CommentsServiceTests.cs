@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using GameStoreTest.Data;
-using GameStore.Data.Models;
+﻿using GameStore.Data.Models;
 using GameStore.Services.Comments;
+using GameStoreTest.Data;
+using System.Linq;
+using Xunit;
 
 namespace GameStoreTest.Services
 {
