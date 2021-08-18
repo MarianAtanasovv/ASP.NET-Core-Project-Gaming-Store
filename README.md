@@ -19,7 +19,7 @@ Moq\
 Xunit
 
 Database Diagram
-[![Untitled.png](https://i.postimg.cc/VvNNkGFS/Untitled.png)](https://postimg.cc/k6kCjyz9)
+[![Untitled.png](https://i.postimg.cc/rw8cMTBF/Untitled.png)](https://postimg.cc/VdH2Wxs3)
 
 CSS Theme used:
 https://themeforest.net/item/goodgames-portal-store-html-gaming-template/17704593?_ga=2.2072753.148689481.1629237619-1612075309.1628063833
