@@ -16,7 +16,7 @@ Javascript\
 MyTested.AspNetCore.Mvc\
 HTML\
 Moq\
-Xunit\
+Xunit
 
 Database Diagram
 [![Untitled.png](https://i.postimg.cc/VvNNkGFS/Untitled.png)](https://postimg.cc/k6kCjyz9)
@@ -28,6 +28,6 @@ License:
 This project is licensed under the MIT License 
 
 Credentials:
-adminUsername = "testAdmin"
-adminEmail = "test123@abv.bg"
-adminPassword = "test123"
+adminUsername = "testAdmin"\
+adminEmail = "test123@abv.bg"\
+adminPassword = "test123"\
