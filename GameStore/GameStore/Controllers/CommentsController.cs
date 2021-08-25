@@ -19,9 +19,9 @@ namespace GameStore.Controllers
             this.users = users;
         }
 
-        public IActionResult Add(int ArticleId) => View(new AddCommentToArticleViewModel()
+        public IActionResult Add(int articleId) => View(new AddCommentToArticleViewModel()
         {
-            Id = ArticleId
+            Id = articleId
         });
 
         [HttpPost]
